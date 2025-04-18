@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://lhxg32llhuij"]
+
+[ext_resource type="Script" path="res://Scripts/grenade.gd" id="1_jtbeh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_in4gs"]
+friction = 0.1
+bounce = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_74et6"]
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqsef"]
+albedo_color = Color(0.45, 0.45, 0.45, 1)
+metallic = 1.0
+roughness = 0.75
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sxj12"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_klwes"]
+radius = 0.3
+
+[node name="Grenade" type="RigidBody3D"]
+top_level = true
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_in4gs")
+script = ExtResource("1_jtbeh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_74et6")
+surface_material_override/0 = SubResource("StandardMaterial3D_oqsef")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sxj12")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_klwes")
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="explode"]

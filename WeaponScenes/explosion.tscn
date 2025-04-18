@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5vore8n37spl"]
+
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_s035u"]
+[ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_25kn6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_tyu1o"]
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2apt"]
+transparency = 4
+albedo_color = Color(0.195, 0.6825, 0.78, 0.392157)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l1bn6"]
+radius = 1.0
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_s035u")
+
+[node name="ExpandTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Launch_Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0999986, -0.000532323, 0, 0.000532323, 0.0999986, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_tyu1o")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_w2apt")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_l1bn6")
+
+[node name="CheckRay" type="RayCast3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_25kn6")
+
+[connection signal="timeout" from="ExpandTimer" to="." method="_on_expand_timer_timeout"]
+[connection signal="timeout" from="Launch_Timer" to="." method="launch_objects"]

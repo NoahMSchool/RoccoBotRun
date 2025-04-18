@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfa46j5hc2ww"]
+
+[ext_resource type="Script" path="res://Scripts/laser_cannon.gd" id="1_h5a8w"]
+[ext_resource type="AudioStream" uid="uid://6rk8hq0qonrs" path="res://Sounds/466867__mikee63__blaster-shot-single-5.wav" id="2_nk8b2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mnxr2"]
+top_radius = 0.1
+bottom_radius = 0.2
+height = 1.5
+radial_segments = 8
+
+[node name="LaserCannon" type="Node3D"]
+script = ExtResource("1_h5a8w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_mnxr2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_nk8b2")

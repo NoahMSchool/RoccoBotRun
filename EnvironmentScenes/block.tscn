@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgikjhgrelax6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pc7b3"]
+friction = 0.5
+bounce = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qx16"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8vwfa"]
+
+[node name="Block" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_pc7b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8qx16")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8vwfa")
