@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkckw5nilwpij"]
 
 [ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
-[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://WeaponScenes/laser_cannon.tscn" id="2_141ks"]
-[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://WeaponScenes/grenade_launcher.tscn" id="3_1j3ey"]
+[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="2_141ks"]
+[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="3_1j3ey"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8gak"]
-height = 1.5
+height = 1.25
 
 [sub_resource type="BoxMesh" id="BoxMesh_atwii"]
 size = Vector3(1, 0.5, 0.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ypcl"]
-height = 1.5
+height = 1.25
 
 [node name="RoccoBot" type="CharacterBody3D"]
 collision_layer = 2
@@ -37,11 +37,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 shape = SubResource("CapsuleShape3D_1ypcl")
 
 [node name="CamPivot" type="Node3D" parent="."]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
+visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamPivot"]
+visible = false
 spring_length = 5.0
 margin = 0.1
 
 [node name="CamPos" type="Node3D" parent="CamPivot/SpringArm3D"]
+visible = false
+
+[node name="Camera3DFollow" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+spring_length = 7.5
+margin = 0.1
+
+[node name="CamPos" type="Node3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0)

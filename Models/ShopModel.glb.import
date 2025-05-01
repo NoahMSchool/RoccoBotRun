@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dchpy2chdn4bl"
-path="res://.godot/imported/RoccoBotBlocks.glb-fd23d208f899a0b00cb402e6d271dcf0.scn"
+uid="uid://bodhj1by70cd0"
+path="res://.godot/imported/ShopModel.glb-997abc7183447144338330262a8ff7f7.scn"
 
 [deps]
 
-source_file="res://RoccoBotBlocks.glb"
-dest_files=["res://.godot/imported/RoccoBotBlocks.glb-fd23d208f899a0b00cb402e6d271dcf0.scn"]
+source_file="res://Models/ShopModel.glb"
+dest_files=["res://.godot/imported/ShopModel.glb-997abc7183447144338330262a8ff7f7.scn"]
 
 [params]
 

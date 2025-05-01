@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const EXPLOSION = preload("res://WeaponScenes/explosion.tscn")
+const EXPLOSION = preload("res://Scenes/WeaponScenes/explosion.tscn")
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

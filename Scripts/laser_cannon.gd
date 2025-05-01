@@ -1,6 +1,6 @@
 extends Node3D
 
-const LASER_PROJECTILE = preload("res://WeaponScenes/laser_projectile.tscn")
+const LASER_PROJECTILE = preload("res://Scenes/WeaponScenes/laser_projectile.tscn")
 const BLOOM = PI/72
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

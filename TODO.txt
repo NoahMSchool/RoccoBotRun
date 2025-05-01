@@ -1,0 +1,19 @@
+
+Camera
+- choose best camera mode orbiting
+
+RoccoBot
+- Bake Textures into mesh for export
+- finish rigging and animating for game
+
+Environment
+- Finalise lighting
+- replace groundlight mesh
+- Add rain
+- Add animated windy shop meshes with baked physics animation
+
+
+Gridmap
+- make modular shop pieces for gridmap
+- figure out how to add pieces to gridmap 
+- change roof tiles to use the lighter grey mateiral

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cm53x2dfu3ikv"
-path.s3tc="res://.godot/imported/upper_pavement_ramp_roughness.png-7c2b403c3514baf5df17ae3a8349159a.s3tc.ctex"
+path.s3tc="res://.godot/imported/upper_pavement_ramp_roughness.png-5e45f38d6fec39500f25d46e511b4401.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/upper_pavement_ramp_roughness.png"
-dest_files=["res://.godot/imported/upper_pavement_ramp_roughness.png-7c2b403c3514baf5df17ae3a8349159a.s3tc.ctex"]
+source_file="res://Textures/GridMapTextures/upper_pavement_ramp_roughness.png"
+dest_files=["res://.godot/imported/upper_pavement_ramp_roughness.png-5e45f38d6fec39500f25d46e511b4401.s3tc.ctex"]
 
 [params]
 

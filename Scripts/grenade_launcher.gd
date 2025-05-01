@@ -1,6 +1,6 @@
 extends Node3D
 
-const GRENADE = preload("res://WeaponScenes/grenade.tscn")
+const GRENADE = preload("res://Scenes/WeaponScenes/grenade.tscn")
 var power = 10
 const ANGLE_SPEED = PI
 var angle = 0.0:

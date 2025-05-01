@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djujphoca4tbd"
-path.s3tc="res://.godot/imported/pavement_block_roughness.png-221740d24f953f483751fc37ba9d1e4d.s3tc.ctex"
+uid="uid://cark4clewnwuu"
+path.s3tc="res://.godot/imported/brick_block_normal.png-98dc8d4e205242ba1f4748e628d851fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/pavement_block_roughness.png"
-dest_files=["res://.godot/imported/pavement_block_roughness.png-221740d24f953f483751fc37ba9d1e4d.s3tc.ctex"]
+source_file="res://Textures/GridMapTextures/brick_block_normal.png"
+dest_files=["res://.godot/imported/brick_block_normal.png-98dc8d4e205242ba1f4748e628d851fd.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Textures/brick_block_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
