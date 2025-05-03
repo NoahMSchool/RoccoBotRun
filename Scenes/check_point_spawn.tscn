@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://barulqklih133"]
+[gd_scene load_steps=4 format=3 uid="uid://barulqklih133"]
+
+[ext_resource type="Script" path="res://Scenes/check_point_spawn.gd" id="1_xuoex"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yuve8"]
 radius = 1.0
@@ -8,6 +10,7 @@ bottom_radius = 1.0
 height = 0.25
 
 [node name="CheckPointSpawn" type="Node3D"]
+script = ExtResource("1_xuoex")
 
 [node name="SpawnPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -22,3 +25,5 @@ shape = SubResource("CylinderShape3D_yuve8")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 mesh = SubResource("CylinderMesh_611r4")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

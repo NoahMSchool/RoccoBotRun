@@ -7,6 +7,8 @@ var super_jump = false
 var jump_power = 3
 var current_speed = SPEED
 
+@export var spawnpoint : Node3D
+
 var mouse_delta = Vector2.ZERO
 
 @export var cam_sens = 0.00025
@@ -71,6 +73,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func die():
 	pass
 
+func respawn():
+	global_transform = spawnpoint.get_node("SpawnPos").global_transform
 
 #TODO
 """

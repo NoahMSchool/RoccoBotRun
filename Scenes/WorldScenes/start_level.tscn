@@ -111,15 +111,19 @@ fog_sky_affect = 0.05
 
 [node name="SpaceCity" type="Node3D"]
 
-[node name="RoccoBot" parent="." instance=ExtResource("1_qh17t")]
+[node name="RoccoBot" parent="." node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_qh17t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 SPEED = 5.0
+spawnpoint = NodePath("../CheckPointSpawn")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("10_cuf6r")
 
 [node name="CheckPointSpawn" parent="." instance=ExtResource("11_ljtte")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="CheckPointSpawn2" parent="." instance=ExtResource("11_ljtte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
 
 [node name="WorldObjects" type="Node3D" parent="."]
 
@@ -244,4 +248,5 @@ script = ExtResource("12_4iwbc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -27)
 shape = SubResource("WorldBoundaryShape3D_2yho7")
 
+[connection signal="reset_level" from="GameManager" to="RoccoBot" method="respawn"]
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
