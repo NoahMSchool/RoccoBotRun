@@ -17,3 +17,6 @@ Gridmap
 - make modular shop pieces for gridmap
 - figure out how to add pieces to gridmap 
 - change roof tiles to use the lighter grey mateiral
+
+
+Sort out nodee ehirachy into the different stages and their checkpoints
