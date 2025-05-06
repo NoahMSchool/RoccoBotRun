@@ -2,9 +2,12 @@
 extends CharacterBody3D
 
 @export var SPEED = 4.0
-const MAX_JUMP = 1.5
-var super_jump = false
-var jump_power = 3
+@export var jump_height = 4.5
+@export var super_jump_height = 9
+
+@export var super_jump_time = 0.5
+var jump_time = 0.0
+
 var current_speed = SPEED
 
 @export var spawnpoint : Node3D
@@ -30,12 +33,16 @@ func _physics_process(delta: float) -> void:
 
 	#jumping
 	if Input.is_action_just_released("jump") and is_on_floor():
-		velocity.y = clamp(jump_power, 5, 9)
+		if jump_time > super_jump_time:
+			velocity.y = super_jump_height
+		else:
+			velocity.y = jump_height
+			
 	if Input.is_action_pressed("jump") and is_on_floor():
-		jump_power += delta*25
+		jump_time += delta
 		current_speed /= 2
 	else:
-		jump_power = 0
+		jump_time = 0
 
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")

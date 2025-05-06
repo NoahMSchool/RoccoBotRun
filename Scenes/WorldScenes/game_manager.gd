@@ -3,46 +3,32 @@ extends Node
 signal reset_level
 
 @export var stage_node : Node
-var stage_num : int = 0
-@onready var stages = stage_node.get_children()
 @export var player_node : CharacterBody3D
 
+@onready var stages = stage_node.get_children()
 
 func player_die():
 	print("die")
 	emit_signal("reset_level")
 
-func stage_reached():
-	for node in stages[stage_num]:
-		stage_num +=1
-
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("plus"):
-		stage_num = (stage_num+1) % (stages.size())
-		change_stage()
-		
-	if event.is_action_pressed("minus"):
-		stage_num = absi((stage_num-1) % (stages.size()))
-		change_stage()
 	if event.is_action_pressed("FreeMouse"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event.is_action_pressed("Die"):
-		player_die()
-		
-func change_stage():
-	print(stage_num)
-	print(stages[stage_num].name)
-	for i in range(stages.size()):
-		var stage_object = stages[i].get_node("StageObjects")
+		player_die()	
+	
+	if event.is_action_pressed("plus"):
+		pass
+
+func stage_reached(checkpoint: Node3D) -> void:
+	stage_node = checkpoint.get_node("..")
+	print("Stage ", stage_node.name)
+	for stage in stages:
+		var stage_object = stage.get_node("StageObjects")
 		if stage_object:
-			stage_object.visible = (i == stage_num)
-		
-	var spawn_object = stages[stage_num].get_node("CheckPointSpawn")
-		#spawn_object.visible = (i == stage_num)
+			stage_object.visible = (stage == stage_node)
+
+	var spawn_object = stage_node.get_node("CheckPointSpawn")
+	print("Spawner ", spawn_object.name)
 	if spawn_object && player_node:
 		player_node.spawnpoint = spawn_object
-		
-
-
-func _on_check_point_spawn_checkpoint_reached(checkpoint: Node3D) -> void:
-	print(checkpoint)

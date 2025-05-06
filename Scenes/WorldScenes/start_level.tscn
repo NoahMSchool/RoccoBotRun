@@ -268,4 +268,3 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0
 
 [connection signal="reset_level" from="GameManager" to="RoccoBot" method="respawn"]
 [connection signal="body_entered" from="FloorKillZone" to="FloorKillZone" method="_on_body_entered"]
-[connection signal="checkpoint_reached" from="Stages/Stage0/CheckPointSpawn" to="GameManager" method="_on_check_point_spawn_checkpoint_reached"]
