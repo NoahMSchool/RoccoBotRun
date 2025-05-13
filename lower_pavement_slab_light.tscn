@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://dh71885b3syqf"]
 
-[ext_resource type="Texture2D" uid="uid://wk4sy4kqyki8" path="res://Textures/GridMapTextures/lower_pavement_slab_roughness.png" id="1_he2qb"]
+[ext_resource type="Texture2D" uid="uid://wk4sy4kqyki8" path="res://Textures/GridMap1Textures/lower_pavement_slab_roughness.png" id="1_he2qb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hams6"]
 resource_name = "Material.001"

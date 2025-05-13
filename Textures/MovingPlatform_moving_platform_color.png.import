@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1r0ou5v850aq"
-path.s3tc="res://.godot/imported/CheckPoint_check_point_color.png-58ae21ad7e2ef2dfd108741689383610.s3tc.ctex"
+uid="uid://cmtgyeow2uvg7"
+path.s3tc="res://.godot/imported/MovingPlatform_moving_platform_color.png-f6f1b565fb0184e4aa85426ad374387d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a208b8cc73cff8a9ef0ab981305f314e"
+"md5": "dd05400a17b9d47f365de121c939e812"
 }
 
 [deps]
 
-source_file="res://Models/CheckPoint_check_point_color.png"
-dest_files=["res://.godot/imported/CheckPoint_check_point_color.png-58ae21ad7e2ef2dfd108741689383610.s3tc.ctex"]
+source_file="res://Textures/MovingPlatform_moving_platform_color.png"
+dest_files=["res://.godot/imported/MovingPlatform_moving_platform_color.png-f6f1b565fb0184e4aa85426ad374387d.s3tc.ctex"]
 
 [params]
 

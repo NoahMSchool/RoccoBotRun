@@ -16,6 +16,8 @@ var mouse_delta = Vector2.ZERO
 
 @export var cam_sens = 0.00025
 
+@onready var right_item = null
+@onready var left_item = null
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -43,7 +45,15 @@ func _physics_process(delta: float) -> void:
 		current_speed /= 2
 	else:
 		jump_time = 0
-
+	
+	if Input.is_action_pressed("right_action"):
+		if right_item:
+			right_item.fire()
+	
+	if Input.is_action_pressed("left_action"):
+		if left_item:
+			left_item.fire()
+	
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -76,7 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		$CamPivot.rotation.y -= event.relative.x*cam_sens
 		$CamPivot.rotation.x -= event.relative.y*cam_sens
 		$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
-
+	
 func die():
 	pass
 
@@ -89,7 +99,3 @@ Make Player allign with ground
 
 Add ability to push objects
 """
-
-
-func _on_kill_zone_body_entered(body: Node3D) -> void:
-	print("sd") # Replace with function body.

@@ -1,4 +1,4 @@
-extends Node3D
+extends Weapon
 
 const GRENADE = preload("res://Scenes/WeaponScenes/grenade.tscn")
 var power = 10
@@ -11,8 +11,13 @@ var angle = 0.0:
 		return angle
 
 var action = "left_action"
+func fire():
+	pass
+func fire_released():
+	pass
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	if $Timer.is_stopped():
 		if Input.is_action_just_released(action):
 			$Timer.start(1)
@@ -33,8 +38,6 @@ func _physics_process(delta: float) -> void:
 
 """
 TODO
-
-Make grenade launch on release and angle of launch based on hold time
 
 Add preview of trajectory
 

@@ -14,6 +14,11 @@ config/name="RoccoBotRun"
 run/main_scene="res://Scenes/WorldScenes/start_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[global_group]
+
+player=""
+enemies=""
+
 [input]
 
 forward={

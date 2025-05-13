@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wk4sy4kqyki8"
-path.s3tc="res://.godot/imported/lower_pavement_slab_roughness.png-1464783c4fef77fd67d213c137c844fe.s3tc.ctex"
+uid="uid://de20tmun5m3c8"
+path.s3tc="res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-d49b96ebc76bf156b10d817c717707a3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4b5d3b0b77b79eba3fc2999ffca404cc"
+}
 
 [deps]
 
-source_file="res://Textures/GridMapTextures/lower_pavement_slab_roughness.png"
-dest_files=["res://.godot/imported/lower_pavement_slab_roughness.png-1464783c4fef77fd67d213c137c844fe.s3tc.ctex"]
+source_file="res://Models/RoccoBot_norig_RoccoBot_color.png"
+dest_files=["res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-d49b96ebc76bf156b10d817c717707a3.s3tc.ctex"]
 
 [params]
 

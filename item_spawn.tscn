@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://xmwqtq01uwm7"]
+
+[ext_resource type="Script" path="res://item_spawn.gd" id="1_1s8fh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fotc0"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkh4n"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[node name="ItemSpawn" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1s8fh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fotc0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pkh4n")
+skeleton = NodePath("../CollisionShape3D")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

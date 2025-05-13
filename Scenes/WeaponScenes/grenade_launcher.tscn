@@ -10,6 +10,7 @@ radial_segments = 8
 
 [node name="GrenadeLauncher" type="Node3D"]
 script = ExtResource("1_e2ua2")
+max_ammo = 3
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

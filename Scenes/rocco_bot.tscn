@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="2_141ks"]
+[ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rocco_multimesh.tscn" id="2_edblu"]
 [ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="3_1j3ey"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_v8gak"]
-height = 1.25
 
 [sub_resource type="BoxMesh" id="BoxMesh_atwii"]
 size = Vector3(1, 0.5, 0.5)
@@ -20,16 +18,21 @@ script = ExtResource("1_x72y6")
 
 [node name="Object" type="Node3D" parent="."]
 
+[node name="MultiMeshInstance3D" parent="Object" instance=ExtResource("2_edblu")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, -0.75, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Object"]
-mesh = SubResource("CapsuleMesh_v8gak")
+visible = false
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Object/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+visible = false
 mesh = SubResource("BoxMesh_atwii")
 
-[node name="LaserCannon" parent="Object" instance=ExtResource("2_141ks")]
+[node name="LaserCannon" parent="Object" groups=["player"] instance=ExtResource("2_141ks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+projectile_color = "blue"
 
 [node name="GrenadeLauncher" parent="Object" instance=ExtResource("3_1j3ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)

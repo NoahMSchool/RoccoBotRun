@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm53x2dfu3ikv"
-path.s3tc="res://.godot/imported/upper_pavement_ramp_roughness.png-5e45f38d6fec39500f25d46e511b4401.s3tc.ctex"
+uid="uid://dcupkdyq3jcgi"
+path.s3tc="res://.godot/imported/brick_block_color.png-efcd465ff2ecceb93c72f6a6c497d7be.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/GridMapTextures/upper_pavement_ramp_roughness.png"
-dest_files=["res://.godot/imported/upper_pavement_ramp_roughness.png-5e45f38d6fec39500f25d46e511b4401.s3tc.ctex"]
+source_file="res://Textures/GridMap1Textures/brick_block_color.png"
+dest_files=["res://.godot/imported/brick_block_color.png-efcd465ff2ecceb93c72f6a6c497d7be.s3tc.ctex"]
 
 [params]
 

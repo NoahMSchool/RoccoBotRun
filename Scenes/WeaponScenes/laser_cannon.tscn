@@ -11,6 +11,8 @@ radial_segments = 8
 
 [node name="LaserCannon" type="Node3D"]
 script = ExtResource("1_h5a8w")
+max_ammo = 10
+ammo_regen = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
