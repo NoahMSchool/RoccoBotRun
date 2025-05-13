@@ -16,8 +16,22 @@ var mouse_delta = Vector2.ZERO
 
 @export var cam_sens = 0.00025
 
+@onready var items = $Object/Items.get_children()
+
 @onready var right_item = null
 @onready var left_item = null
+
+func equip_item(item_scene : PackedScene, hand : bool):
+	
+	var item = item_scene.instantiate()
+	if hand:
+		item.position.x = -1
+		left_item = item
+	else:
+		item.position.x = 1
+		right_item = item
+	$Object/Items.add_child(item)
+	
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -48,12 +62,20 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("right_action"):
 		if right_item:
-			right_item.fire()
+			right_item.fire()			
 	
 	if Input.is_action_pressed("left_action"):
 		if left_item:
 			left_item.fire()
-	
+		
+	if Input.is_action_just_pressed("test"):
+		var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
+		var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
+		equip_item(launcher_scene, false)
+		equip_item(laser_scene, true)
+		
+		
+		
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

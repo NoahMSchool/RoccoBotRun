@@ -29,6 +29,7 @@ collision_layer = 4
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_in4gs")
 script = ExtResource("1_jtbeh")
+explosion_time = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_74et6")
@@ -43,6 +44,7 @@ shape = SubResource("SphereShape3D_sxj12")
 shape = SubResource("SphereShape3D_klwes")
 
 [node name="ExplosionTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
