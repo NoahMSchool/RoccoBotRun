@@ -1,6 +1,7 @@
 
 extends CharacterBody3D
 
+
 @export var SPEED = 4.0
 @export var jump_height = 4.5
 @export var super_jump_height = 9
@@ -16,21 +17,40 @@ var mouse_delta = Vector2.ZERO
 
 @export var cam_sens = 0.00025
 
-@onready var items = $Object/Items.get_children()
+@onready var items : Array[Item] = []
+
+#:
+	#get:
+		#if items[0]:
+			#equip_item(items[0], -1)
+		#if items[1]:
+			#equip_item(items[1], 1)
+		#
+		#return items
+	#set(value):
+		#items = value
 
 @onready var right_item = null
 @onready var left_item = null
 
+func configure_item(item : Item):
+	if item is Weapon:
+		item.accent_color = "blue"
+		#item.target_group = "enemies"
+
+func add_item(item : Item):
+	var configured_item = configure_item(item)
+	items.append(configured_item)
+	equip_item(configured_item, right_item)
+
 func equip_item(item_scene : PackedScene, hand : bool):
-	
 	var item = item_scene.instantiate()
 	if hand:
-		item.position.x = -1
 		left_item = item
+		$Object/Items/LeftHandItem.add_child(item)
 	else:
-		item.position.x = 1
+		$Object/Items/RightHandItem.add_child(item)
 		right_item = item
-	$Object/Items.add_child(item)
 	
 
 func _ready() -> void:

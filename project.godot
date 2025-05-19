@@ -14,6 +14,11 @@ config/name="RoccoBotRun"
 run/main_scene="res://Scenes/WorldScenes/start_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[display]
+
+window/size/viewport_width=3000
+window/size/viewport_height=2000
+
 [global_group]
 
 player=""

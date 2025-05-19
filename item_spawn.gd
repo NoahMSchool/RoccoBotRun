@@ -5,5 +5,8 @@ extends Area3D
 
 func _on_body_entered(body: Node3D) -> void:
 	print(body)
-	if body.is_in_group("player"):
-		print("intem granted")
+	if body.has_method("add_item") && item.is_class("weapon"):
+		body.add_item(item)
+	#if body.is_in_group("player"):
+		#body.add_item()
+		#print("intem granted")

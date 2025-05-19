@@ -5,6 +5,7 @@ class_name Weapon
 @export var ammo_regen : float
 @onready var ammo = max_ammo
 @onready var ammof = ammo
+@export var accent_color : String
 
 @export var target_group = "enemies"
 

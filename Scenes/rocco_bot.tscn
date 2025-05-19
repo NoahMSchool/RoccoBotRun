@@ -30,6 +30,14 @@ mesh = SubResource("BoxMesh_atwii")
 
 [node name="Items" type="Node3D" parent="Object"]
 
+[node name="RightHandItem" type="Node3D" parent="Object/Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="LeftHandItem" type="Node3D" parent="Object/Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="InventoryItems" type="Node3D" parent="Object/Items"]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1ypcl")
 

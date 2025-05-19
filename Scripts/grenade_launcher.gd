@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 			$Timer.start(1)
 			var grenade = GRENADE.instantiate()
 			grenade.global_transform.origin = global_transform.origin
+			grenade.accent_color = accent_color
 			var direction = -global_transform.basis.z
 			var impulse = direction * power
 			

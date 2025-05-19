@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=35 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_qh17t"]
 [ext_resource type="PackedScene" path="res://Scenes/WorldObjectScenes/block.tscn" id="2_xqcay"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://item_spawn.tscn" id="14_1habm"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="14_16d4a"]
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="15_jlpwk"]
+[ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="17_yovw2"]
 
 [sub_resource type="Sky" id="Sky_eqvil"]
 sky_material = ExtResource("5_hw2cq")
@@ -31,6 +32,8 @@ fog_light_color = Color(0.546, 0.623, 0.7, 1)
 fog_light_energy = 0.2
 fog_density = 0.001
 fog_sky_affect = 0.05
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urki0"]
 albedo_texture = ExtResource("9_fh5l0")
@@ -113,16 +116,40 @@ data = PackedVector3Array(-3.5, 3.75, -3.5, -1.16667, 3.75, -4, -1.16667, 3.75, 
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2yho7"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6hba"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 50)
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.05
+
+[sub_resource type="Curve" id="Curve_268sc"]
+max_value = 0.2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0.02), 0.0, 0.104532, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbdqu"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.1925, 0.268625, 0.35, 0.686275)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_s0148"]
+material = SubResource("StandardMaterial3D_fbdqu")
+curve = SubResource("Curve_268sc")
+
 [node name="SpaceCity" type="Node3D"]
 
 [node name="RoccoBot" parent="." node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_qh17t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 SPEED = 5.0
-jump_height = 4.5
-super_jump_height = 9
-super_jump_time = 0.5
 spawnpoint = NodePath("../Stages/Stage0/CheckPointSpawn")
-cam_sens = 0.00025
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stage_node", "player_node")]
 script = ExtResource("10_cuf6r")
@@ -282,6 +309,40 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1,
 
 [node name="EnemyRobot2" parent="." instance=ExtResource("14_16d4a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0.5, -42)
+
+[node name="RainSystem" type="Node3D" parent="."]
+
+[node name="ShopParticleCollisionShape" type="GPUParticlesCollisionBox3D" parent="RainSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3, -17.5)
+size = Vector3(8, 1.5, 8)
+
+[node name="TunnelParticleCollisionShape" type="GPUParticlesCollisionBox3D" parent="RainSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 4, -29)
+size = Vector3(6, 1, 9)
+
+[node name="Ground2ParticleCollisionShape" type="GPUParticlesCollisionBox3D" parent="RainSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.5, -24)
+size = Vector3(11, 1, 31)
+
+[node name="Ground1ParticleCollisionShape" type="GPUParticlesCollisionBox3D" parent="RainSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -22)
+size = Vector3(5, 1, 49)
+
+[node name="RainParticles" type="GPUParticles3D" parent="RainSystem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 35, -55)
+amount = 350
+lifetime = 2.0
+randomness = 0.5
+visibility_aabb = AABB(-15, -40, -40, 30, 20, 100)
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_k6hba")
+draw_pass_1 = SubResource("RibbonTrailMesh_s0148")
+
+[node name="RainSound" type="AudioStreamPlayer" parent="RainSystem"]
+stream = ExtResource("17_yovw2")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="reset_level" from="GameManager" to="RoccoBot" method="respawn"]
 [connection signal="body_entered" from="FloorKillZone" to="FloorKillZone" method="_on_body_entered"]

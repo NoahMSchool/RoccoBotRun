@@ -3,7 +3,6 @@ extends Weapon
 const LASER_PROJECTILE = preload("res://Scenes/WeaponScenes/laser_projectile.tscn")
 const BLOOM = PI/72
 
-@export var projectile_color : String
 
 func fire():
 	if $Timer.is_stopped() and ammo>0:
@@ -14,7 +13,7 @@ func fire():
 		ammof -= 1
 		var projectile = LASER_PROJECTILE.instantiate()
 		projectile.target_group = target_group
-		projectile.color = self.projectile_color
+		projectile.accent_color = self.accent_color
 		add_child(projectile)
 		projectile.global_transform = global_transform
 		#Adding Bloom	

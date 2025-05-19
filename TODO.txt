@@ -12,3 +12,18 @@ Environment
 - Add animated windy shop meshes with baked physics animation
 
 Make Projectile color link to target group
+
+
+
+Coding
+- sort out inventory system
+
+maybe make a type for projectiles, grenade/laser as they currently share accent color dicitonary or make it global
+
+make item configurer function for enemies
+
+Aestetics
+
+- Add rain
+
+blender
