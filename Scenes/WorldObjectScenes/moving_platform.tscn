@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://siu5wkef8jqi"]
 
-[ext_resource type="Script" path="res://Scenes/WorldObjectScenes/Lights/moving_platform.gd" id="1_d4to6"]
+[ext_resource type="Script" path="res://Scripts/moving_platform.gd" id="1_d4to6"]
 [ext_resource type="Texture2D" uid="uid://320hm3knwoyo" path="res://Sprites/blue-horizontal-lens-flares-laser-beams-horizontal-light-rays-beautiful-light-flares-glowing-streaks-on-transparent-background-glowing-stripes-luminous-abstract-sparkling-laser-beams-png rotated.png" id="2_gf4m6"]
 [ext_resource type="Texture2D" uid="uid://cmtgyeow2uvg7" path="res://Textures/MovingPlatform_moving_platform_color.png" id="3_s7q3c"]
 

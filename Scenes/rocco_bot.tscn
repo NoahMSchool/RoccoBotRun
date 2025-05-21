@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkckw5nilwpij"]
 
 [ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
-[ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rocco_multimesh.tscn" id="2_edblu"]
+[ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rubbish/rocco_multimesh.tscn" id="2_edblu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_atwii"]
 size = Vector3(1, 0.5, 0.5)

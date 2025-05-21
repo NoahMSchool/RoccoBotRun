@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://dfp0fncjcvxvn"]
 
-[ext_resource type="ArrayMesh" uid="uid://be5vq18qc1j6j" path="res://hole–floor.tres" id="1_klbg1"]
+[ext_resource type="ArrayMesh" uid="uid://be5vq18qc1j6j" path="res://rubbish/hole–floor.tres" id="1_klbg1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0yxg"]
 albedo_color = Color(0.45, 0.365625, 0.3375, 1)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://xmwqtq01uwm7"]
+[gd_scene load_steps=5 format=3 uid="uid://xmwqtq01uwm7"]
 
-[ext_resource type="Script" path="res://item_spawn.gd" id="1_1s8fh"]
+[ext_resource type="Script" path="res://Scripts/item_spawn.gd" id="1_1s8fh"]
+[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="2_un1ip"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fotc0"]
 radius = 1.0
@@ -12,6 +13,7 @@ size = Vector3(0.1, 0.1, 0.5)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_1s8fh")
+item = ExtResource("2_un1ip")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_fotc0")

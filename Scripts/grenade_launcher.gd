@@ -12,7 +12,7 @@ var angle = 0.0:
 
 var action = "left_action"
 func fire():
-	pass
+	print("grenade_fire")
 func fire_released():
 	pass
 

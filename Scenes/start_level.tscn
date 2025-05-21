@@ -1,21 +1,20 @@
-[gd_scene load_steps=35 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=34 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_qh17t"]
 [ext_resource type="PackedScene" path="res://Scenes/WorldObjectScenes/block.tscn" id="2_xqcay"]
 [ext_resource type="MeshLibrary" uid="uid://d26g0c2f5tayg" path="res://Models/Pavement_Wall.tres" id="3_uk1e0"]
-[ext_resource type="PackedScene" uid="uid://duwuenstgnn4p" path="res://Scenes/WorldObjectScenes/Lights/lamppost.tscn" id="4_3gv2t"]
+[ext_resource type="PackedScene" uid="uid://duwuenstgnn4p" path="res://Scenes/WorldObjectScenes/lamppost.tscn" id="4_3gv2t"]
 [ext_resource type="Material" uid="uid://cmwafkv0h60rs" path="res://Materials/Skies/blue_sky.tres" id="5_hw2cq"]
-[ext_resource type="PackedScene" uid="uid://d02ntiggwxwqa" path="res://Scenes/WorldObjectScenes/Lights/ground_light.tscn" id="6_7njd2"]
+[ext_resource type="PackedScene" uid="uid://d02ntiggwxwqa" path="res://Scenes/WorldObjectScenes/ground_light.tscn" id="6_7njd2"]
 [ext_resource type="Script" path="res://Scripts/moving_platforms.gd" id="7_uc2d7"]
-[ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://Scenes/WorldObjectScenes/Lights/moving_platform.tscn" id="7_vdf52"]
+[ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://Scenes/WorldObjectScenes/moving_platform.tscn" id="7_vdf52"]
 [ext_resource type="Texture2D" uid="uid://b4kae7iakmpjo" path="res://Textures/Shop_color.png" id="9_fh5l0"]
-[ext_resource type="Script" path="res://Scenes/WorldScenes/game_manager.gd" id="10_cuf6r"]
-[ext_resource type="PackedScene" uid="uid://barulqklih133" path="res://Scenes/check_point_spawn.tscn" id="11_ljtte"]
-[ext_resource type="Script" path="res://Scenes/WorldScenes/kill_zone.gd" id="12_4iwbc"]
-[ext_resource type="PackedScene" uid="uid://b3byiyj3lmwiy" path="res://barrier.tscn" id="13_c3kud"]
-[ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://item_spawn.tscn" id="14_1habm"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="10_cuf6r"]
+[ext_resource type="PackedScene" uid="uid://barulqklih133" path="res://Scenes/WorldObjectScenes/check_point_spawn.tscn" id="11_ljtte"]
+[ext_resource type="Script" path="res://Scripts/kill_zone.gd" id="12_4iwbc"]
+[ext_resource type="PackedScene" uid="uid://b3byiyj3lmwiy" path="res://Scenes/WorldObjectScenes/barrier.tscn" id="13_c3kud"]
+[ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://Scenes/WorldObjectScenes/item_spawn.tscn" id="14_1habm"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="14_16d4a"]
-[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="15_jlpwk"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="17_yovw2"]
 
 [sub_resource type="Sky" id="Sky_eqvil"]
@@ -302,7 +301,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0
 
 [node name="ItemSpawn" parent="." instance=ExtResource("14_1habm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-item = ExtResource("15_jlpwk")
+
+[node name="ItemSpawn2" parent="." instance=ExtResource("14_1habm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -22)
 
 [node name="EnemyRobot" parent="." instance=ExtResource("14_16d4a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1, -12)
