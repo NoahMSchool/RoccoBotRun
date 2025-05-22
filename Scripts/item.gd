@@ -16,7 +16,6 @@ func configure_item():
 func set_enabled(is_enabled : bool):
 	self.set_process(is_enabled)
 	self.visible = is_enabled
-	print(is_enabled)
 
 func fire():
 	print("fire")
