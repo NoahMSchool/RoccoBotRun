@@ -22,8 +22,6 @@ var mouse_delta = Vector2.ZERO
 
 @export var cam_sens = 0.00025
 
-@onready var items : Array[Item] = []
-
 var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
 var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
 
@@ -35,7 +33,6 @@ func fire_item(item_location : ItemLocation):
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
 	configured_item.set_enabled(false)
-	items.append(configured_item)
 	$Object/Items/InventoryItems.add_child(configured_item)
 	update_items()
 #Make disable/enable node to avoid repeated code
@@ -47,16 +44,12 @@ func get_equiped_item(item_location : ItemLocation):
 		return $Object/Items/RightHandItem.get_child(0)
 
 func update_items():
+	var items = $Object/Items/InventoryItems.get_children()
 	if items.size() > 0:
-		if $Object/Items/LeftHandItem.get_child_count() > 0:
-			unequip_item(ItemLocation.LEFT)
-		equip_item(items[0], ItemLocation.LEFT)
-	
-	if items.size() > 1:
-		if $Object/Items/RightHandItem.get_child_count() > 0:
-			unequip_item(ItemLocation.RIGHT)
-		equip_item(items[1], ItemLocation.RIGHT)
-
+		if $Object/Items/LeftHandItem.get_child_count() == 0:
+			equip_item(items[0], ItemLocation.LEFT)
+		elif $Object/Items/RightHandItem.get_child_count() == 0:
+			equip_item(items[0], ItemLocation.RIGHT)
 func equip_item(item : Item, item_location : ItemLocation):
 	if item_location == ItemLocation.LEFT:
 		item.reparent($Object/Items/LeftHandItem, false)
