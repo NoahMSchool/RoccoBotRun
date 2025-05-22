@@ -24,32 +24,27 @@ var mouse_delta = Vector2.ZERO
 
 @onready var items : Array[Item] = []
 
-#:
-	#get:
-		#if items[0]:
-			#equip_item(items[0], -1)
-		#if items[1]:
-			#equip_item(items[1], 1)
-		#
-		#return items
-	#set(value):
-		#items = value
-
-@onready var right_item = null
-@onready var left_item = null
-
 var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
 var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
-	
+
+func fire_item(item_location : ItemLocation):
+	var item = get_equiped_item(item_location)
+	if item:
+		item.fire()
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
 	configured_item.set_enabled(false)
 	items.append(configured_item)
 	$Object/Items/InventoryItems.add_child(configured_item)
-	#update_items()
+	update_items()
 #Make disable/enable node to avoid repeated code
 
+func get_equiped_item(item_location : ItemLocation):
+	if item_location == ItemLocation.LEFT:
+		return $Object/Items/LeftHandItem.get_child(0)
+	else:
+		return $Object/Items/RightHandItem.get_child(0)
 
 func update_items():
 	if items.size() > 0:
@@ -60,30 +55,22 @@ func update_items():
 	if items.size() > 1:
 		if $Object/Items/RightHandItem.get_child_count() > 0:
 			unequip_item(ItemLocation.RIGHT)
-		equip_item(items[0], ItemLocation.RIGHT)
+		equip_item(items[1], ItemLocation.RIGHT)
 
 func equip_item(item : Item, item_location : ItemLocation):
 	if item_location == ItemLocation.LEFT:
-		left_item = item
 		item.reparent($Object/Items/LeftHandItem, false)
 		item.set_enabled(true)
 	elif item_location == ItemLocation.RIGHT:
-		right_item = item
 		item.reparent($Object/Items/RightHandItem, false)
 		item.set_enabled(true)
 
 func unequip_item(item_location : ItemLocation):
-	if item_location == ItemLocation.LEFT:
-		var item = left_item
-		item.reparent($Object/Items/InventoryItems, ItemLocation.LEFT)
+	var item = get_equiped_item(item_location)
+	if item:
+		item.reparent($Object/Items/InventoryItems, item_location)
 		item.set_enabled(false)
-		left_item = null
-	else:
-		var item = right_item
-		right_item = null
-		item.reparent($Object/Items/InventoryItems, ItemLocation.RIGHT)
-		item.set_enabled(false)
-		
+	
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$CamPivot/Camera3D.current = true
@@ -113,14 +100,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		jump_time = 0
 	
-	if Input.is_action_pressed("right_action"):
-		if right_item:
-			right_item.fire()			
-	
 	if Input.is_action_pressed("left_action"):
-		if left_item:
-			left_item.fire()
-		
+		fire_item(ItemLocation.LEFT)
+	if Input.is_action_pressed("right_action"):
+		fire_item(ItemLocation.RIGHT)		
+	
 	if Input.is_action_just_pressed("test"):
 		update_items()
 	
