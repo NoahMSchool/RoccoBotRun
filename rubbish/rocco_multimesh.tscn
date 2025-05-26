@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=4 uid="uid://b1d7pijbkb5im"]
 
-[ext_resource type="Texture2D" uid="uid://de20tmun5m3c8" path="res://Models/RoccoBot_norig_RoccoBot_color.png" id="1_61o2g"]
+[ext_resource type="Texture2D" uid="uid://de20tmun5m3c8" path="res://Textures/RoccoBot_norig_RoccoBot_color.png" id="1_61o2g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11nfr"]
 resource_name = "Material"

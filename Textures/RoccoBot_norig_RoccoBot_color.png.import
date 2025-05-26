@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de20tmun5m3c8"
-path.s3tc="res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-d49b96ebc76bf156b10d817c717707a3.s3tc.ctex"
+path.s3tc="res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-b4f57486ab4b8ae7b59f9d5255e5bcf4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Models/RoccoBot_norig_RoccoBot_color.png"
-dest_files=["res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-d49b96ebc76bf156b10d817c717707a3.s3tc.ctex"]
+source_file="res://Textures/RoccoBot_norig_RoccoBot_color.png"
+dest_files=["res://.godot/imported/RoccoBot_norig_RoccoBot_color.png-b4f57486ab4b8ae7b59f9d5255e5bcf4.s3tc.ctex"]
 
 [params]
 

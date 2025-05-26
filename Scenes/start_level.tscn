@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=36 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_qh17t"]
 [ext_resource type="PackedScene" path="res://Scenes/WorldObjectScenes/block.tscn" id="2_xqcay"]
@@ -17,15 +17,25 @@
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="14_16d4a"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="17_yovw2"]
 
+[sub_resource type="Gradient" id="Gradient_vp75p"]
+offsets = PackedFloat32Array(0, 0.997696)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.970833, 0.95, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uda0a"]
+gradient = SubResource("Gradient_vp75p")
+
 [sub_resource type="Sky" id="Sky_eqvil"]
 sky_material = ExtResource("5_hw2cq")
 
 [sub_resource type="Environment" id="Environment_00xa3"]
 background_mode = 2
 sky = SubResource("Sky_eqvil")
-ambient_light_color = Color(0.546, 0.623, 0.7, 1)
+ambient_light_color = Color(0.595, 0.6475, 0.7, 1)
 ambient_light_sky_contribution = 0.1
 ambient_light_energy = 0.4
+tonemap_mode = 2
+tonemap_exposure = 1.8
+tonemap_white = 6.0
 fog_enabled = true
 fog_light_color = Color(0.546, 0.623, 0.7, 1)
 fog_light_energy = 0.2
@@ -33,6 +43,8 @@ fog_density = 0.001
 fog_sky_affect = 0.05
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_uda0a")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urki0"]
 albedo_texture = ExtResource("9_fh5l0")
@@ -301,6 +313,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0
 
 [node name="ItemSpawn" parent="." instance=ExtResource("14_1habm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="ItemSpawn3" parent="." instance=ExtResource("14_1habm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+
+[node name="ItemSpawn4" parent="." instance=ExtResource("14_1habm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41)
 
 [node name="ItemSpawn2" parent="." instance=ExtResource("14_1habm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -22)

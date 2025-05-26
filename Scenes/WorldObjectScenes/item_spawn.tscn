@@ -23,7 +23,8 @@ shape = SubResource("SphereShape3D_fotc0")
 mesh = SubResource("BoxMesh_pkh4n")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="CollectSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_n63pt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="CollectSound" to="." method="_on_collect_sound_finished"]

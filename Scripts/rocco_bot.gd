@@ -5,6 +5,13 @@ extends CharacterBody3D
 enum ItemLocation {
 	LEFT, 
 	RIGHT,
+	BACK,
+}
+
+@export var item_slot_nodes: Dictionary = {
+	ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
+	ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
+	ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
 }
 
 @export var SPEED = 4.0
@@ -34,28 +41,27 @@ func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
 	configured_item.set_enabled(false)
 	$Object/Items/InventoryItems.add_child(configured_item)
-	update_items()
+	auto_equip_items()
 #Make disable/enable node to avoid repeated code
 
 func get_equiped_item(item_location : ItemLocation):
-	if item_location == ItemLocation.LEFT:
-		return $Object/Items/LeftHandItem.get_child(0)
-	else:
-		return $Object/Items/RightHandItem.get_child(0)
+	var slot_node = get_node_or_null(item_slot_nodes[item_location]) # Use get_node_or_null for safety
+	if slot_node:
+		return slot_node.get_child(0)
 
-func update_items():
-	var items = $Object/Items/InventoryItems.get_children()
-	if items.size() > 0:
-		if $Object/Items/LeftHandItem.get_child_count() == 0:
-			equip_item(items[0], ItemLocation.LEFT)
-		elif $Object/Items/RightHandItem.get_child_count() == 0:
-			equip_item(items[0], ItemLocation.RIGHT)
+func auto_equip_items():
+	var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+	if first_inventory_item:
+		for item_location in item_slot_nodes:
+			var slot_node = get_node_or_null(item_slot_nodes[item_location])
+			if slot_node and slot_node.get_child(0) == null:
+				equip_item(first_inventory_item, item_location)
+				break
+
 func equip_item(item : Item, item_location : ItemLocation):
-	if item_location == ItemLocation.LEFT:
-		item.reparent($Object/Items/LeftHandItem, false)
-		item.set_enabled(true)
-	elif item_location == ItemLocation.RIGHT:
-		item.reparent($Object/Items/RightHandItem, false)
+	var slot_node = get_node_or_null(item_slot_nodes[item_location])
+	if slot_node:
+		item.reparent(slot_node, false)
 		item.set_enabled(true)
 
 func unequip_item(item_location : ItemLocation):
@@ -99,7 +105,7 @@ func _physics_process(delta: float) -> void:
 		fire_item(ItemLocation.RIGHT)		
 	
 	if Input.is_action_just_pressed("test"):
-		update_items()
+		auto_equip_items()
 	
 	if Input.is_action_just_pressed("test2"):
 		add_item(laser_scene)
