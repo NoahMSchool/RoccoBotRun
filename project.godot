@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="RoccoBotRun"
-run/main_scene="res://Scenes/start_level.tscn"
+run/main_scene="res://Scenes/GameScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+Globals="*res://globals.gd"
 
 [display]
 

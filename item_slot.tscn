@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://b44st57didil5"]
+
+[ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://Images/ItemIcons/Grenade_Launcher_Icon.png" id="1_6bgkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da235"]
+bg_color = Color(0.4, 0.4, 0.4, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[node name="ItemSlot" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+theme_override_styles/panel = SubResource("StyleBoxFlat_da235")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6bgkk")
+expand_mode = 1

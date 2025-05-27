@@ -30,7 +30,8 @@ func explode():
 TODO
 
 Explosion screen shake
-Explosion sound effect
+
+Check if there is better way to detect first collision so I can remove the area3d node
 
 """
 	

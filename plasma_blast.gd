@@ -1,8 +1,8 @@
-extends RayCast3D
+extends Area3D
 
-@export var speed := 50.0
+@export var speed := 5.0
 @onready var age = 0
-@export var max_age = 0.5
+@export var max_age = 5
 @export var target_group : String
 @export var accent_color : String
 
@@ -12,6 +12,7 @@ var materials = {
 	"red" : preload("res://Materials/red_laser_mat.tres"),
 
 }
+
 func _ready() -> void:
 	var mat = materials.get(accent_color, materials["pink"])
 	$MeshInstance3D.material_override = mat
@@ -19,14 +20,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	age += delta
 	position += global_basis * Vector3.FORWARD * speed * delta
-	target_position = Vector3.FORWARD * speed * delta
-	force_raycast_update()
-	var collider = get_collider()
-	if is_colliding():
-		#print("laser collision", collider)
-		if collider.is_in_group(target_group):
-			collider.queue_free()
-		queue_free() 
 	if age > max_age:
-		#print("projectile out of range")                
 		queue_free()
+
+func _on_body_entered(body: Node3D) -> void:
+	explode()
+
+func explode():
+	queue_free()

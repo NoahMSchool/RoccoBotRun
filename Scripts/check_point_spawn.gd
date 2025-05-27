@@ -5,7 +5,7 @@ signal checkpoint_reached(checkpoint: Node3D)
 @export var barrier : StaticBody3D
 
 func _ready() -> void:
-	var gm = get_node("/root/SpaceCity/GameManager")
+	var gm = get_node("/root/GameRoot/SpaceCity/GameManager")
 	connect("checkpoint_reached", gm.stage_reached)
 
 

@@ -1,17 +1,10 @@
 
 extends CharacterBody3D
 
-#Should I do a dictionary of itemlocation to node path
-enum ItemLocation {
-	LEFT, 
-	RIGHT,
-	BACK,
-}
-
-@export var item_slot_nodes: Dictionary = {
-	ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
-	ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
-	ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
+@onready var item_slot_nodes: Dictionary = {
+	Globals.ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
+	Globals.ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
+	Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
 }
 
 @export var SPEED = 4.0
@@ -32,7 +25,7 @@ var mouse_delta = Vector2.ZERO
 var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
 var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
 
-func fire_item(item_location : ItemLocation):
+func fire_item(item_location : Globals.ItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
 		item.fire()
@@ -44,7 +37,7 @@ func add_item(packed_scene : PackedScene):
 	auto_equip_items()
 #Make disable/enable node to avoid repeated code
 
-func get_equiped_item(item_location : ItemLocation):
+func get_equiped_item(item_location : Globals.ItemLocation):
 	var slot_node = get_node_or_null(item_slot_nodes[item_location]) # Use get_node_or_null for safety
 	if slot_node:
 		return slot_node.get_child(0)
@@ -58,18 +51,28 @@ func auto_equip_items():
 				equip_item(first_inventory_item, item_location)
 				break
 
-func equip_item(item : Item, item_location : ItemLocation):
+func equip_item(item : Item, item_location : Globals.ItemLocation):
 	var slot_node = get_node_or_null(item_slot_nodes[item_location])
 	if slot_node:
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
 
-func unequip_item(item_location : ItemLocation):
+func unequip_item(item_location : Globals.ItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
 		item.reparent($Object/Items/InventoryItems, item_location)
 		item.set_enabled(false)
-	
+
+func update_HUD():
+	for item_location in item_slot_nodes:
+		var percent : float = 0
+		var slot_node = get_node_or_null(item_slot_nodes[item_location])
+		if slot_node and slot_node.get_child(0):
+			var weapon = slot_node.get_child(0)
+			if weapon:
+				percent = weapon.get_ammo_percent()
+		get_node("/root/GameRoot/HUD").change_ammo_progress(item_location, percent)
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$CamPivot/Camera3D.current = true
@@ -100,9 +103,10 @@ func _physics_process(delta: float) -> void:
 		jump_time = 0
 	
 	if Input.is_action_pressed("left_action"):
-		fire_item(ItemLocation.LEFT)
+		fire_item(Globals.ItemLocation.LEFT)
+		
 	if Input.is_action_pressed("right_action"):
-		fire_item(ItemLocation.RIGHT)		
+		fire_item(Globals.ItemLocation.RIGHT)		
 	
 	if Input.is_action_just_pressed("test"):
 		auto_equip_items()
@@ -111,10 +115,10 @@ func _physics_process(delta: float) -> void:
 		add_item(laser_scene)
 	
 	if Input.is_action_just_pressed("test3"):
-		pass
-		
-		
-		
+		for item_location in Globals.ItemLocation.values():
+			print(item_location, typeof(item_location))
+			unequip_item(item_location)
+			
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -139,7 +143,9 @@ func _physics_process(delta: float) -> void:
 
 	
 	move_and_slide()
-
+	
+	update_HUD()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	#Rotating Cam Pivot based on mouse0
 	#return
