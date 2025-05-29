@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://2xncat2u1tud"]
+[gd_scene load_steps=6 format=3 uid="uid://2xncat2u1tud"]
 
 [ext_resource type="Script" path="res://plasma_cannon.gd" id="1_3vlga"]
+[ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://Images/ItemIcons/Plasma_Cannon.png" id="2_2qd5v"]
 [ext_resource type="ArrayMesh" uid="uid://baftfsqfjoohn" path="res://launcherCannon.tres" id="2_a60cb"]
 [ext_resource type="Texture2D" uid="uid://hai2371l42f2" path="res://Textures/baked_launcher_color.png" id="3_16xie"]
 
@@ -14,6 +15,7 @@ script = ExtResource("1_3vlga")
 max_ammo = 3
 ammo_regen_rate = 2.0
 fire_rate = 0.5
+icon = ExtResource("2_2qd5v")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -24,3 +26,6 @@ one_shot = true
 transform = Transform3D(-3, -2.62268e-07, 1.14641e-14, 0, -1.31134e-07, -3, 2.62268e-07, -3, 1.31134e-07, 0, 0, 0)
 mesh = ExtResource("2_a60cb")
 surface_material_override/0 = SubResource("StandardMaterial3D_qdyja")
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

@@ -1,7 +1,7 @@
 extends Node3D
 class_name Item
 
-#var packed_scene : PackedScene
+@export var icon : Texture
 
 static func create_item(packed_scene: PackedScene)->Item:
 	var item = packed_scene.instantiate()

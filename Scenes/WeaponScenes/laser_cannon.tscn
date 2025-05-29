@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://bnfa46j5hc2ww"]
+[gd_scene load_steps=9 format=4 uid="uid://bnfa46j5hc2ww"]
 
 [ext_resource type="Script" path="res://Scripts/laser_cannon.gd" id="1_h5a8w"]
+[ext_resource type="Texture2D" uid="uid://cxneilx6t1uhc" path="res://Images/ItemIcons/Laser_Cannon_Icon.png" id="2_b60v4"]
 [ext_resource type="Texture2D" uid="uid://bmavnf3gw3whe" path="res://Textures/Baked_Laser_Cannon_color.png" id="2_g4khn"]
 [ext_resource type="AudioStream" uid="uid://6rk8hq0qonrs" path="res://Sounds/466867__mikee63__blaster-shot-single-5.wav" id="2_nk8b2"]
 
@@ -47,6 +48,7 @@ max_ammo = 10
 ammo_regen_rate = 2.0
 fire_rate = 6.0
 accent_color = "blue"
+icon = ExtResource("2_b60v4")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

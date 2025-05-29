@@ -9,6 +9,7 @@ class_name Weapon
 @export var accent_color : String
 @export var target_group = "enemies"
 
+
 @onready var shot_time = 1/fire_rate
 
 func fire():

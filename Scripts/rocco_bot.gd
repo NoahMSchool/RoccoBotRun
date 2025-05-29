@@ -56,6 +56,7 @@ func equip_item(item : Item, item_location : Globals.ItemLocation):
 	if slot_node:
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
+		
 
 func unequip_item(item_location : Globals.ItemLocation):
 	var item = get_equiped_item(item_location)
@@ -70,6 +71,7 @@ func update_HUD():
 		if slot_node and slot_node.get_child(0):
 			var weapon = slot_node.get_child(0)
 			if weapon:
+				get_node("/root/GameRoot/HUD").update_item(weapon, item_location)
 				percent = weapon.get_ammo_percent()
 		get_node("/root/GameRoot/HUD").change_ammo_progress(item_location, percent)
 
@@ -107,18 +109,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("right_action"):
 		fire_item(Globals.ItemLocation.RIGHT)		
-	
-	if Input.is_action_just_pressed("test"):
-		auto_equip_items()
-	
-	if Input.is_action_just_pressed("test2"):
-		add_item(laser_scene)
-	
-	if Input.is_action_just_pressed("test3"):
-		for item_location in Globals.ItemLocation.values():
-			print(item_location, typeof(item_location))
-			unequip_item(item_location)
-			
+
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -134,9 +125,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 		
-	#quiting
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+
 	
 	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
