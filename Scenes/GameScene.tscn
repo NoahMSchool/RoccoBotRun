@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=37 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_pqp3q"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://HUD.tscn" id="2_r8igr"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="15_kdvbr"]
 [ext_resource type="PackedScene" uid="uid://2xncat2u1tud" path="res://Scenes/WeaponScenes/plasma_cannon.tscn" id="15_kkanw"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="16_xmiv7"]
-[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="17_idfxy"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
 offsets = PackedFloat32Array(0, 0.997696)
@@ -243,7 +242,7 @@ shape = SubResource("WorldBoundaryShape3D_2yho7")
 
 [node name="Stage0" type="Node3D" parent="SpaceCity/Stages"]
 
-[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage0" instance=ExtResource("9_sqf27")]
+[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage0" groups=["check_point_spawn"] instance=ExtResource("9_sqf27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="StageObjects" type="Node3D" parent="SpaceCity/Stages/Stage0"]
@@ -365,10 +364,5 @@ draw_pass_1 = SubResource("RibbonTrailMesh_s0148")
 stream = ExtResource("16_xmiv7")
 volume_db = -15.0
 autoplay = true
-
-[node name="GameManager" type="Node" parent="SpaceCity" node_paths=PackedStringArray("stage_node", "player_node")]
-script = ExtResource("17_idfxy")
-stage_node = NodePath("../Stages")
-player_node = NodePath("../../RoccoBot")
 
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]

@@ -79,6 +79,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$CamPivot/Camera3D.current = true
 	$Camera3DFollow.current = false
+	GameManager.connect("reset_level", Callable(self, "respawn"))
 	
 func _physics_process(delta: float) -> void:
 	current_speed = SPEED

@@ -2,11 +2,21 @@ extends Node
 
 signal reset_level
 
-@export var stage_node : Node
-@export var player_node : CharacterBody3D
+@onready var stage_node : Node
+@onready var player_node : Node3D
+@onready var stages : Array[Node] = []
 
-@onready var stages = stage_node.get_children()
+func _ready() -> void:
+	stage_node = get_tree().get_root().get_node("GameRoot/SpaceCity/Stages")
+	player_node = get_tree().get_root().get_node("GameRoot/RoccoBot")
+	stages = stage_node.get_children()
+	
+	for cps in get_tree().get_nodes_in_group("check_point_spawns"):
+		#cps.connect("checkpoint_reached", stage_reached)
+		cps.connect("checkpoint_reached", self.stage_reached)
 
+		var err = cps.connect("checkpoint_reached", Callable(self, "stage_reached"))
+	
 func player_die():
 	print("die")
 	emit_signal("reset_level")
@@ -32,3 +42,4 @@ func stage_reached(checkpoint: Node3D) -> void:
 	print("Spawner ", spawn_object.name)
 	if spawn_object && player_node:
 		player_node.spawnpoint = spawn_object
+	print("stageReached")

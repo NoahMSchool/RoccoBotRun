@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
+GameManager="*res://Scripts/game_manager.gd"
 
 [display]
 
@@ -27,6 +28,7 @@ window/size/viewport_height=2000
 
 player=""
 enemies=""
+check_point_spawns=""
 
 [input]
 

@@ -6,6 +6,12 @@ enum ItemLocation {
 	BACK,
 }
 
+var materials = {
+	"blue" : preload("res://Materials/blue_laser_mat.tres"), 
+	"pink" : preload("res://Materials/pink_laser_mat.tres"),
+	"red" : preload("res://Materials/red_laser_mat.tres"),
+}
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test") and event.is_pressed() and not event.is_echo():
 	#auto_equip_items()
