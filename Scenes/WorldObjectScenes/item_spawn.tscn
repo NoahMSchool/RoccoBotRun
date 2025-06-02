@@ -20,6 +20,7 @@ item = ExtResource("2_un1ip")
 shape = SubResource("SphereShape3D_fotc0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_pkh4n")
 skeleton = NodePath("../CollisionShape3D")
 

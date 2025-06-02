@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkckw5nilwpij"]
+[gd_scene load_steps=6 format=3 uid="uid://dkckw5nilwpij"]
 
 [ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
 [ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rubbish/rocco_multimesh.tscn" id="2_edblu"]
+[ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_atwii"]
 size = Vector3(1, 0.5, 0.5)
@@ -70,3 +71,8 @@ margin = 0.1
 
 [node name="CamPos" type="Node3D" parent="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0)
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="EquipWeapon" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("3_rhlt7")

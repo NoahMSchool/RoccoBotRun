@@ -56,6 +56,7 @@ func equip_item(item : Item, item_location : Globals.ItemLocation):
 	if slot_node:
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
+		$Sounds/EquipWeapon.play()
 		
 
 func unequip_item(item_location : Globals.ItemLocation):
@@ -68,7 +69,7 @@ func update_HUD():
 	for item_location in item_slot_nodes:
 		var percent : float = 0
 		var slot_node = get_node_or_null(item_slot_nodes[item_location])
-		if slot_node and slot_node.get_child(0):
+		if slot_node and slot_node.get_child_count()>0:
 			var weapon = slot_node.get_child(0)
 			if weapon:
 				get_node("/root/GameRoot/HUD").update_item(weapon, item_location)
@@ -83,7 +84,6 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	current_speed = SPEED
-	
 	#preventing looking behind objects
 	$CamPivot/Camera3D.position = lerp($CamPivot/Camera3D.position, $CamPivot/SpringArm3D/CamPos.position, 15*delta)
 	

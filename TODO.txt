@@ -1,29 +1,17 @@
 
-Camera
-- choose best camera mode orbiting
+choose best camera mode orbiting
 
-RoccoBot
-- finish rigging and animating for game
+finish rigging and animating for game
 
-Environment
-- Finalise lighting
-- replace groundlight mesh
-- Add rain
-- Add animated windy shop meshes with baked physics animation
+Finalise lighting
 
-Make Projectile color link to target group
-
-
-
-Coding
-- sort out inventory system
+Add animated windy shop meshes with baked physics animation
 
 maybe make a type for projectiles, grenade/laser as they currently share accent color dicitonary or make it global
 
-make item configurer function for enemies
+Finish Animating and rigging
 
-Aestetics
+Fix Items on ground
 
-- Add rain
-
-blender
+Fix Grenade
+Fix plasma blaster going through walls

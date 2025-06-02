@@ -6,14 +6,8 @@ extends RayCast3D
 @export var target_group : String
 @export var accent_color : String
 
-var materials = {
-	"blue" : preload("res://Materials/blue_laser_mat.tres"), 
-	"pink" : preload("res://Materials/pink_laser_mat.tres"),
-	"red" : preload("res://Materials/red_laser_mat.tres"),
-
-}
 func _ready() -> void:
-	var mat = materials.get(accent_color, materials["pink"])
+	var mat = Globals.glow_materials.get(accent_color, Globals.glow_materials["pink"])
 	$MeshInstance3D.material_override = mat
 	
 func _physics_process(delta: float) -> void:

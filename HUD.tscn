@@ -98,3 +98,37 @@ max_value = 1.0
 allow_greater = true
 allow_lesser = true
 show_percentage = false
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control2"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 896.0
+offset_right = 768.0
+offset_bottom = 1856.0
+
+[node name="ItemSlot" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 768.0
+offset_right = 104.0
+offset_bottom = 808.0
+
+[node name="ItemSlot2" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 768.0
+offset_right = 296.0
+offset_bottom = 808.0
+
+[node name="ItemSlot3" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 768.0
+offset_right = 488.0
+offset_bottom = 808.0

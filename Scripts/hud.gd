@@ -1,7 +1,6 @@
 extends CanvasLayer
 
-@onready var label_node = $Control/Panel/Label
-@onready var left_ammo_indicator: ProgressBar = $Control/Panel/LeftAmmoIndicator
+#@onready var label_node = $Control/Panel/Label
 
 
 
@@ -19,8 +18,9 @@ extends CanvasLayer
 
 
 func change_label(text : String):
-	label_node.text = text
-
+	#label_node.text = text
+	pass
+	
 func change_ammo_progress(item_location : Globals.ItemLocation, value : float):
 	var progress_bar_node = get_node_or_null(item_progress_bars[item_location])
 	if progress_bar_node:

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://hwrigssg2ql5"]
+
+[ext_resource type="Script" path="res://orbiting_planet.gd" id="1_mjje1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8cudn"]
+radius = 25.0
+height = 50.0
+
+[node name="OrbitingPlanet" type="Node3D"]
+script = ExtResource("1_mjje1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
+mesh = SubResource("SphereMesh_8cudn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -14,8 +14,8 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="ItemSlot" type="Panel"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 scale = Vector2(4, 4)
 theme_override_styles/panel = SubResource("StyleBoxFlat_da235")
 
