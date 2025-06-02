@@ -12,8 +12,8 @@ func call_api():
 
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	print("result : ", result)
-	print("response_code : ", response_code)
+	#print("result : ", result)
+	#print("response_code : ", response_code)
 	
 	var body_string = body.get_string_from_utf8()
 	var json = JSON.parse_string(body_string)
@@ -26,7 +26,6 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 
 
 func _process(delta: float) -> void:
-	
 	time_since_update += delta
 	var new_rot = lerp_angle(old_angle, new_angle, time_since_update/5)
 	rotation.y = new_rot

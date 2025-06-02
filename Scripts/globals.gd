@@ -1,6 +1,7 @@
 extends Node
 
 enum ItemLocation {
+	NONE,
 	LEFT, 
 	RIGHT,
 	BACK,

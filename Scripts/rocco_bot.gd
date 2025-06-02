@@ -34,11 +34,11 @@ func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
 	configured_item.set_enabled(false)
 	$Object/Items/InventoryItems.add_child(configured_item)
+	print($Object/Items/InventoryItems.transform)
 	auto_equip_items()
-#Make disable/enable node to avoid repeated code
 
 func get_equiped_item(item_location : Globals.ItemLocation):
-	var slot_node = get_node_or_null(item_slot_nodes[item_location]) # Use get_node_or_null for safety
+	var slot_node = get_node_or_null(item_slot_nodes[item_location])
 	if slot_node:
 		return slot_node.get_child(0)
 
@@ -52,8 +52,10 @@ func auto_equip_items():
 				break
 
 func equip_item(item : Item, item_location : Globals.ItemLocation):
+	print(item_location)
 	var slot_node = get_node_or_null(item_slot_nodes[item_location])
 	if slot_node:
+		unequip_item(item_location)
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
 		$Sounds/EquipWeapon.play()
@@ -62,7 +64,8 @@ func equip_item(item : Item, item_location : Globals.ItemLocation):
 func unequip_item(item_location : Globals.ItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
-		item.reparent($Object/Items/InventoryItems, item_location)
+		item.reparent($Object/Items/InventoryItems, false)
+		
 		item.set_enabled(false)
 
 func update_HUD():
@@ -97,7 +100,26 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y = jump_height
 
-			
+	if Input.is_action_pressed("shift"):
+		var item_location : Globals.ItemLocation
+		if Input.is_action_just_pressed("left_action"):
+			item_location = Globals.ItemLocation.LEFT
+		elif Input.is_action_just_pressed("right_action"):
+			item_location = Globals.ItemLocation.RIGHT
+		var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+		
+		if first_inventory_item and item_location:
+			#print("equiping ", first_inventory_item, item_location)
+			equip_item(first_inventory_item, item_location)
+	else:
+		if Input.is_action_pressed("left_action"):
+			fire_item(Globals.ItemLocation.LEFT)
+		
+		if Input.is_action_pressed("right_action"):
+			fire_item(Globals.ItemLocation.RIGHT)
+	
+	
+		
 	if Input.is_action_pressed("jump") and is_on_floor():
 		jump_time += delta
 		current_speed /= 2
@@ -105,12 +127,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		jump_time = 0
 	
-	if Input.is_action_pressed("left_action"):
-		fire_item(Globals.ItemLocation.LEFT)
-		
-	if Input.is_action_pressed("right_action"):
-		fire_item(Globals.ItemLocation.RIGHT)		
-
+	
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

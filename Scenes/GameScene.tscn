@@ -317,8 +317,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0
 [node name="ItemSpawn" parent="SpaceCity" instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
+[node name="ItemSpawn6" parent="SpaceCity" instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
+
 [node name="ItemSpawn3" parent="SpaceCity" instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+item = ExtResource("15_kkanw")
+
+[node name="ItemSpawn5" parent="SpaceCity" instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19)
 item = ExtResource("15_kkanw")
 
 [node name="ItemSpawn4" parent="SpaceCity" instance=ExtResource("14_u512m")]

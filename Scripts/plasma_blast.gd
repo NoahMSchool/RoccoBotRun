@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		scale = Vector3.ONE * max_size
 		speed_fac = 1
 	else:
-		print("explodepp")
+		#print("explodepp")
 		explode()
 	position += global_basis * Vector3.FORWARD * speed * speed_fac * delta
 
@@ -46,7 +46,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group(target_group):
 		body.queue_free()
 	explode()
-	print("explode")
+	#wprint("explode")
 	
 
 func explode():
