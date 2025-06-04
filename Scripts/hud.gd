@@ -5,22 +5,27 @@ extends CanvasLayer
 
 
 @onready var item_progress_bars: Dictionary = {
-	Globals.ItemLocation.LEFT: NodePath("Control/Panel/AmmoIndicators/LeftAmmoIndicator"),
-	Globals.ItemLocation.RIGHT: NodePath("Control/Panel/AmmoIndicators/RightAmmoIndicator"),
+	Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
+	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/RightAmmoIndicator"),
 	Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
 }
 
 @onready var item_slots: Dictionary = {
-	Globals.ItemLocation.LEFT:  NodePath("Control/ItemSlots/LeftItemSlot"),
-	Globals.ItemLocation.RIGHT: NodePath("Control/ItemSlots/RightItemSlot"),
+	Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
+	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
 	Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
 }
 
 @onready var inventory_slots : Array = [
-	NodePath("Control/InventorySlots/ItemSlot"),
-	NodePath("Control/InventorySlots/ItemSlot2"),
-	NodePath("Control/InventorySlots/ItemSlot3"),
-	NodePath("Control/InventorySlots/ItemSlot4")
+	NodePath("Control/Inventory/InventoryItems/ItemSlot"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot2"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot3"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot4"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot5"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot6"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot7"),
+	NodePath("Control/Inventory/InventoryItems/ItemSlot8")
+	
 	]
 
 func change_label(text : String):

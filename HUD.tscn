@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1ge1b1q2qk8a"]
+[gd_scene load_steps=6 format=3 uid="uid://b1ge1b1q2qk8a"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cdtph"]
 [ext_resource type="PackedScene" uid="uid://b44st57didil5" path="res://item_slot.tscn" id="2_30qwi"]
@@ -11,6 +11,35 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3myd"]
+bg_color = Color(0.35, 0.35, 0.35, 0.784314)
+skew = Vector2(0.15, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w6go"]
+bg_color = Color(0.35, 0.35, 0.35, 0.784314)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_cdtph")
 
@@ -22,33 +51,6 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-
-[node name="ItemSlots" type="Control" parent="Control"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="RightItemSlot" parent="Control/ItemSlots" instance=ExtResource("2_30qwi")]
-layout_mode = 0
-offset_left = 273.0
-offset_top = -804.0
-offset_right = 313.0
-offset_bottom = -764.0
-
-[node name="LeftItemSlot" parent="Control/ItemSlots" instance=ExtResource("2_30qwi")]
-layout_mode = 0
-offset_left = 64.0
-offset_top = -808.0
-offset_right = 104.0
-offset_bottom = -768.0
-
-[node name="BackItemSlot" parent="Control/ItemSlots" instance=ExtResource("2_30qwi")]
-visible = false
-layout_mode = 0
-offset_left = 516.0
-offset_top = -781.0
-offset_right = 556.0
-offset_bottom = -741.0
 
 [node name="Panel" type="Panel" parent="Control"]
 visible = false
@@ -79,17 +81,6 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="RightAmmoIndicator" type="ProgressBar" parent="Control/Panel/AmmoIndicators"]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 840.0
-offset_right = 393.0
-offset_bottom = 867.0
-max_value = 1.0
-allow_greater = true
-allow_lesser = true
-show_percentage = false
-
 [node name="BackAmmoIndicator" type="ProgressBar" parent="Control/Panel/AmmoIndicators"]
 layout_mode = 0
 offset_left = 470.0
@@ -101,35 +92,120 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="InventorySlots" type="Control" parent="Control"]
+[node name="Inventory" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ItemSlot" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
+[node name="EquippedItems" type="Panel" parent="Control/Inventory"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = -488.0
+offset_right = 704.0
+offset_bottom = -104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3myd")
+
+[node name="LeftItemSlot" parent="Control/Inventory/EquippedItems" instance=ExtResource("2_30qwi")]
 layout_mode = 0
 offset_left = 64.0
-offset_top = -232.0
-offset_right = 96.0
-offset_bottom = -200.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 192.0
+scale = Vector2(1.5, 1.5)
 
-[node name="ItemSlot2" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
+[node name="LeftAmmoIndicator" type="ProgressBar" parent="Control/Inventory/EquippedItems/LeftItemSlot"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 6.5
+offset_right = 64.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+
+[node name="RightItemSlot" parent="Control/Inventory/EquippedItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 192.0
+scale = Vector2(1.5, 1.5)
+
+[node name="RightAmmoIndicator" type="ProgressBar" parent="Control/Inventory/EquippedItems/RightItemSlot"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = 6.5
+offset_right = 64.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+
+[node name="InventoryItems" type="Panel" parent="Control/Inventory"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -808.0
+offset_right = 704.0
+offset_bottom = -552.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6w6go")
+metadata/_edit_group_ = true
+
+[node name="ItemSlot" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 256.0
+
+[node name="ItemSlot2" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
 layout_mode = 0
 offset_left = 256.0
-offset_top = -232.0
-offset_right = 288.0
-offset_bottom = -200.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 256.0
 
-[node name="ItemSlot3" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
+[node name="ItemSlot3" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
 layout_mode = 0
-offset_left = 448.0
-offset_top = -232.0
-offset_right = 480.0
-offset_bottom = -200.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 256.0
 
-[node name="ItemSlot4" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
+[node name="ItemSlot4" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
 layout_mode = 0
-offset_left = 640.0
-offset_top = -232.0
-offset_right = 672.0
-offset_bottom = -200.0
+offset_top = 128.0
+offset_bottom = 256.0
+
+[node name="ItemSlot5" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 384.0
+offset_right = 512.0
+
+[node name="ItemSlot6" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 384.0
+
+[node name="ItemSlot7" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 256.0
+
+[node name="ItemSlot8" parent="Control/Inventory/InventoryItems" instance=ExtResource("2_30qwi")]
+layout_mode = 0
