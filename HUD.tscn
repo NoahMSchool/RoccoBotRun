@@ -37,12 +37,13 @@ offset_bottom = -764.0
 
 [node name="LeftItemSlot" parent="Control/ItemSlots" instance=ExtResource("2_30qwi")]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 64.0
 offset_top = -808.0
-offset_right = 93.0
+offset_right = 104.0
 offset_bottom = -768.0
 
 [node name="BackItemSlot" parent="Control/ItemSlots" instance=ExtResource("2_30qwi")]
+visible = false
 layout_mode = 0
 offset_left = 516.0
 offset_top = -781.0
@@ -50,6 +51,7 @@ offset_right = 556.0
 offset_bottom = -741.0
 
 [node name="Panel" type="Panel" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -99,36 +101,35 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="Control2" type="Control" parent="."]
-layout_mode = 3
+[node name="InventorySlots" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="Control2"]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 896.0
-offset_right = 768.0
-offset_bottom = 1856.0
-
-[node name="ItemSlot" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+[node name="ItemSlot" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 768.0
-offset_right = 104.0
-offset_bottom = 808.0
+offset_top = -232.0
+offset_right = 96.0
+offset_bottom = -200.0
 
-[node name="ItemSlot2" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+[node name="ItemSlot2" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
 layout_mode = 0
 offset_left = 256.0
-offset_top = 768.0
-offset_right = 296.0
-offset_bottom = 808.0
+offset_top = -232.0
+offset_right = 288.0
+offset_bottom = -200.0
 
-[node name="ItemSlot3" parent="Control2/Panel" instance=ExtResource("2_30qwi")]
+[node name="ItemSlot3" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 768.0
-offset_right = 488.0
-offset_bottom = 808.0
+offset_top = -232.0
+offset_right = 480.0
+offset_bottom = -200.0
+
+[node name="ItemSlot4" parent="Control/InventorySlots" instance=ExtResource("2_30qwi")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = -232.0
+offset_right = 672.0
+offset_bottom = -200.0

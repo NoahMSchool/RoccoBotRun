@@ -16,6 +16,12 @@ extends CanvasLayer
 	Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
 }
 
+@onready var inventory_slots : Array = [
+	NodePath("Control/InventorySlots/ItemSlot"),
+	NodePath("Control/InventorySlots/ItemSlot2"),
+	NodePath("Control/InventorySlots/ItemSlot3"),
+	NodePath("Control/InventorySlots/ItemSlot4")
+	]
 
 func change_label(text : String):
 	#label_node.text = text
@@ -26,9 +32,27 @@ func change_ammo_progress(item_location : Globals.ItemLocation, value : float):
 	if progress_bar_node:
 		progress_bar_node.value = value
 
+func update_inventory_items(items_array : Array):
+	for i in len(inventory_slots):
+		var item_slot_node = get_node_or_null(inventory_slots[i])
+		if item_slot_node:
+			var texture_node = item_slot_node.get_child(0) as TextureRect
+			if len(items_array) > i:
+				var item = items_array[i] as Item
+				texture_node.texture = item.icon
+			else:
+				texture_node.texture = null
+				
 func update_item(item : Item, item_location : Globals.ItemLocation):
 	var item_slot_node = get_node_or_null(item_slots[item_location])
 	if item_slot_node:
 		var texture_node = item_slot_node.get_child(0) as TextureRect
 		texture_node.texture = item.icon
+
+
+func clear_item(item_location : Globals.ItemLocation):
+	var item_slot_node = get_node_or_null(item_slots[item_location])
+	if item_slot_node:
+		var texture_node = item_slot_node.get_child(0) as TextureRect
+		texture_node.texture = null
 	

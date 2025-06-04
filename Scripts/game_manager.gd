@@ -30,6 +30,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("plus"):
 		pass
 
+	if event.is_action_pressed("test") and event.is_pressed() and not event.is_echo():
+		player_node.uneq
+	
+		pass
+	
+	if event.is_action_pressed("test2") and event.is_pressed() and not event.is_echo():
+		#$RoccoBot.add_item(laser_scene)
+		pass
+		
+	if event.is_action_pressed("test3") and event.is_pressed() and not event.is_echo():
+		#for item_location in Globals.ItemLocation.values():
+			#print(item_location, typeof(item_location))
+			#$RoccoBot.unequip_item(item_location)
+		pass
+		
+	if event.is_action_pressed("quit") and event.is_pressed() and not event.is_echo():
+		get_tree().quit()
+
 func stage_reached(checkpoint: Node3D) -> void:
 	stage_node = checkpoint.get_node("..")
 	print("Stage ", stage_node.name)

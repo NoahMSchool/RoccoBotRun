@@ -52,7 +52,6 @@ func auto_equip_items():
 				break
 
 func equip_item(item : Item, item_location : Globals.ItemLocation):
-	print(item_location)
 	var slot_node = get_node_or_null(item_slot_nodes[item_location])
 	if slot_node:
 		unequip_item(item_location)
@@ -65,7 +64,6 @@ func unequip_item(item_location : Globals.ItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
 		item.reparent($Object/Items/InventoryItems, false)
-		
 		item.set_enabled(false)
 
 func update_HUD():
@@ -77,7 +75,14 @@ func update_HUD():
 			if weapon:
 				get_node("/root/GameRoot/HUD").update_item(weapon, item_location)
 				percent = weapon.get_ammo_percent()
+		elif slot_node:
+			get_node("/root/GameRoot/HUD").clear_item(item_location)
+			percent = 0
 		get_node("/root/GameRoot/HUD").change_ammo_progress(item_location, percent)
+	get_node("/root/GameRoot/HUD").update_inventory_items(get_inventory_items())
+		
+func get_inventory_items() -> Array:
+	return $Object/Items/InventoryItems.get_children()
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -111,6 +116,16 @@ func _physics_process(delta: float) -> void:
 		if first_inventory_item and item_location:
 			#print("equiping ", first_inventory_item, item_location)
 			equip_item(first_inventory_item, item_location)
+	
+	elif Input.is_action_pressed("control"):
+		var item_location : Globals.ItemLocation
+		if Input.is_action_just_pressed("left_action"):
+			item_location = Globals.ItemLocation.LEFT
+		elif Input.is_action_just_pressed("right_action"):
+			item_location = Globals.ItemLocation.RIGHT
+		if item_location and get_equiped_item(item_location):
+			unequip_item(item_location)
+		
 	else:
 		if Input.is_action_pressed("left_action"):
 			fire_item(Globals.ItemLocation.LEFT)
