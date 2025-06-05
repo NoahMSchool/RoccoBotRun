@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		pass
 
 	if event.is_action_pressed("test") and event.is_pressed() and not event.is_echo():
-		player_node.uneq
+		pass
 	
 		pass
 	

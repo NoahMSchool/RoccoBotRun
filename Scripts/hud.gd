@@ -6,7 +6,7 @@ extends CanvasLayer
 
 @onready var item_progress_bars: Dictionary = {
 	Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
-	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/RightAmmoIndicator"),
+	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
 	Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
 }
 
@@ -37,23 +37,38 @@ func change_ammo_progress(item_location : Globals.ItemLocation, value : float):
 	if progress_bar_node:
 		progress_bar_node.value = value
 
+
+func update_inventory(equipped_items : Array, inventory_items : Array):
+	update_equipped_items(equipped_items)
+	update_inventory_items(inventory_items)
+	
+func update_equipped_items(items_array : Array):
+	for item in items_array:
+		var item_node = item[0]
+		var item_location = item[1]
+		var item_slot_control_node = get_node_or_null(item_slots[item_location])
+
+		if item_slot_control_node:
+			var texture_node = item_slot_control_node.get_child(0) as TextureRect
+			texture_node.texture = item_node.icon
+			print(item_node)
+			if item_node.has_method("get_ammo_percent"):
+				var progress_bar_node = item_slot_control_node.get_child(1)
+				if progress_bar_node:
+					progress_bar_node.value = item_node.get_ammo_percent()
+					##should hud call this
+		
 func update_inventory_items(items_array : Array):
 	for i in len(inventory_slots):
-		var item_slot_node = get_node_or_null(inventory_slots[i])
-		if item_slot_node:
-			var texture_node = item_slot_node.get_child(0) as TextureRect
+		var item_slot_control_node = get_node_or_null(inventory_slots[i])
+		if item_slot_control_node:
+			var texture_node = item_slot_control_node.get_child(0) as TextureRect
 			if len(items_array) > i:
 				var item = items_array[i] as Item
 				texture_node.texture = item.icon
 			else:
 				texture_node.texture = null
-				
-func update_item(item : Item, item_location : Globals.ItemLocation):
-	var item_slot_node = get_node_or_null(item_slots[item_location])
-	if item_slot_node:
-		var texture_node = item_slot_node.get_child(0) as TextureRect
-		texture_node.texture = item.icon
-
+			
 
 func clear_item(item_location : Globals.ItemLocation):
 	var item_slot_node = get_node_or_null(item_slots[item_location])

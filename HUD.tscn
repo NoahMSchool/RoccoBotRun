@@ -113,7 +113,7 @@ offset_right = 192.0
 offset_bottom = 192.0
 scale = Vector2(1.5, 1.5)
 
-[node name="LeftAmmoIndicator" type="ProgressBar" parent="Control/Inventory/EquippedItems/LeftItemSlot"]
+[node name="LeftItemProgress" type="ProgressBar" parent="Control/Inventory/EquippedItems/LeftItemSlot"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -139,7 +139,7 @@ offset_right = 448.0
 offset_bottom = 192.0
 scale = Vector2(1.5, 1.5)
 
-[node name="RightAmmoIndicator" type="ProgressBar" parent="Control/Inventory/EquippedItems/RightItemSlot"]
+[node name="RightItemProgress" type="ProgressBar" parent="Control/Inventory/EquippedItems/RightItemSlot"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

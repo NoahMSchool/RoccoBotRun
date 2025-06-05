@@ -14,8 +14,8 @@ roughness = 0.5
 [node name="PlasmaCannon" type="Node3D"]
 script = ExtResource("1_3vlga")
 max_ammo = 3
-ammo_regen_rate = 2.0
-fire_rate = 0.5
+ammo_regen_rate = 0.1
+fire_rate = 0.4
 icon = ExtResource("2_2qd5v")
 
 [node name="Timer" type="Timer" parent="."]

@@ -6,7 +6,7 @@ const BLOOM = PI/72
 
 func fire():
 	if $Timer.is_stopped() and ammo>0:
-		$Timer.start(1)
+		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile

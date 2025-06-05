@@ -7,6 +7,8 @@ extends CharacterBody3D
 	Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
 }
 
+@onready var hud: CanvasLayer = $"../HUD"
+
 @export var SPEED = 4.0
 @export var jump_height = 4.5
 @export var super_jump_height = 9
@@ -67,20 +69,18 @@ func unequip_item(item_location : Globals.ItemLocation):
 		item.set_enabled(false)
 
 func update_HUD():
+	var inventory_items : Array = get_inventory_items()
+	var equipped_items : Array = []
+	
 	for item_location in item_slot_nodes:
-		var percent : float = 0
 		var slot_node = get_node_or_null(item_slot_nodes[item_location])
 		if slot_node and slot_node.get_child_count()>0:
-			var weapon = slot_node.get_child(0)
-			if weapon:
-				get_node("/root/GameRoot/HUD").update_item(weapon, item_location)
-				percent = weapon.get_ammo_percent()
-		elif slot_node:
-			get_node("/root/GameRoot/HUD").clear_item(item_location)
-			percent = 0
-		get_node("/root/GameRoot/HUD").change_ammo_progress(item_location, percent)
-	get_node("/root/GameRoot/HUD").update_inventory_items(get_inventory_items())
-		
+			var item = slot_node.get_child(0)
+			equipped_items.append([item, item_location])
+			
+	hud.update_inventory(equipped_items, inventory_items)
+	
+
 func get_inventory_items() -> Array:
 	return $Object/Items/InventoryItems.get_children()
 
