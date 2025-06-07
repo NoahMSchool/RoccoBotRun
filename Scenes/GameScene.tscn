@@ -245,7 +245,7 @@ shape = SubResource("WorldBoundaryShape3D_2yho7")
 
 [node name="Stage0" type="Node3D" parent="SpaceCity/Stages"]
 
-[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage0" instance=ExtResource("9_sqf27")]
+[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage0" groups=["check_point_spawns"] instance=ExtResource("9_sqf27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="StageObjects" type="Node3D" parent="SpaceCity/Stages/Stage0"]
@@ -279,7 +279,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Stage1" type="Node3D" parent="SpaceCity/Stages"]
 
-[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage1" node_paths=PackedStringArray("barrier") instance=ExtResource("9_sqf27")]
+[node name="CheckPointSpawn" parent="SpaceCity/Stages/Stage1" node_paths=PackedStringArray("barrier") groups=["check_point_spawns"] instance=ExtResource("9_sqf27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
 barrier = NodePath("../Barrier")
 

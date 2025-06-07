@@ -153,7 +153,7 @@ shadow_mesh = SubResource("ArrayMesh_cx7ix")
 albedo_texture = ExtResource("3_1o7em")
 metallic = 1.0
 
-[node name="CheckPointSpawn" type="Node3D" groups=["check_point_spawn"]]
+[node name="CheckPointSpawn" type="Node3D" groups=["check_point_spawns"]]
 script = ExtResource("1_xuoex")
 
 [node name="SpawnPos" type="Node3D" parent="."]

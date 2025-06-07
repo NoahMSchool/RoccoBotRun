@@ -51,7 +51,6 @@ func update_equipped_items(items_array : Array):
 		if item_slot_control_node:
 			var texture_node = item_slot_control_node.get_child(0) as TextureRect
 			texture_node.texture = item_node.icon
-			print(item_node)
 			if item_node.has_method("get_ammo_percent"):
 				var progress_bar_node = item_slot_control_node.get_child(1)
 				if progress_bar_node:

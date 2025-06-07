@@ -36,7 +36,6 @@ func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
 	configured_item.set_enabled(false)
 	$Object/Items/InventoryItems.add_child(configured_item)
-	print($Object/Items/InventoryItems.transform)
 	auto_equip_items()
 
 func get_equiped_item(item_location : Globals.ItemLocation):
@@ -157,8 +156,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
-		
-
+	
+	
 	
 	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
@@ -169,19 +168,17 @@ func _physics_process(delta: float) -> void:
 	update_HUD()
 	
 func _unhandled_input(event: InputEvent) -> void:
-	#Rotating Cam Pivot based on mouse0
-	#return
 	if event is InputEventMouseMotion:
 		$CamPivot.rotation.y -= event.relative.x*cam_sens
 		$CamPivot.rotation.x -= event.relative.y*cam_sens
 		$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
-	
+
 func die():
 	pass
 
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
-
+	
 #TODO
 """
 Make Player allign with ground
