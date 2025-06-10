@@ -7,13 +7,19 @@ class_name Weapon
 @onready var ammof = ammo
 @export var fire_rate : float
 @export var accent_color : String
+@export var damage : int
 @export var target_group = "enemies"
-
 
 @onready var shot_time = 1/fire_rate
 
+var attack_held = false
+
+func configure_item():
+	self.accent_color = "blue"
+	#self.target_group = "enemies"
+
 func fire():
-	print("fire")
+	print("fire", self)
 
 func get_ammo_percent() -> float:
 	return ammof/max_ammo

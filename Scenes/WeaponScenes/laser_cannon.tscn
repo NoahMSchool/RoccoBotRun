@@ -48,6 +48,7 @@ max_ammo = 10
 ammo_regen_rate = 2.0
 fire_rate = 6.0
 accent_color = "blue"
+damage = 30
 icon = ExtResource("2_b60v4")
 
 [node name="Timer" type="Timer" parent="."]

@@ -14,6 +14,7 @@ func fire():
 		var projectile = LASER_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
+		projectile.damage = damage
 		add_child(projectile)
 		projectile.global_transform = global_transform
 		#Adding Bloom	

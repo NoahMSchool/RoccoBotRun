@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jtm38tyo8fqf"]
+[gd_scene load_steps=8 format=3 uid="uid://jtm38tyo8fqf"]
 
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="1_5qop7"]
 [ext_resource type="Script" path="res://Scripts/enemy_robot.gd" id="1_xjh2w"]
+[ext_resource type="PackedScene" uid="uid://b0ymtfwpm8xae" path="res://HealthBar.tscn" id="3_uli57"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_18ofp"]
 height = 1.0
@@ -11,6 +12,9 @@ radial_segments = 8
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rp863"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qs41j"]
+viewport_path = NodePath("SubViewport")
 
 [node name="EnemyRobot" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_xjh2w")
@@ -24,9 +28,21 @@ shape = SubResource("CylinderShape3D_68edu")
 [node name="LaserCannon" parent="." instance=ExtResource("1_5qop7")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.5)
 accent_color = "red"
+damage = 0
 target_group = "player"
 
 [node name="Vision" type="ShapeCast3D" parent="."]
 shape = SubResource("SphereShape3D_rp863")
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_qs41j")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" parent="SubViewport" instance=ExtResource("3_uli57")]

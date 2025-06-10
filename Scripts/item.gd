@@ -9,13 +9,8 @@ static func create_item(packed_scene: PackedScene)->Item:
 	return item
 
 func configure_item():
-	if self is Weapon:
-		self.accent_color = "blue"
-		#self.target_group = "enemies"
-
+	pass
+	
 func set_enabled(is_enabled : bool):
 	self.set_process(is_enabled)
 	self.visible = is_enabled
-
-func fire():
-	print("fire")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://clnnfd7uia28w"]
+
+[ext_resource type="Script" path="res://laser_sword.gd" id="1_qkwwb"]
+[ext_resource type="AudioStream" uid="uid://875x1m85owlt" path="res://Sounds/638292__captainyulef__laser-sword.wav" id="2_bbus8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_scvj4"]
+size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kro7w"]
+size = Vector3(2, 0.25, 2.5)
+
+[node name="LaserSword" type="Node3D"]
+script = ExtResource("1_qkwwb")
+max_ammo = 5
+ammo_regen_rate = 0.01
+fire_rate = 10.0
+accent_color = "blue"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_scvj4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75)
+shape = SubResource("BoxShape3D_kro7w")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_bbus8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

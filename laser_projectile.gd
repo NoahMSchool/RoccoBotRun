@@ -5,6 +5,7 @@ extends RayCast3D
 @export var max_age = 0.5
 @export var target_group : String
 @export var accent_color : String
+@export var damage : float
 
 func _ready() -> void:
 	var mat = Globals.glow_materials.get(accent_color, Globals.glow_materials["pink"])
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	if is_colliding():
 		#print("laser collision", collider)
 		if collider.is_in_group(target_group):
-			collider.queue_free()
+			collider.get_damaged(damage)
 		queue_free() 
 	if age > max_age:
 		#print("projectile out of range")                

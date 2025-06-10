@@ -5,6 +5,7 @@ extends Area3D
 @export var explode_age = 2.5
 @export var target_group : String
 @export var accent_color : String
+@export var damage : float
 
 var expand_time = 0.25
 var max_size = 1
@@ -44,7 +45,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group(target_group):
-		body.queue_free()
+		body.get_damaged(damage)
 	explode()
 	#wprint("explode")
 	

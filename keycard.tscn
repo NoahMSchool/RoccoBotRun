@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmgsiwipu78v3"]
+
+[ext_resource type="Script" path="res://keycard.gd" id="1_m4oo0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_807y5"]
+size = Vector3(0.1, 0.1, 0.4)
+
+[node name="Keycard" type="Node3D"]
+script = ExtResource("1_m4oo0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_807y5")

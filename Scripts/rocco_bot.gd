@@ -144,6 +144,7 @@ func _physics_process(delta: float) -> void:
 	
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+	#input_dir = Input.get_vector(Input.get_action_strength("left_joystick_right"), Input.get_action_strength("left_joystick_left"), Input.get_action_strength("left_joystick_up"), Input.get_action_strength("left_joystick_down"))
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if input_dir != Vector2.ZERO:
 		pass

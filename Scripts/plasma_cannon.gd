@@ -14,6 +14,7 @@ func fire():
 		var projectile = BLAST_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
+		projectile.damage = damage
 		$SpawnPoint.add_child(projectile)
 		projectile.global_transform = global_transform
 		
