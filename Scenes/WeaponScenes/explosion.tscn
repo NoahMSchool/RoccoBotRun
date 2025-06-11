@@ -24,6 +24,7 @@ wait_time = 0.1
 
 [node name="Launch_Timer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0999986, -0.000532323, 0, 0.000532323, 0.0999986, 0, 0, 0, 0.1, 0, 0, 0)
@@ -44,4 +45,4 @@ shape = SubResource("SphereShape3D_l1bn6")
 stream = ExtResource("2_25kn6")
 
 [connection signal="timeout" from="ExpandTimer" to="." method="_on_expand_timer_timeout"]
-[connection signal="timeout" from="Launch_Timer" to="." method="launch_objects"]
+[connection signal="timeout" from="Launch_Timer" to="." method="_on_launch_timer_timeout"]
