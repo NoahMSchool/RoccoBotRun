@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=41 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_pqp3q"]
 [ext_resource type="PackedScene" uid="uid://hwrigssg2ql5" path="res://orbiting_planet.tscn" id="2_nxt6g"]
@@ -17,9 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://Scenes/WorldObjectScenes/item_spawn.tscn" id="14_u512m"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="15_kdvbr"]
 [ext_resource type="PackedScene" uid="uid://2xncat2u1tud" path="res://Scenes/WeaponScenes/plasma_cannon.tscn" id="15_kkanw"]
-[ext_resource type="PackedScene" uid="uid://clnnfd7uia28w" path="res://laser_sword.tscn" id="16_fk4ix"]
 [ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="16_wyxkk"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="16_xmiv7"]
+[ext_resource type="PackedScene" uid="uid://bmgsiwipu78v3" path="res://keycard.tscn" id="17_4sh1i"]
+[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://shield.tscn" id="17_ovte8"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
 offsets = PackedFloat32Array(0, 0.997696)
@@ -325,7 +326,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
 
 [node name="ItemSpawn3" parent="SpaceCity" instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
-item = ExtResource("16_fk4ix")
+item = ExtResource("17_ovte8")
 
 [node name="ItemSpawn7" parent="SpaceCity" instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -12)
@@ -340,6 +341,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41)
 [node name="ItemSpawn2" parent="SpaceCity" instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -22)
 item = ExtResource("15_kkanw")
+
+[node name="ItemSpawn8" parent="SpaceCity" instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -14)
+item = ExtResource("17_4sh1i")
 
 [node name="EnemyRobot" parent="SpaceCity" instance=ExtResource("15_kdvbr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1, -12)

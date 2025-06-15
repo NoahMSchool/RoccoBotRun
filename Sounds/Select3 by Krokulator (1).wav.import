@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkw5yj1gw2ut7"
+path="res://.godot/imported/Select3 by Krokulator (1).wav-1dedd0afc769cdf8d94db903acebd000.sample"
+
+[deps]
+
+source_file="res://Sounds/Select3 by Krokulator (1).wav"
+dest_files=["res://.godot/imported/Select3 by Krokulator (1).wav-1dedd0afc769cdf8d94db903acebd000.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

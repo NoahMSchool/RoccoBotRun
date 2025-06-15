@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://jtm38tyo8fqf"]
+[gd_scene load_steps=10 format=3 uid="uid://jtm38tyo8fqf"]
 
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="1_5qop7"]
 [ext_resource type="Script" path="res://Scripts/enemy_robot.gd" id="1_xjh2w"]
 [ext_resource type="PackedScene" uid="uid://b0ymtfwpm8xae" path="res://HealthBar.tscn" id="3_uli57"]
+[ext_resource type="Script" path="res://health_component.gd" id="4_m36b0"]
+[ext_resource type="PackedScene" uid="uid://bwsxqfvb48ic6" path="res://damagable_component.tscn" id="5_ogs8y"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_18ofp"]
 height = 1.0
@@ -36,7 +38,7 @@ shape = SubResource("SphereShape3D_rp863")
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 2
 texture = SubResource("ViewportTexture_qs41j")
@@ -46,3 +48,10 @@ disable_3d = true
 transparent_bg = true
 
 [node name="HealthBar" parent="SubViewport" instance=ExtResource("3_uli57")]
+
+[node name="HealthComponent" type="Node3D" parent="." node_paths=PackedStringArray("health_bar")]
+script = ExtResource("4_m36b0")
+health_bar = NodePath("../SubViewport/HealthBar")
+
+[node name="DamagableComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_ogs8y")]
+health_component = NodePath("../HealthComponent")

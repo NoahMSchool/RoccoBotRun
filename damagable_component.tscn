@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwsxqfvb48ic6"]
+
+[ext_resource type="Script" path="res://damagable_component.gd" id="1_a0jge"]
+
+[node name="DamagableComponent" type="Node3D"]
+script = ExtResource("1_a0jge")

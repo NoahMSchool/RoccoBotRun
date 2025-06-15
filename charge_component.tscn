@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://piykro5eexix"]
+
+[ext_resource type="Script" path="res://charge_component.gd" id="1_hhto8"]
+
+[node name="charge_component" type="Node3D"]
+script = ExtResource("1_hhto8")

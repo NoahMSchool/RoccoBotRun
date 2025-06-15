@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://clnnfd7uia28w"]
+[gd_scene load_steps=6 format=3 uid="uid://clnnfd7uia28w"]
 
 [ext_resource type="Script" path="res://laser_sword.gd" id="1_qkwwb"]
 [ext_resource type="AudioStream" uid="uid://875x1m85owlt" path="res://Sounds/638292__captainyulef__laser-sword.wav" id="2_bbus8"]
+[ext_resource type="Script" path="res://deal_damage_component.gd" id="3_7823y"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_scvj4"]
 size = Vector3(0.25, 0.25, 1)
@@ -32,3 +33,6 @@ stream = ExtResource("2_bbus8")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="DealDamageComponent" type="Node3D" parent="."]
+script = ExtResource("3_7823y")

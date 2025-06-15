@@ -139,6 +139,14 @@ left_joystick_left={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
 ]
 }
+swap_right_action={
+"deadzone": 0.5,
+"events": []
+}
+swap_left_action={
+"deadzone": 0.5,
+"events": []
+}
 
 [layer_names]
 

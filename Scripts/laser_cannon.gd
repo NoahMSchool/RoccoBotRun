@@ -4,7 +4,7 @@ const LASER_PROJECTILE = preload("res://Scenes/WeaponScenes/laser_projectile.tsc
 const BLOOM = PI/72
 
 
-func fire():
+func use_item(used_last):
 	if $Timer.is_stopped() and ammo>0:
 		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()

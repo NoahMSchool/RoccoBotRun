@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwe3kiiovcxw"]
+[gd_scene load_steps=6 format=3 uid="uid://dwe3kiiovcxw"]
 
 [ext_resource type="Script" path="res://laser_projectile.gd" id="1_0ow7a"]
 [ext_resource type="Material" uid="uid://cma5xeaj2rxuy" path="res://Materials/red_laser_mat.tres" id="2_ex3di"]
 [ext_resource type="Script" path="res://projectile_base.gd" id="3_5e8w6"]
+[ext_resource type="PackedScene" uid="uid://g02qc8pa4ylq" path="res://deal_damage_component.tscn" id="4_6860f"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ajpi8"]
 top_radius = 0.05
@@ -23,3 +24,5 @@ surface_material_override/0 = ExtResource("2_ex3di")
 
 [node name="ProjectileBase" type="Node3D" parent="."]
 script = ExtResource("3_5e8w6")
+
+[node name="DealDamageComponent" parent="." instance=ExtResource("4_6860f")]

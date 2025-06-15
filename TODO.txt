@@ -16,5 +16,9 @@ Fix Items on ground
 Fix Grenade
 Fix plasma blaster going through walls
 
+Reorganise with components
 
-Figure out best way to fix itemlocation 0 to be treated as false in if statenments even if it is not nul
+Remove Weapon base class
+
+
+make sheild item that blocks projectiles and absorbs damae

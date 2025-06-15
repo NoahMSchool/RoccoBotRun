@@ -3,6 +3,8 @@ extends Weapon
 const GRENADE = preload("res://Scenes/WeaponScenes/grenade.tscn")
 var power = 10
 const ANGLE_SPEED = PI
+
+
 var angle = 0.0:
 	set(value):
 		angle = clamp(value, 0, PI/3)
@@ -11,11 +13,28 @@ var angle = 0.0:
 		return angle
 
 var action = "left_action"
+var action_pressed := false
+
+var _last_call_time : int = 0
+
+func use_item(used_last):
+	var now = Time.get_ticks_msec()
+	var dt_msec = now - _last_call_time
+	var dt = dt_msec / 1000.0
+	_last_call_time = now
+	
+	
+	
+
+
 func fire():
 	print("grenade_fire")
 	
 func fire_released():
 	pass
+
+
+
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)

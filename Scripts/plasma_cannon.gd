@@ -4,8 +4,8 @@ const BLAST_PROJECTILE = preload("res://Scenes/WeaponScenes/plasma_blast.tscn")
 const BLOOM = PI/72
 
 
-func fire():
-	if $Timer.is_stopped() and ammo>0:
+func use_item(used_last):
+	if $Timer.is_stopped() and ammo>0 and not used_last:
 		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()
 		

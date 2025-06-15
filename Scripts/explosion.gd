@@ -10,6 +10,10 @@ var progress = 0.0
 @export var explosion_power = 50
 
 @onready var material  : StandardMaterial3D = $MeshInstance3D.get_active_material(0)
+var accent_color = "blue"
+
+var mat = Globals.glow_materials.get(accent_color, Globals.glow_materials["pink"])
+var mat_dup = mat.duplicate() as StandardMaterial3D
 
 
 func _ready() -> void:	
@@ -20,14 +24,22 @@ func _ready() -> void:
 	$Launch_Timer.start()
 	
 	$AudioStreamPlayer3D.play()
+	
+	mat_dup.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	$MeshInstance3D.material_override = mat_dup
+	
+	#var col = mat_dup.albedo_color
+	#col.a = 0.5
+	#mat_dup.albedo_color = col
 
 func _physics_process(delta: float) -> void:
 	elapsed += delta
 	progress = elapsed/expand_time
 	$MeshInstance3D.scale = Vector3.ONE * lerp(initial_radius, max_radius, progress)
-	var current_color = material.albedo_color
-	current_color.a = lerp(1,0, progress)
-	material.albedo_color = current_color
+	
+	var col = mat_dup.albedo_color
+	col.a = lerp(1,0, progress)
+	mat_dup.albedo_color = col
 	"""
 		var alpha = lerp(1.0, 0.0, progress)
 		var mat : StandardMaterial3D = $MeshInstance3D.material_override

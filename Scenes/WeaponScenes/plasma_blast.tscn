@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwh74kdwti6h2"]
+[gd_scene load_steps=6 format=3 uid="uid://dwh74kdwti6h2"]
 
 [ext_resource type="Script" path="res://Scripts/plasma_blast.gd" id="1_i5jsi"]
 [ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_albwb"]
+[ext_resource type="Script" path="res://deal_damage_component.gd" id="3_ydgjl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b53xs"]
 
@@ -23,6 +24,9 @@ mesh = SubResource("SphereMesh_h5apa")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_albwb")
+
+[node name="DealDamageComponent" type="Node3D" parent="."]
+script = ExtResource("3_ydgjl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
