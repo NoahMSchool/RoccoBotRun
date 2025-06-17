@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="1_5qop7"]
 [ext_resource type="Script" path="res://Scripts/enemy_robot.gd" id="1_xjh2w"]
 [ext_resource type="PackedScene" uid="uid://b0ymtfwpm8xae" path="res://HealthBar.tscn" id="3_uli57"]
-[ext_resource type="Script" path="res://health_component.gd" id="4_m36b0"]
+[ext_resource type="PackedScene" uid="uid://dgmhajb66a61j" path="res://health_component.tscn" id="4_gdwyv"]
 [ext_resource type="PackedScene" uid="uid://bwsxqfvb48ic6" path="res://damagable_component.tscn" id="5_ogs8y"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_18ofp"]
@@ -29,9 +29,8 @@ shape = SubResource("CylinderShape3D_68edu")
 
 [node name="LaserCannon" parent="." instance=ExtResource("1_5qop7")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.5)
-accent_color = "red"
-damage = 0
 target_group = "player"
+damage = 0
 
 [node name="Vision" type="ShapeCast3D" parent="."]
 shape = SubResource("SphereShape3D_rp863")
@@ -49,8 +48,7 @@ transparent_bg = true
 
 [node name="HealthBar" parent="SubViewport" instance=ExtResource("3_uli57")]
 
-[node name="HealthComponent" type="Node3D" parent="." node_paths=PackedStringArray("health_bar")]
-script = ExtResource("4_m36b0")
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_gdwyv")]
 health_bar = NodePath("../SubViewport/HealthBar")
 
 [node name="DamagableComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_ogs8y")]

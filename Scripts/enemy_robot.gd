@@ -13,14 +13,6 @@ func spot_player(player : CharacterBody3D):
 	look_at(player_pos, Vector3(0,1,0))
 	rotation.x = clamp(rotation.x, -PI/8, PI/4)
 
-#func get_damaged(damage):
-	#health -= damage
-	#print(health)
-	#health_bar.value = lerp(health_bar.min_value, health_bar.max_value, (health/max_health))
-	#
-	#if health <=0:
-		#queue_free()
-
 func die():
 	print("robot eliminated")
 	queue_free()
@@ -29,7 +21,7 @@ func die():
 func _ready() -> void:
 	if health_component:
 		health_component.health_out.connect(die)
-
+		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta

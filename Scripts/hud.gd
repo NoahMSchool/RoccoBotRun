@@ -32,7 +32,7 @@ func change_label(text : String):
 	#label_node.text = text
 	pass
 	
-func change_ammo_progress(item_location : Globals.ItemLocation, value : float):
+func change_charge_progress(item_location : Globals.ItemLocation, value : float):
 	var progress_bar_node = get_node_or_null(item_progress_bars[item_location])
 	if progress_bar_node:
 		progress_bar_node.value = value
@@ -51,10 +51,11 @@ func update_equipped_items(items_array : Array):
 		if item_slot_control_node:
 			var texture_node = item_slot_control_node.get_child(0) as TextureRect
 			texture_node.texture = item_node.icon
-			if item_node.has_method("get_ammo_percent"):
+			if item_node.has_node("ChargeComponent"):
 				var progress_bar_node = item_slot_control_node.get_child(1)
 				if progress_bar_node:
-					progress_bar_node.value = item_node.get_ammo_percent()
+					var charge_component_node = item_node.get_node("ChargeComponent")
+					progress_bar_node.value = charge_component_node.get_charge_percent()
 					##should hud call this
 		
 func update_inventory_items(items_array : Array):

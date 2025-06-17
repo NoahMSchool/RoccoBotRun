@@ -1,6 +1,7 @@
 extends Area3D
 
 @export var item : PackedScene
+#Crashes if it is not an item that is added
 
 func _ready() -> void:
 	var item_mesh = item.instantiate().find_child("MeshInstance3D")

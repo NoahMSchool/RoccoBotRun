@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=38 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_pqp3q"]
 [ext_resource type="PackedScene" uid="uid://hwrigssg2ql5" path="res://orbiting_planet.tscn" id="2_nxt6g"]
@@ -16,11 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://Scenes/WorldObjectScenes/moving_platform.tscn" id="13_pgk8d"]
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://Scenes/WorldObjectScenes/item_spawn.tscn" id="14_u512m"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="15_kdvbr"]
-[ext_resource type="PackedScene" uid="uid://2xncat2u1tud" path="res://Scenes/WeaponScenes/plasma_cannon.tscn" id="15_kkanw"]
-[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="16_wyxkk"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="16_xmiv7"]
-[ext_resource type="PackedScene" uid="uid://bmgsiwipu78v3" path="res://keycard.tscn" id="17_4sh1i"]
-[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://shield.tscn" id="17_ovte8"]
+[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Scenes/ItemScenes/shield.tscn" id="18_gomn6"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
 offsets = PackedFloat32Array(0, 0.997696)
@@ -168,6 +165,7 @@ SPEED = 5.0
 spawnpoint = NodePath("../SpaceCity/Stages/Stage0/CheckPointSpawn")
 
 [node name="OrbitingPlanet" parent="." instance=ExtResource("2_nxt6g")]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("2_r8igr")]
 
@@ -272,7 +270,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Block6" parent="SpaceCity/Stages/Stage0/StageObjects/TestBlocks" instance=ExtResource("10_8jqvc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 14)
 
 [node name="Block7" parent="SpaceCity/Stages/Stage0/StageObjects/TestBlocks" instance=ExtResource("10_8jqvc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -317,40 +315,14 @@ move_time = 5.0
 [node name="Stage2" type="Node3D" parent="SpaceCity/Stages"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 0, -61)
 
-[node name="ItemSpawn" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-item = ExtResource("16_wyxkk")
-
-[node name="ItemSpawn6" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
-
-[node name="ItemSpawn3" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
-item = ExtResource("17_ovte8")
-
-[node name="ItemSpawn7" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -12)
-
-[node name="ItemSpawn5" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19)
-item = ExtResource("15_kkanw")
-
-[node name="ItemSpawn4" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41)
-
-[node name="ItemSpawn2" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -22)
-item = ExtResource("15_kkanw")
-
-[node name="ItemSpawn8" parent="SpaceCity" instance=ExtResource("14_u512m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -14)
-item = ExtResource("17_4sh1i")
-
-[node name="EnemyRobot" parent="SpaceCity" instance=ExtResource("15_kdvbr")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1, -12)
+[node name="StageObjects" type="Node3D" parent="SpaceCity/Stages/Stage2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 61, 0, -21)
 
 [node name="EnemyRobot2" parent="SpaceCity" instance=ExtResource("15_kdvbr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0.5, -42)
+
+[node name="EnemyRobot" parent="SpaceCity" instance=ExtResource("15_kdvbr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1, -12)
 
 [node name="RainSystem" type="Node3D" parent="SpaceCity"]
 
@@ -385,5 +357,16 @@ draw_pass_1 = SubResource("RibbonTrailMesh_s0148")
 stream = ExtResource("16_xmiv7")
 volume_db = -15.0
 autoplay = true
+
+[node name="ItemSpawn" parent="." instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="ItemSpawn2" parent="." instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+item = ExtResource("18_gomn6")
+
+[node name="Shield" parent="." instance=ExtResource("18_gomn6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 1, -12)
+visible = false
 
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]

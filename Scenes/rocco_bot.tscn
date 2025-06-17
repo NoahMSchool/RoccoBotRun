@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkckw5nilwpij"]
+[gd_scene load_steps=8 format=3 uid="uid://dkckw5nilwpij"]
 
 [ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
 [ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rubbish/rocco_multimesh.tscn" id="2_edblu"]
 [ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
+[ext_resource type="Script" path="res://damagable_component.gd" id="4_coywe"]
+[ext_resource type="Script" path="res://health_component.gd" id="5_oixeu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_atwii"]
 size = Vector3(1, 0.5, 0.5)
@@ -10,15 +12,17 @@ size = Vector3(1, 0.5, 0.5)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ypcl"]
 height = 1.25
 
-[node name="RoccoBot" type="CharacterBody3D"]
+[node name="RoccoBot" type="CharacterBody3D" node_paths=PackedStringArray("health_component", "damagable_component")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_x72y6")
+health_component = NodePath("HealthComponent")
+damagable_component = NodePath("DamagableComponent")
 
 [node name="Object" type="Node3D" parent="."]
 
 [node name="MultiMeshInstance3D" parent="Object" instance=ExtResource("2_edblu")]
-transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, -0.75, 0)
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, -0.625, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Object"]
 visible = false
@@ -36,10 +40,10 @@ mesh = SubResource("BoxMesh_atwii")
 [node name="EquippedItems" type="Node3D" parent="Object/Items"]
 
 [node name="RightHandItem" type="Node3D" parent="Object/Items/EquippedItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.15, -0.25)
 
 [node name="LeftHandItem" type="Node3D" parent="Object/Items/EquippedItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.15, -0.25)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1ypcl")
@@ -73,3 +77,11 @@ transform = Transform3D(1, 0, 0, 0, 0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0)
 
 [node name="EquipWeapon" type="AudioStreamPlayer3D" parent="Sounds"]
 stream = ExtResource("3_rhlt7")
+
+[node name="DamagableComponent" type="Node3D" parent="."]
+script = ExtResource("4_coywe")
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("5_oixeu")
+
+[node name="Node3D" type="Node3D" parent="."]

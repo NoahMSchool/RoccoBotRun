@@ -1,16 +1,29 @@
-extends Weapon
+extends Item
 
 const LASER_PROJECTILE = preload("res://Scenes/WeaponScenes/laser_projectile.tscn")
 const BLOOM = PI/72
 
+@onready var charge_component = $ChargeComponent
+@export var target_group = "enemies"
+@export var fire_rate : float
+@export var damage : int
+@export var accent_color : String
+
+
+@onready var shot_time = 1/fire_rate
+#use shoot component maybe
+
+func configure_item():
+	self.accent_color = "blue"
+	
 
 func use_item(used_last):
-	if $Timer.is_stopped() and ammo>0:
+	if $Timer.is_stopped() and $ChargeComponent.charge>0:
 		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile
-		ammof -= 1
+		$ChargeComponent.reduce_charge()
 		var projectile = LASER_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
