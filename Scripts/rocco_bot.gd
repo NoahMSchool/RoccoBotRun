@@ -1,4 +1,3 @@
-
 extends CharacterBody3D
 
 @onready var item_slot_nodes: Dictionary = {
@@ -6,6 +5,17 @@ extends CharacterBody3D
 	Globals.ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
 	Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
 }
+
+@onready var item_actions: Dictionary = {
+	Globals.ItemLocation.LEFT: ["left_action", false, "swap_left_action"],
+	Globals.ItemLocation.RIGHT: ["right_action", false, "swap_right_action"],
+	Globals.ItemLocation.BACK: ["none", false, "swap_back_action"]
+}
+
+#Components
+@export var health_component : HealthComponent = null
+@export var damagable_component : DamagableComponent = null
+
 
 @onready var hud: CanvasLayer = $"../HUD"
 
@@ -27,10 +37,9 @@ var mouse_delta = Vector2.ZERO
 var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
 var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
 
-func fire_item(item_location : Globals.ItemLocation):
+func use_item(item_location : Globals.ItemLocation, used_last):
 	var item = get_equiped_item(item_location)
-	if item:
-		item.fire()
+	item.use_item(used_last)
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
@@ -126,14 +135,16 @@ func _physics_process(delta: float) -> void:
 			unequip_item(item_location)
 		
 	else:
-		if Input.is_action_pressed("left_action"):
-			fire_item(Globals.ItemLocation.LEFT)
-		
-		if Input.is_action_pressed("right_action"):
-			fire_item(Globals.ItemLocation.RIGHT)
-	
-	
-		
+		for action in item_actions:
+			if Input.is_action_pressed(item_actions[action][0]) and get_node(item_slot_nodes[action]).get_child_count()>0:
+				if item_actions[action][1] == false:
+					use_item(action, false)
+				else:
+					use_item(action, true)
+				item_actions[action][1] = true
+			else:
+				item_actions[action][1] = false
+				
 	if Input.is_action_pressed("jump") and is_on_floor():
 		jump_time += delta
 		current_speed /= 2
@@ -145,6 +156,10 @@ func _physics_process(delta: float) -> void:
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	#input_dir = Input.get_vector(Input.get_action_strength("left_joystick_right"), Input.get_action_strength("left_joystick_left"), Input.get_action_strength("left_joystick_up"), Input.get_action_strength("left_joystick_down"))
+	
+	#input_dir.x = Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left")
+	#input_dir.y = Input.get_action_strength("left_joystick_up") - Input.get_action_strength("left_joystick_down")
+	
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if input_dir != Vector2.ZERO:
 		pass
