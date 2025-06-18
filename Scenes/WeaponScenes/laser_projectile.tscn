@@ -13,11 +13,13 @@ rings = 1
 
 [node name="Laser" type="RayCast3D"]
 top_level = true
-target_position = Vector3(0, 0, -0.5)
+target_position = Vector3(0, 0, -0.75)
 collision_mask = 19
+collide_with_areas = true
 script = ExtResource("1_0ow7a")
-speed = 5.0
-max_age = 5.0
+speed = 25.0
+max_age = 0.75
+damage = 30.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)

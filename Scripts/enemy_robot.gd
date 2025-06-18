@@ -30,6 +30,3 @@ func _physics_process(delta: float) -> void:
 	$Vision.force_shapecast_update()
 	if $Vision.is_colliding():
 		spot_player($Vision.get_collider(0))
-	
-	
-		

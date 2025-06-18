@@ -6,8 +6,8 @@ class_name ChargeComponent
 @onready var charge : int = max_charge
 @onready var chargef : float = charge
 
-@export var health_bar : ProgressBar
-
+#@export var health_bar : ProgressBar
+#should charge component know about its charge bar like health component does
 
 func get_charge_percent() -> float:
 	return chargef/max_charge
@@ -18,8 +18,6 @@ func regen_charge(delta : float) -> void:
 
 func reduce_charge():
 	chargef = clamp(chargef-1,0,max_charge)
-	
-
 
 func _physics_process(delta: float) -> void:
 	regen_charge(delta*charge_regen_rate)

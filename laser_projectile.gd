@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	var collider = get_collider()
 	if is_colliding():
 		deal_damage_component.deal_damage(damage, collider)
-		print(collider)
+		print("colliing with ", collider)
 		queue_free()
 	if age > max_age:
 		#print("projectile out of range")                
