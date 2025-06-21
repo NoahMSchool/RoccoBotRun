@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://laser_projectile.gd" id="1_0ow7a"]
 [ext_resource type="Material" uid="uid://cma5xeaj2rxuy" path="res://Materials/red_laser_mat.tres" id="2_ex3di"]
-[ext_resource type="PackedScene" uid="uid://g02qc8pa4ylq" path="res://deal_damage_component.tscn" id="4_6860f"]
+[ext_resource type="PackedScene" uid="uid://g02qc8pa4ylq" path="res://Scenes/Components/deal_damage_component.tscn" id="4_6860f"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ajpi8"]
 top_radius = 0.05
@@ -17,7 +17,6 @@ target_position = Vector3(0, 0, -0.75)
 collision_mask = 19
 collide_with_areas = true
 script = ExtResource("1_0ow7a")
-speed = 25.0
 max_age = 0.75
 damage = 30.0
 

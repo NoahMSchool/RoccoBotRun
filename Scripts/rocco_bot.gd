@@ -17,25 +17,22 @@ extends CharacterBody3D
 @export var damagable_component : DamagableComponent = null
 
 
-@onready var hud: CanvasLayer = $"../HUD"
-
+#Movement Exports
 @export var SPEED = 4.0
 @export var jump_height = 4.5
 @export var super_jump_height = 9
-
 @export var super_jump_time = 0.5
-var jump_time = 0.0
-
-var current_speed = SPEED
-
-@export var spawnpoint : Node3D
-
-var mouse_delta = Vector2.ZERO
-
 @export var cam_sens = 0.00025
 
-var laser_scene = preload("res://Scenes/WeaponScenes/laser_cannon.tscn")
-var launcher_scene = preload("res://Scenes/WeaponScenes/grenade_launcher.tscn")
+var jump_time = 0.0
+var current_speed = SPEED
+var mouse_delta = Vector2.ZERO
+
+#HUD
+@onready var hud: CanvasLayer = $"../HUD"
+@export var spawnpoint : Node3D
+
+var Left
 
 func use_item(item_location : Globals.ItemLocation, used_last):
 	var item = get_equiped_item(item_location)
@@ -194,7 +191,11 @@ func die():
 
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
-	
+
+func foreground_item(item_location : Globals.ItemLocation):
+	pass
+
+
 #TODO
 """
 Make Player allign with ground

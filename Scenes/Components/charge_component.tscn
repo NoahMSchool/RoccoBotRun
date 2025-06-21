@@ -4,3 +4,7 @@
 
 [node name="charge_component" type="Node3D"]
 script = ExtResource("1_hhto8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

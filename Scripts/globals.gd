@@ -6,6 +6,10 @@ enum ItemLocation {
 	RIGHT,
 	BACK,
 }
+var item_locations = {
+	ItemLocation.LEFT : PlayerItemLocation.new("Object/Items/EquippedItems/LeftHandItem", "left_action"),
+	ItemLocation.RIGHT : PlayerItemLocation.new("Object/Items/EquippedItems/RightHandItem", "right_action")
+}
 
 var glow_materials = {
 	"blue" : preload("res://Materials/blue_laser_mat.tres"), 

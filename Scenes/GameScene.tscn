@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=37 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_pqp3q"]
-[ext_resource type="PackedScene" uid="uid://hwrigssg2ql5" path="res://orbiting_planet.tscn" id="2_nxt6g"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://HUD.tscn" id="2_r8igr"]
 [ext_resource type="MeshLibrary" uid="uid://d26g0c2f5tayg" path="res://Models/Pavement_Wall.tres" id="3_sp6g6"]
 [ext_resource type="Material" uid="uid://cmwafkv0h60rs" path="res://Materials/Skies/blue_sky.tres" id="4_l8onu"]
@@ -163,9 +162,6 @@ curve = SubResource("Curve_268sc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 SPEED = 5.0
 spawnpoint = NodePath("../SpaceCity/Stages/Stage0/CheckPointSpawn")
-
-[node name="OrbitingPlanet" parent="." instance=ExtResource("2_nxt6g")]
-visible = false
 
 [node name="HUD" parent="." instance=ExtResource("2_r8igr")]
 
@@ -363,6 +359,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="ItemSpawn2" parent="." instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+visible = false
 item = ExtResource("18_gomn6")
 
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]

@@ -20,6 +20,7 @@ func configure_item():
 func use_item(used_last):
 	if $Timer.is_stopped() and $ChargeComponent.charge>0:
 		$Timer.start(shot_time)
+		$AudioStreamPlayer3D.pitch_scale = lerp(0.9, 1.1, charge_component.chargef/charge_component.max_charge)
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile

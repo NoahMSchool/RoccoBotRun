@@ -22,3 +22,13 @@ Remove Weapon base class
 
 
 make sheild item that blocks projectiles and absorbs damae
+
+
+Add system to charge regen on charge components
+
+Make signal to allow items to cause the roccobot to do movements
+Maybe make charge bar accessible to charge bar
+
+
+Figure out why sheild node charge component has no timer
+Figure out why shield is not disabling propperly when out of ammo

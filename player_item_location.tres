@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerItemLocation" load_steps=2 format=3 uid="uid://bqad3iry42upi"]
+
+[ext_resource type="Script" path="res://player_item_location.gd" id="1_nsej1"]
+
+[resource]
+script = ExtResource("1_nsej1")
+node_path = NodePath("")
+use_action = ""
+used_last = false

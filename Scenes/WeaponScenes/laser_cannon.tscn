@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxneilx6t1uhc" path="res://Images/ItemIcons/Laser_Cannon_Icon.png" id="2_b60v4"]
 [ext_resource type="Texture2D" uid="uid://bmavnf3gw3whe" path="res://Textures/Baked_Laser_Cannon_color.png" id="2_g4khn"]
 [ext_resource type="AudioStream" uid="uid://6rk8hq0qonrs" path="res://Sounds/466867__mikee63__blaster-shot-single-5.wav" id="2_nk8b2"]
-[ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://charge_component.tscn" id="5_4xb15"]
+[ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://Scenes/Components/charge_component.tscn" id="5_4xb15"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvnk4"]
 
@@ -64,4 +64,4 @@ stream = ExtResource("2_nk8b2")
 
 [node name="ChargeComponent" parent="." instance=ExtResource("5_4xb15")]
 max_charge = 12
-charge_regen_rate = 1.2
+charge_regen_rate = 2.0
