@@ -3,17 +3,25 @@ extends Item
 @export var damagable_component : DamagableComponent
 @export var charge_component : ChargeComponent
 
+signal foreground_shield
+
 func _ready() -> void:
 	damagable_component.get_hit.connect(get_hit)
 	
+	var parent = get_parent()
+	#if parent:
+		
+
 func _physics_process(delta: float) -> void:
 	#print(charge_component.charge)
 	set_activation(charge_component.charge>0)
+
+func use_item(used_last):
+	foreground_shield.emit()
 	
 
 
 func get_hit():
-
 	charge_component.reduce_charge()
 	$AudioStreamPlayer3D.pitch_scale = lerp(0.4, 1.2, charge_component.chargef/charge_component.max_charge)
 	$AudioStreamPlayer3D.play()

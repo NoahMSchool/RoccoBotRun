@@ -4,17 +4,17 @@ extends CanvasLayer
 
 
 
-@onready var item_progress_bars: Dictionary = {
-	Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
-	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
-	Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
-}
-
-@onready var item_slots: Dictionary = {
-	Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
-	Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
-	Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
-}
+#@onready var item_progress_bars: Dictionary = {
+	#Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
+	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
+	#Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
+#}
+#
+#@onready var item_slots: Dictionary = {
+	#Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
+	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
+	#Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
+#}
 
 @onready var inventory_slots : Array = [
 	NodePath("Control/Inventory/InventoryItems/ItemSlot"),
@@ -27,13 +27,15 @@ extends CanvasLayer
 	NodePath("Control/Inventory/InventoryItems/ItemSlot8")
 	
 	]
+	
+@onready var rocco_bot_node: CharacterBody3D = $"../RoccoBot"
 
 func change_label(text : String):
 	#label_node.text = text
 	pass
 	
-func change_charge_progress(item_location : Globals.ItemLocation, value : float):
-	var progress_bar_node = get_node_or_null(item_progress_bars[item_location])
+func change_charge_progress(item_location : PlayerItemLocation, value : float):
+	var progress_bar_node = get_node_or_null(item_location.item_progress_bar_path)
 	if progress_bar_node:
 		progress_bar_node.value = value
 
@@ -44,10 +46,11 @@ func update_inventory(equipped_items : Array, inventory_items : Array):
 	
 func update_equipped_items(items_array : Array):
 	for item in items_array:
-		var item_node = item[0]
-		var item_location = item[1]
-		var item_slot_control_node = get_node_or_null(item_slots[item_location])
-
+		print(items_array)
+		var item_node = rocco_bot_node.get_node_or_null(item.node_path).get_child(0)
+		var item_slot_control_node = get_node_or_null(item.inventory_slot_path)
+		print(item_node, item.node_path)
+		print(item_slot_control_node, item.inventory_slot_path)
 		if item_slot_control_node:
 			var texture_node = item_slot_control_node.get_child(0) as TextureRect
 			texture_node.texture = item_node.icon
@@ -70,8 +73,8 @@ func update_inventory_items(items_array : Array):
 				texture_node.texture = null
 			
 
-func clear_item(item_location : Globals.ItemLocation):
-	var item_slot_node = get_node_or_null(item_slots[item_location])
+func clear_item(item_location : PlayerItemLocation):
+	var item_slot_node = get_node_or_null(item_location.inventory_slot_path)
 	if item_slot_node:
 		var texture_node = item_slot_node.get_child(0) as TextureRect
 		texture_node.texture = null

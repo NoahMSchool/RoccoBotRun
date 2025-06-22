@@ -1,15 +1,22 @@
 extends Node
 
-enum ItemLocation {
-	NONE,
-	LEFT, 
-	RIGHT,
-	BACK,
-}
-var item_locations = {
-	ItemLocation.LEFT : PlayerItemLocation.new("Object/Items/EquippedItems/LeftHandItem", "left_action"),
-	ItemLocation.RIGHT : PlayerItemLocation.new("Object/Items/EquippedItems/RightHandItem", "right_action")
-}
+var player_item_locations = [
+							PlayerItemLocation.new("Object/Items/EquippedItems/LeftHandItem", "left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", Vector3(-0.75,0.15,-0.25), Vector3(-0.45,0.15,-0.75)), 
+							PlayerItemLocation.new("Object/Items/EquippedItems/RightHandItem", "right_action", "Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", Vector3(0.75,0.15,-0.25), Vector3(0.45,0.15,-0.75)), 
+							]
+
+
+#@onready var item_progress_bars: Dictionary = {
+	#Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
+	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
+	#Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
+#}
+#
+#@onready var item_slots: Dictionary = {
+	#Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
+	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
+	#Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
+#}
 
 var glow_materials = {
 	"blue" : preload("res://Materials/blue_laser_mat.tres"), 

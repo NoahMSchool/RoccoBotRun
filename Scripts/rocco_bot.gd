@@ -1,16 +1,16 @@
 extends CharacterBody3D
 
-@onready var item_slot_nodes: Dictionary = {
-	Globals.ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
-	Globals.ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
-	Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
-}
-
-@onready var item_actions: Dictionary = {
-	Globals.ItemLocation.LEFT: ["left_action", false, "swap_left_action"],
-	Globals.ItemLocation.RIGHT: ["right_action", false, "swap_right_action"],
-	Globals.ItemLocation.BACK: ["none", false, "swap_back_action"]
-}
+#@onready var item_slot_nodes: Dictionary = {
+	#Globals.ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
+	#Globals.ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
+	#Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
+#}
+#
+#@onready var item_actions: Dictionary = {
+	#Globals.ItemLocation.LEFT: ["left_action", false, "swap_left_action"],
+	#Globals.ItemLocation.RIGHT: ["right_action", false, "swap_right_action"],
+	#Globals.ItemLocation.BACK: ["none", false, "swap_back_action"]
+#}
 
 #Components
 @export var health_component : HealthComponent = null
@@ -34,9 +34,9 @@ var mouse_delta = Vector2.ZERO
 
 var Left
 
-func use_item(item_location : Globals.ItemLocation, used_last):
+func use_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
-	item.use_item(used_last)
+	item.use_item(item_location.used_last)
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
@@ -44,22 +44,22 @@ func add_item(packed_scene : PackedScene):
 	$Object/Items/InventoryItems.add_child(configured_item)
 	auto_equip_items()
 
-func get_equiped_item(item_location : Globals.ItemLocation):
-	var slot_node = get_node_or_null(item_slot_nodes[item_location])
+func get_equiped_item(item_location : PlayerItemLocation):
+	var slot_node = get_node_or_null(item_location.node_path)
 	if slot_node:
 		return slot_node.get_child(0)
 
 func auto_equip_items():
 	var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
 	if first_inventory_item:
-		for item_location in item_slot_nodes:
-			var slot_node = get_node_or_null(item_slot_nodes[item_location])
+		for item_location in Globals.player_item_locations:
+			var slot_node = get_node_or_null(item_location.node_path)
 			if slot_node and slot_node.get_child(0) == null:
 				equip_item(first_inventory_item, item_location)
 				break
 
-func equip_item(item : Item, item_location : Globals.ItemLocation):
-	var slot_node = get_node_or_null(item_slot_nodes[item_location])
+func equip_item(item : Item, item_location : PlayerItemLocation):
+	var slot_node = get_node_or_null(item_location.node_path)
 	if slot_node:
 		unequip_item(item_location)
 		item.reparent(slot_node, false)
@@ -67,7 +67,7 @@ func equip_item(item : Item, item_location : Globals.ItemLocation):
 		$Sounds/EquipWeapon.play()
 		
 
-func unequip_item(item_location : Globals.ItemLocation):
+func unequip_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
 		item.reparent($Object/Items/InventoryItems, false)
@@ -77,11 +77,11 @@ func update_HUD():
 	var inventory_items : Array = get_inventory_items()
 	var equipped_items : Array = []
 	
-	for item_location in item_slot_nodes:
-		var slot_node = get_node_or_null(item_slot_nodes[item_location])
+	for item_location in Globals.player_item_locations:
+		var slot_node = get_node_or_null(item_location.node_path)
 		if slot_node and slot_node.get_child_count()>0:
 			var item = slot_node.get_child(0)
-			equipped_items.append([item, item_location])
+			equipped_items.append(item_location)
 			
 	hud.update_inventory(equipped_items, inventory_items)
 	
@@ -110,37 +110,37 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y = jump_height
 
-	if Input.is_action_pressed("shift"):
-		var item_location : Globals.ItemLocation
-		if Input.is_action_just_pressed("left_action"):
-			item_location = Globals.ItemLocation.LEFT
-		elif Input.is_action_just_pressed("right_action"):
-			item_location = Globals.ItemLocation.RIGHT
-		var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
-		
-		if first_inventory_item and item_location:
-			#print("equiping ", first_inventory_item, item_location)
-			equip_item(first_inventory_item, item_location)
-	
-	elif Input.is_action_pressed("control"):
-		var item_location : Globals.ItemLocation
-		if Input.is_action_just_pressed("left_action"):
-			item_location = Globals.ItemLocation.LEFT
-		elif Input.is_action_just_pressed("right_action"):
-			item_location = Globals.ItemLocation.RIGHT
-		if item_location and get_equiped_item(item_location):
-			unequip_item(item_location)
-		
-	else:
-		for action in item_actions:
-			if Input.is_action_pressed(item_actions[action][0]) and get_node(item_slot_nodes[action]).get_child_count()>0:
-				if item_actions[action][1] == false:
-					use_item(action, false)
-				else:
-					use_item(action, true)
-				item_actions[action][1] = true
+	#if Input.is_action_pressed("shift"):
+		#var item_location : Globals.ItemLocation
+		#if Input.is_action_just_pressed("left_action"):
+			#item_location = Globals.ItemLocation.LEFT
+		#elif Input.is_action_just_pressed("right_action"):
+			#item_location = Globals.ItemLocation.RIGHT
+		#var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+		#
+		#if first_inventory_item and item_location:
+			##print("equiping ", first_inventory_item, item_location)
+			#equip_item(first_inventory_item, item_location)
+	#
+	#elif Input.is_action_pressed("control"):
+		#var item_location : Globals.ItemLocation
+		#if Input.is_action_just_pressed("left_action"):
+			#item_location = Globals.ItemLocation.LEFT
+		#elif Input.is_action_just_pressed("right_action"):
+			#item_location = Globals.ItemLocation.RIGHT
+		#if item_location and get_equiped_item(item_location):
+			#unequip_item(item_location)
+		#
+	#else:
+	for item_location in Globals.player_item_locations:
+		if Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
+			if item_location.used_last == false:
+				use_item(item_location)
 			else:
-				item_actions[action][1] = false
+				use_item(item_location)
+			item_location.used_last = true
+		else:
+			item_location.used_last = false
 				
 	if Input.is_action_pressed("jump") and is_on_floor():
 		jump_time += delta
@@ -192,9 +192,11 @@ func die():
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
 
-func foreground_item(item_location : Globals.ItemLocation):
-	pass
-
+func foreground_item(foreground : bool, item_location : PlayerItemLocation):
+	if foreground:
+		get_node(item_location.node_path).position = item_location.foreground_position
+	else:
+		get_node(item_location.node_path).position = item_location.restw_position
 
 #TODO
 """

@@ -362,4 +362,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
 visible = false
 item = ExtResource("18_gomn6")
 
+[node name="ItemSpawn3" parent="." instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+visible = false
+item = ExtResource("18_gomn6")
+
+[node name="ItemSpawn4" parent="." instance=ExtResource("14_u512m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
+visible = false
+item = ExtResource("18_gomn6")
+
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]
