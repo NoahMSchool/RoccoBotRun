@@ -30,8 +30,7 @@ func get_hit():
 	print("get_hit()")
 	
 func set_activation(is_activated : bool) -> void:
-	self.visible = is_activated
-	self.set_enabled(is_activated)
+	$MeshInstance3D.visible = is_activated
 	$Area3D/CollisionShape3D.disabled = not is_activated
 	
 

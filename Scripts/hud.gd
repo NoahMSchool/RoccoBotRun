@@ -46,11 +46,8 @@ func update_inventory(equipped_items : Array, inventory_items : Array):
 	
 func update_equipped_items(items_array : Array):
 	for item in items_array:
-		print(items_array)
 		var item_node = rocco_bot_node.get_node_or_null(item.node_path).get_child(0)
 		var item_slot_control_node = get_node_or_null(item.inventory_slot_path)
-		print(item_node, item.node_path)
-		print(item_slot_control_node, item.inventory_slot_path)
 		if item_slot_control_node:
 			var texture_node = item_slot_control_node.get_child(0) as TextureRect
 			texture_node.texture = item_node.icon

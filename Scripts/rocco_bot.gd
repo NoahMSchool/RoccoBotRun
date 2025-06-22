@@ -60,11 +60,14 @@ func auto_equip_items():
 
 func equip_item(item : Item, item_location : PlayerItemLocation):
 	var slot_node = get_node_or_null(item_location.node_path)
+	item_location.used_last = true
 	if slot_node:
+		
 		unequip_item(item_location)
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
 		$Sounds/EquipWeapon.play()
+
 		
 
 func unequip_item(item_location : PlayerItemLocation):
@@ -110,30 +113,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y = jump_height
 
-	#if Input.is_action_pressed("shift"):
-		#var item_location : Globals.ItemLocation
-		#if Input.is_action_just_pressed("left_action"):
-			#item_location = Globals.ItemLocation.LEFT
-		#elif Input.is_action_just_pressed("right_action"):
-			#item_location = Globals.ItemLocation.RIGHT
-		#var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
-		#
-		#if first_inventory_item and item_location:
-			##print("equiping ", first_inventory_item, item_location)
-			#equip_item(first_inventory_item, item_location)
-	#
-	#elif Input.is_action_pressed("control"):
-		#var item_location : Globals.ItemLocation
-		#if Input.is_action_just_pressed("left_action"):
-			#item_location = Globals.ItemLocation.LEFT
-		#elif Input.is_action_just_pressed("right_action"):
-			#item_location = Globals.ItemLocation.RIGHT
-		#if item_location and get_equiped_item(item_location):
-			#unequip_item(item_location)
-		#
-	#else:
 	for item_location in Globals.player_item_locations:
-		if Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
+		if Input.is_action_just_pressed(item_location.swap_action):
+			var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+			if first_inventory_item:
+				equip_item(first_inventory_item, item_location)
+			
+		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			if item_location.used_last == false:
 				use_item(item_location)
 			else:
