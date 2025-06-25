@@ -9,7 +9,7 @@ var health = max_health
 
 func spot_player(player : CharacterBody3D):
 	var player_pos = player.global_position
-	$LaserCannon.use_item(true)
+	$LaserCannon.use_item()
 	look_at(player_pos, Vector3(0,1,0))
 	rotation.x = clamp(rotation.x, -PI/8, PI/4)
 

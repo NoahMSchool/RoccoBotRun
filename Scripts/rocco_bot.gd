@@ -32,9 +32,12 @@ var mouse_delta = Vector2.ZERO
 @onready var hud: CanvasLayer = $"../HUD"
 @export var spawnpoint : Node3D
 
-func use_item_at_location(item_location : PlayerItemLocation):
+func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
-	item.use_item(item_location.used_last)
+	if is_release:
+		item.release_item()
+	else:
+		item.use_item()
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
@@ -138,11 +141,10 @@ func _physics_process(delta: float) -> void:
 				equip_item(first_inventory_item, item_location)
 			
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
-			use_item_at_location(item_location)
-			item_location.used_last = true
-		else:
-			item_location.used_last = false
-				
+			use_item_at_location(item_location, false)
+		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
+			use_item_at_location(item_location, true)
+	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		jump_time += delta
 		current_speed /= 2

@@ -25,5 +25,10 @@ func set_enabled(is_enabled : bool):
 	self.set_process(is_enabled)
 	self.visible = is_enabled
 
-func use_item(used_last):
-	print("using_item")
+func use_item():
+	#print("using_item")
+	pass
+
+func release_item():
+	#print("releasing_item")
+	pass
