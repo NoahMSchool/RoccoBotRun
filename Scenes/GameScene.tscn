@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=38 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://Scenes/rocco_bot.tscn" id="1_pqp3q"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://HUD.tscn" id="2_r8igr"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://Scenes/WorldObjectScenes/item_spawn.tscn" id="14_u512m"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="15_kdvbr"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="16_xmiv7"]
+[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="17_c0c6j"]
 [ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Scenes/ItemScenes/shield.tscn" id="18_gomn6"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
@@ -359,16 +360,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="ItemSpawn2" parent="." instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
-visible = false
-item = ExtResource("18_gomn6")
+item = ExtResource("17_c0c6j")
 
 [node name="ItemSpawn3" parent="." instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
-visible = false
 item = ExtResource("18_gomn6")
 
 [node name="ItemSpawn4" parent="." instance=ExtResource("14_u512m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
-visible = false
 
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]
