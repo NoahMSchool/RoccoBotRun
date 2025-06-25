@@ -16,13 +16,6 @@ Fix Items on ground
 Fix Grenade
 Fix plasma blaster going through walls
 
-Reorganise with components
-
-Remove Weapon base class
-
-
-make sheild item that blocks projectiles and absorbs damae
-
 
 Add system to charge regen on charge components
 
@@ -31,4 +24,7 @@ Maybe make charge bar accessible to charge bar
 
 
 Figure out why sheild node charge component has no timer
-Figure out why shield is not disabling propperly when out of ammo
+Figure out why shield is not disabling propperly when out of ammo, because it is not getting the timer node
+
+Improve where saftey if statemesnt are added
+imporove file system

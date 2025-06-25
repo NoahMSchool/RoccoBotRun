@@ -3,19 +3,6 @@ extends CanvasLayer
 #@onready var label_node = $Control/Panel/Label
 
 
-
-#@onready var item_progress_bars: Dictionary = {
-	#Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
-	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
-	#Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
-#}
-#
-#@onready var item_slots: Dictionary = {
-	#Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
-	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
-	#Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
-#}
-
 @onready var inventory_slots : Array = [
 	NodePath("Control/Inventory/InventoryItems/ItemSlot"),
 	NodePath("Control/Inventory/InventoryItems/ItemSlot2"),

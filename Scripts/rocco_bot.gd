@@ -32,9 +32,7 @@ var mouse_delta = Vector2.ZERO
 @onready var hud: CanvasLayer = $"../HUD"
 @export var spawnpoint : Node3D
 
-var Left
-
-func use_item(item_location : PlayerItemLocation):
+func use_item_at_location(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	item.use_item(item_location.used_last)
 
@@ -61,20 +59,40 @@ func auto_equip_items():
 func equip_item(item : Item, item_location : PlayerItemLocation):
 	var slot_node = get_node_or_null(item_location.node_path)
 	item_location.used_last = true
+	
 	if slot_node:
-		
+		$Sounds/EquipWeapon.play()
 		unequip_item(item_location)
 		item.reparent(slot_node, false)
 		item.set_enabled(true)
-		$Sounds/EquipWeapon.play()
+		#if item.has_signal():
+		var cb = Callable(self, "foreground_item").bind(item_location)
+		item.connect("item_foregrounded", cb)
+		#print("is connected : ", item.is_connected("item_foregrounded", cb))
 
-		
+
+func foreground_item(foreground : bool, item_location : PlayerItemLocation):
+	
+	if foreground:
+		print("foreground_item")
+		get_node(item_location.node_path).position = item_location.foreground_position
+	else:
+		print("background_item")
+		get_node(item_location.node_path).position = item_location.rest_position
+	
 
 func unequip_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
 		item.reparent($Object/Items/InventoryItems, false)
+		var cb = Callable(self, "foreground_item").bind(item_location)
+		print("is connected1111 : ", item.is_connected("item_foregrounded", cb))
+		foreground_item(false, item_location)
+		item.disconnect("item_foregrounded", cb)
+		print("is connected2222 : ", item.is_connected("item_foregrounded", cb))
+
 		item.set_enabled(false)
+		
 
 func update_HUD():
 	var inventory_items : Array = get_inventory_items()
@@ -120,10 +138,7 @@ func _physics_process(delta: float) -> void:
 				equip_item(first_inventory_item, item_location)
 			
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
-			if item_location.used_last == false:
-				use_item(item_location)
-			else:
-				use_item(item_location)
+			use_item_at_location(item_location)
 			item_location.used_last = true
 		else:
 			item_location.used_last = false
@@ -177,12 +192,6 @@ func die():
 
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
-
-func foreground_item(foreground : bool, item_location : PlayerItemLocation):
-	if foreground:
-		get_node(item_location.node_path).position = item_location.foreground_position
-	else:
-		get_node(item_location.node_path).position = item_location.restw_position
 
 #TODO
 """

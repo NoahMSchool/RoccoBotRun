@@ -2,7 +2,6 @@ extends Resource
 
 class_name PlayerItemLocation
 
-
 @export var node_path : NodePath
 @export var use_action : String
 @export var swap_action : String

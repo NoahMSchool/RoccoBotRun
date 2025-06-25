@@ -3,8 +3,6 @@ extends Item
 @export var damagable_component : DamagableComponent
 @export var charge_component : ChargeComponent
 
-signal foreground_shield
-
 func _ready() -> void:
 	damagable_component.get_hit.connect(get_hit)
 	
@@ -17,9 +15,8 @@ func _physics_process(delta: float) -> void:
 	set_activation(charge_component.charge>0)
 
 func use_item(used_last):
-	foreground_shield.emit()
+	item_foregrounded.emit(true)
 	
-
 
 func get_hit():
 	charge_component.reduce_charge()
@@ -27,7 +24,6 @@ func get_hit():
 	$AudioStreamPlayer3D.play()
 	if charge_component.charge == 0:
 		$AudioStreamPlayer3D.play()
-	print("get_hit()")
 	
 func set_activation(is_activated : bool) -> void:
 	$MeshInstance3D.visible = is_activated
