@@ -133,10 +133,10 @@ func _physics_process(delta: float) -> void:
 			velocity.y = super_jump_height
 		else:
 			velocity.y = jump_height
-
 	for item_location in Globals.player_item_locations:
 		if Input.is_action_just_pressed(item_location.swap_action):
 			var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+			
 			if first_inventory_item:
 				equip_item(first_inventory_item, item_location)
 			

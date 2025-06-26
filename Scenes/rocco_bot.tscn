@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkckw5nilwpij"]
 
-[ext_resource type="Script" path="res://Scripts/rocco_bot.gd" id="1_x72y6"]
+[ext_resource type="Script" path="res://rocco_bot.gd" id="1_x72y6"]
 [ext_resource type="PackedScene" uid="uid://b1d7pijbkb5im" path="res://rubbish/rocco_multimesh.tscn" id="2_edblu"]
 [ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
 [ext_resource type="Script" path="res://damagable_component.gd" id="4_coywe"]

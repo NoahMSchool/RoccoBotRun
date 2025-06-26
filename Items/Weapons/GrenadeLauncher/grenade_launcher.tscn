@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dndtnu600nx6r"]
+
+[ext_resource type="Script" path="res://Scripts/grenade_launcher.gd" id="1_e2ua2"]
+[ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://PlasmaCannon/Plasma_Cannon.png" id="2_vwxxk"]
+[ext_resource type="Script" path="res://charge_component.gd" id="3_o4do1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mnxr2"]
+top_radius = 0.15
+bottom_radius = 0.3
+height = 0.5
+radial_segments = 8
+
+[sub_resource type="TextMesh" id="TextMesh_ajfgn"]
+text = " ↑"
+depth = 0.025
+
+[node name="GrenadeLauncher" type="Node3D"]
+script = ExtResource("1_e2ua2")
+accent_color = "blue"
+icon = ExtResource("2_vwxxk")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_mnxr2")
+
+[node name="ChargeComponent" type="Node3D" parent="."]
+script = ExtResource("3_o4do1")
+max_charge = 3
+charge_regen_rate = 1.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+mesh = SubResource("TextMesh_ajfgn")

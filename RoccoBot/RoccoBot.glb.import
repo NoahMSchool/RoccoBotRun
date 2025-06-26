@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bt4yyrwxw02bj"
-path="res://.godot/imported/laser_sheild.glb-f97ade12bf2a0e42d54cf441d70d7b99.scn"
+uid="uid://d2tvk6c2cujyw"
+path="res://.godot/imported/RoccoBot.glb-c002689e71980566a304700c332fc139.scn"
 
 [deps]
 
-source_file="res://Models/laser_sheild.glb"
-dest_files=["res://.godot/imported/laser_sheild.glb-f97ade12bf2a0e42d54cf441d70d7b99.scn"]
+source_file="res://RoccoBot/RoccoBot.glb"
+dest_files=["res://.godot/imported/RoccoBot.glb-c002689e71980566a304700c332fc139.scn"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://xmwqtq01uwm7"]
 
 [ext_resource type="Script" path="res://Scripts/item_spawn.gd" id="1_1s8fh"]
-[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="2_un1ip"]
+[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="2_un1ip"]
 [ext_resource type="AudioStream" uid="uid://bihu12h4htg4u" path="res://Sounds/752015__dishings__futuristic-collect-sound.mp3" id="3_n63pt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fotc0"]

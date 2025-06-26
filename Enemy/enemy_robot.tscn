@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://jtm38tyo8fqf"]
 
-[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Scenes/WeaponScenes/laser_cannon.tscn" id="1_5qop7"]
+[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="1_5qop7"]
 [ext_resource type="Script" path="res://Scripts/enemy_robot.gd" id="1_xjh2w"]
 [ext_resource type="PackedScene" uid="uid://b0ymtfwpm8xae" path="res://HealthBar.tscn" id="3_uli57"]
-[ext_resource type="PackedScene" uid="uid://dgmhajb66a61j" path="res://Scenes/Components/health_component.tscn" id="4_gdwyv"]
-[ext_resource type="PackedScene" uid="uid://bwsxqfvb48ic6" path="res://Scenes/Components/damagable_component.tscn" id="5_ogs8y"]
+[ext_resource type="PackedScene" uid="uid://dgmhajb66a61j" path="res://Components/health_component.tscn" id="4_gdwyv"]
+[ext_resource type="PackedScene" uid="uid://bwsxqfvb48ic6" path="res://Components/damagable_component.tscn" id="5_ogs8y"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_18ofp"]
 height = 1.0

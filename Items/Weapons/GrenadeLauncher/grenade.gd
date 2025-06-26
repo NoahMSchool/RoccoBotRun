@@ -1,9 +1,9 @@
 extends RigidBody3D
 
-const EXPLOSION = preload("res://Scenes/WeaponScenes/explosion.tscn")
+const EXPLOSION = preload("res://Items/Weapons/GrenadeLauncher/explosion.tscn")
 @export var explosion_time : float = 0.5
 @export var accent_color : String
-
+@export var damage : int
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	$ExplosionTimer.start(explosion_time)
 
@@ -17,6 +17,7 @@ func explode():
 	var mat = Globals.glow_materials.get(accent_color, Globals.glow_materials["pink"])
 	explosion.get_node("MeshInstance3D").material_override = mat
 	explosion.global_position = global_position
+	explosion.damage = damage
 	get_tree().current_scene.add_child(explosion)
 	queue_free()
 

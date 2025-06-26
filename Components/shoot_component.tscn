@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fff3kpse3fak"]
 
-[ext_resource type="Script" path="res://Scenes/WeaponScenes/shoot_component.gd" id="1_odx0i"]
+[ext_resource type="Script" path="res://shoot_component.gd" id="1_odx0i"]
 
 [node name="ShootComponent" type="Node3D"]
 script = ExtResource("1_odx0i")

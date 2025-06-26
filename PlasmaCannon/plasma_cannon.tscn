@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://2xncat2u1tud"]
 
-[ext_resource type="Script" path="res://Scripts/plasma_cannon.gd" id="1_3vlga"]
-[ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://Images/ItemIcons/Plasma_Cannon.png" id="2_2qd5v"]
+[ext_resource type="Script" path="res://plasma_cannon.gd" id="1_3vlga"]
+[ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://PlasmaCannon/Plasma_Cannon.png" id="2_2qd5v"]
 [ext_resource type="ArrayMesh" uid="uid://baftfsqfjoohn" path="res://launcherCannon.tres" id="2_a60cb"]
 [ext_resource type="Texture2D" uid="uid://hai2371l42f2" path="res://Textures/baked_launcher_color.png" id="3_16xie"]
 [ext_resource type="AudioStream" uid="uid://c6pysmyrpu81h" path="res://Sounds/740358__soundflakes__sf_lasergun_grenadelauncher_shot.mp3" id="3_w6sjd"]

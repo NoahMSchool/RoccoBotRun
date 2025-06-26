@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5vore8n37spl"]
+[gd_scene load_steps=7 format=3 uid="uid://b5vore8n37spl"]
 
-[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_s035u"]
+[ext_resource type="Script" path="res://Items/Weapons/GrenadeLauncher/explosion.gd" id="1_s035u"]
 [ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_25kn6"]
+[ext_resource type="Script" path="res://deal_damage_component.gd" id="3_7h30x"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tyu1o"]
 radius = 1.0
@@ -43,6 +44,9 @@ shape = SubResource("SphereShape3D_l1bn6")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_25kn6")
+
+[node name="DealDamageComponent" type="Node3D" parent="."]
+script = ExtResource("3_7h30x")
 
 [connection signal="timeout" from="ExpandTimer" to="." method="_on_expand_timer_timeout"]
 [connection signal="timeout" from="Launch_Timer" to="." method="_on_launch_timer_timeout"]

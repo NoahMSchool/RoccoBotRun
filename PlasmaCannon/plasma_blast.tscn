@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwh74kdwti6h2"]
 
-[ext_resource type="Script" path="res://Scripts/plasma_blast.gd" id="1_i5jsi"]
+[ext_resource type="Script" path="res://plasma_blast.gd" id="1_i5jsi"]
 [ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_albwb"]
 [ext_resource type="Script" path="res://deal_damage_component.gd" id="3_ydgjl"]
 

@@ -8,6 +8,7 @@ var elapsed = 0.0
 var progress = 0.0
 
 @export var explosion_power = 50
+@export var damage = 150
 
 @onready var material  : StandardMaterial3D = $MeshInstance3D.get_active_material(0)
 var accent_color = "blue"
@@ -65,13 +66,14 @@ func _on_launch_timer_timeout():
 			print(body, "miss", result)
 
 	for body in range_bodies:
+		var to_body = body.global_transform.origin - global_transform.origin
+		var distance = to_body.length()
+		var direction = to_body.normalized()
 		if body is RigidBody3D:
-			var to_body = body.global_transform.origin - global_transform.origin
-			var distance = to_body.length()
-			
-			var direction = to_body.normalized()
 			var strength = explosion_power/distance**2
 			body.apply_impulse(direction*strength)
+			print(strength)
+		$DealDamageComponent.deal_damage(2.5*damage/distance**2, body)
 
 
 func _on_expand_timer_timeout() -> void:	

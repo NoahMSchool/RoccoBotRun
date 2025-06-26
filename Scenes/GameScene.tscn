@@ -14,10 +14,10 @@
 [ext_resource type="Script" path="res://Scripts/moving_platforms.gd" id="12_yahg4"]
 [ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://Scenes/WorldObjectScenes/moving_platform.tscn" id="13_pgk8d"]
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://Scenes/WorldObjectScenes/item_spawn.tscn" id="14_u512m"]
-[ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Scenes/enemy_robot.tscn" id="15_kdvbr"]
+[ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Enemy/enemy_robot.tscn" id="15_kdvbr"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Sounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="16_xmiv7"]
-[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Scenes/WeaponScenes/grenade_launcher.tscn" id="17_c0c6j"]
-[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Scenes/ItemScenes/shield.tscn" id="18_gomn6"]
+[ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Items/Weapons/GrenadeLauncher/grenade_launcher.tscn" id="17_c0c6j"]
+[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Items/LaserShield/shield.tscn" id="18_gomn6"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
 offsets = PackedFloat32Array(0, 0.997696)

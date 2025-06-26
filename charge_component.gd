@@ -34,9 +34,6 @@ func _physics_process(delta: float) -> void:
 	charge = int(chargef)
 	#print(chargef)
 
-	
-
-
 func _on_timer_timeout() -> void:
 	can_regen = true
 	pass

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxneilx6t1uhc"
-path="res://.godot/imported/Laser_Cannon_Icon.png-d83bca98879439b6859f8a761b67c6b7.ctex"
+path="res://.godot/imported/Laser_Cannon_Icon.png-4d6ffca7c19ff888c894e6daa219ef40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/ItemIcons/Laser_Cannon_Icon.png"
-dest_files=["res://.godot/imported/Laser_Cannon_Icon.png-d83bca98879439b6859f8a761b67c6b7.ctex"]
+source_file="res://Items/Weapons/LaserCannon/Laser_Cannon_Icon.png"
+dest_files=["res://.godot/imported/Laser_Cannon_Icon.png-4d6ffca7c19ff888c894e6daa219ef40.ctex"]
 
 [params]
 

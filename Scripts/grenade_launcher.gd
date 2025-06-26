@@ -1,11 +1,11 @@
 extends Item
 
-const GRENADE = preload("res://Scenes/WeaponScenes/grenade.tscn")
+const GRENADE = preload("res://Items/Weapons/GrenadeLauncher/grenade.tscn")
 var power = 10
 const ANGLE_SPEED = PI
 
 @export var throw_cooldown : float = 1
-
+@export var damage : int = 150
 @export var accent_color : String
 
 var rising : bool
@@ -22,10 +22,12 @@ func use_item():
 
 func release_item():
 	rising = false
-	if $Timer.is_stopped():
+	if $Timer.is_stopped() and $ChargeComponent.charge>0:
+		$ChargeComponent.reduce_charge()
 		$Timer.start(throw_cooldown)
 		var grenade = GRENADE.instantiate()
 		grenade.global_transform.origin = global_transform.origin
+		grenade.damage = damage
 		grenade.accent_color = accent_color
 		var direction = -global_transform.basis.z
 		var impulse = direction * power

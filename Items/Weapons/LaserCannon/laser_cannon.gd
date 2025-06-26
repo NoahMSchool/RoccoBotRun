@@ -1,6 +1,6 @@
 extends Item
 
-const LASER_PROJECTILE = preload("res://Scenes/WeaponScenes/laser_projectile.tscn")
+const LASER_PROJECTILE = preload("res://Items/Weapons/LaserCannon/laser_projectile.tscn")
 const BLOOM = PI/72
 
 @onready var charge_component = $ChargeComponent

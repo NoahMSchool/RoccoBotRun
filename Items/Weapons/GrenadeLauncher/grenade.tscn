@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://lhxg32llhuij"]
 
-[ext_resource type="Script" path="res://Scripts/grenade.gd" id="1_jtbeh"]
+[ext_resource type="Script" path="res://Items/Weapons/GrenadeLauncher/grenade.gd" id="1_jtbeh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_in4gs"]
 friction = 0.1
