@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwh74kdwti6h2"]
 
 [ext_resource type="Script" path="res://Items/Weapons/PlasmaCannon/plasma_blast.gd" id="1_i5jsi"]
-[ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_albwb"]
+[ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Items/Weapons/GrenadeLauncher/435413__v-ktor__explosion12.wav" id="2_albwb"]
 [ext_resource type="Script" path="res://Components/deal_damage_component.gd" id="3_ydgjl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b53xs"]

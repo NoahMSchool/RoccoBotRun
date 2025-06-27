@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5vore8n37spl"]
 
 [ext_resource type="Script" path="res://Items/Weapons/GrenadeLauncher/explosion.gd" id="1_s035u"]
-[ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Sounds/435413__v-ktor__explosion12.wav" id="2_25kn6"]
+[ext_resource type="AudioStream" uid="uid://itq00mfukkc2" path="res://Items/Weapons/GrenadeLauncher/435413__v-ktor__explosion12.wav" id="2_25kn6"]
 [ext_resource type="Script" path="res://Components/deal_damage_component.gd" id="3_7h30x"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tyu1o"]

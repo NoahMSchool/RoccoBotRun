@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RoccoBotRun"
-run/main_scene="res://Scenes/GameScene.tscn"
+run/main_scene="res://GameMain/GameScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
@@ -23,6 +23,18 @@ GameManager="*res://Scripts/game_manager.gd"
 
 window/size/viewport_width=3000
 window/size/viewport_height=2000
+
+[file_customization]
+
+folder_colors={
+"res://Components/": "purple",
+"res://Enemy/": "red",
+"res://Environment/": "orange",
+"res://EnvironmentObjects/": "green",
+"res://GameMain/": "gray",
+"res://Items/": "teal",
+"res://RoccoBot/": "blue"
+}
 
 [global_group]
 

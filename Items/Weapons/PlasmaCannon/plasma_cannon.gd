@@ -1,16 +1,23 @@
-extends Weapon
+extends Item
 
-const BLAST_PROJECTILE = preload("res://Scenes/WeaponScenes/plasma_blast.tscn")
-const BLOOM = PI/72
+const BLAST_PROJECTILE = preload("res://Items/Weapons/PlasmaCannon/plasma_blast.tscn")
+
+@export var target_group = "enemies"
+@export var fire_rate : float
+@export var damage : int
+@export var accent_color : String
 
 
-func use_item(used_last):
-	if $Timer.is_stopped() and ammo>0 and not used_last:
+@onready var shot_time = 1/fire_rate
+
+func use_item():
+	if $Timer.is_stopped() and $ChargeComponent.charge>0 and can_use:
+		can_use = false
 		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile
-		ammof -= 1
+		$ChargeComponent.reduce_charge()
 		var projectile = BLAST_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
@@ -23,3 +30,6 @@ func use_item(used_last):
 		var base_dir = -global_transform.basis.z
 
 		projectile.look_at(global_transform.origin+base_dir, Vector3.UP)
+
+func release_item():
+	can_use = true

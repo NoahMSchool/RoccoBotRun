@@ -77,10 +77,8 @@ func equip_item(item : Item, item_location : PlayerItemLocation):
 func foreground_item(foreground : bool, item_location : PlayerItemLocation):
 	
 	if foreground:
-		print("foreground_item")
 		get_node(item_location.node_path).position = item_location.foreground_position
 	else:
-		print("background_item")
 		get_node(item_location.node_path).position = item_location.rest_position
 	
 

@@ -4,9 +4,8 @@ class_name Item
 signal item_foregrounded(foreground : bool)
 
 @export var icon : Texture
-@export var can_hold_use : bool
 var is_equipped : bool = false
-
+var can_use = true
 
 func configure_item():
 	#self.accent_color = "blue"

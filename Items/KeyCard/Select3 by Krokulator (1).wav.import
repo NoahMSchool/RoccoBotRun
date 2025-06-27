@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bkw5yj1gw2ut7"
-path="res://.godot/imported/Select3 by Krokulator (1).wav-1dedd0afc769cdf8d94db903acebd000.sample"
+path="res://.godot/imported/Select3 by Krokulator (1).wav-0425f1c3e8d4d4184239d9264459b083.sample"
 
 [deps]
 
-source_file="res://Sounds/Select3 by Krokulator (1).wav"
-dest_files=["res://.godot/imported/Select3 by Krokulator (1).wav-1dedd0afc769cdf8d94db903acebd000.sample"]
+source_file="res://Items/KeyCard/Select3 by Krokulator (1).wav"
+dest_files=["res://.godot/imported/Select3 by Krokulator (1).wav-0425f1c3e8d4d4184239d9264459b083.sample"]
 
 [params]
 
