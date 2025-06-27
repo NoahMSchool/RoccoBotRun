@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://laser_sword.gd" id="1_rgbid"]
 [ext_resource type="AudioStream" uid="uid://875x1m85owlt" path="res://Sounds/638292__captainyulef__laser-sword.wav" id="2_jlyrl"]
-[ext_resource type="Script" path="res://deal_damage_component.gd" id="3_p6v48"]
+[ext_resource type="Script" path="res://Components/deal_damage_component.gd" id="3_p6v48"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_scvj4"]
 size = Vector3(0.25, 0.25, 1)

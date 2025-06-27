@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://q46iwqg73oum"
-path="res://.godot/imported/MovingPlatform.glb-81639efa3d69e617c8dd72b6e51d46fb.scn"
+uid="uid://cvsvc8nu3qpou"
+path="res://.godot/imported/FloatingPlatform.glb-aaf16a50dfc36cf6541e77a5dc84bf8e.scn"
 
 [deps]
 
-source_file="res://Models/MovingPlatform.glb"
-dest_files=["res://.godot/imported/MovingPlatform.glb-81639efa3d69e617c8dd72b6e51d46fb.scn"]
+source_file="res://EnvironmentObjects/MovingPlatforms/FloatingPlatform.glb"
+dest_files=["res://.godot/imported/FloatingPlatform.glb-aaf16a50dfc36cf6541e77a5dc84bf8e.scn"]
 
 [params]
 

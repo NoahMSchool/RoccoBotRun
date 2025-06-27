@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Items/LaserShield/shield.gd" id="1_4euiw"]
 [ext_resource type="Texture2D" uid="uid://den05bi187l6t" path="res://Items/LaserShield/laser_shield_icon.png" id="2_mm1j4"]
 [ext_resource type="Material" uid="uid://crl7il0p8och8" path="res://Items/LaserShield/laser_shield_shader.tres" id="3_b7s03"]
-[ext_resource type="Script" path="res://damagable_component.gd" id="5_sgihd"]
+[ext_resource type="Script" path="res://Components/damagable_component.gd" id="5_sgihd"]
 [ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://Components/charge_component.tscn" id="6_c7crl"]
 [ext_resource type="AudioStream" uid="uid://bqc8q8veex0uc" path="res://Sounds/Dyson Power Down by Jess Rangel.wav" id="7_5ucky"]
 

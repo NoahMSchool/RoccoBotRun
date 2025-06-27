@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/grenade_launcher.gd" id="1_e2ua2"]
 [ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://PlasmaCannon/Plasma_Cannon.png" id="2_vwxxk"]
-[ext_resource type="Script" path="res://charge_component.gd" id="3_o4do1"]
+[ext_resource type="Script" path="res://Components/charge_component.gd" id="3_o4do1"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mnxr2"]
 top_radius = 0.15
