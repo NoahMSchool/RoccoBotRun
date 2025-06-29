@@ -1,17 +1,5 @@
 extends CharacterBody3D
 
-#@onready var item_slot_nodes: Dictionary = {
-	#Globals.ItemLocation.LEFT: NodePath("Object/Items/EquippedItems/LeftHandItem"),
-	#Globals.ItemLocation.RIGHT: NodePath("Object/Items/EquippedItems/RightHandItem"),
-	#Globals.ItemLocation.BACK: NodePath("Object/Items/EquippedItems/BackItem"),
-#}
-#
-#@onready var item_actions: Dictionary = {
-	#Globals.ItemLocation.LEFT: ["left_action", false, "swap_left_action"],
-	#Globals.ItemLocation.RIGHT: ["right_action", false, "swap_right_action"],
-	#Globals.ItemLocation.BACK: ["none", false, "swap_back_action"]
-#}
-
 #Components
 @export var health_component : HealthComponent = null
 @export var damagable_component : DamagableComponent = null
@@ -153,11 +141,10 @@ func _physics_process(delta: float) -> void:
 	
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	#input_dir = Input.get_vector(Input.get_action_strength("left_joystick_right"), Input.get_action_strength("left_joystick_left"), Input.get_action_strength("left_joystick_up"), Input.get_action_strength("left_joystick_down"))
-	
-	#input_dir.x = Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left")
-	#input_dir.y = Input.get_action_strength("left_joystick_up") - Input.get_action_strength("left_joystick_down")
-	
+	#input_dir = Vector2(	Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left"),
+	#						Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left")
+	#						)
+
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if input_dir != Vector2.ZERO:
 		pass
@@ -180,13 +167,28 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	update_HUD()
+
+func _process(delta: float) -> void:
+	#controller look doesnt work
+	var lx = Input.get_action_strength("right_joystick_right") - Input.get_action_strength("right_joystick_left")
+	var ly = Input.get_action_strength("right_joystick_down") - Input.get_action_strength("right_joystick_up")
 	
+	$CamPivot.rotation.y += -lx * cam_sens*10000*delta
+	$CamPivot.rotation.x += -ly * cam_sens*10000*delta
+	$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
+
 func _unhandled_input(event: InputEvent) -> void:
+	
 	if event is InputEventMouseMotion:
 		$CamPivot.rotation.y -= event.relative.x*cam_sens
 		$CamPivot.rotation.x -= event.relative.y*cam_sens
 		$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
+	
+	
+	#$CamPivot.rotate_y(-lx * cam_sens*100)
+	#$CamPivot.rotate_x(-ly * cam_sens*100)
 
+	
 func die():
 	pass
 

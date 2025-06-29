@@ -14,7 +14,7 @@ roughness = 0.5
 
 [node name="PlasmaCannon" type="Node3D"]
 script = ExtResource("1_3vlga")
-fire_rate = 0.4
+fire_rate = 0.6
 damage = 110
 accent_color = "blue"
 icon = ExtResource("2_2qd5v")
@@ -35,5 +35,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="ChargeComponent" parent="." instance=ExtResource("6_d8o80")]
 max_charge = 4
-charge_regen_rate = 0.25
+charge_regen_rate = 0.5
 regen_cooldown = 2.0

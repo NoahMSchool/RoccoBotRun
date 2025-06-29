@@ -17,8 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Environment/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="15_1ndow"]
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://EnvironmentObjects/ItemSpawns/item_spawn.tscn" id="16_yw5b1"]
 [ext_resource type="PackedScene" uid="uid://2xncat2u1tud" path="res://Items/Weapons/PlasmaCannon/plasma_cannon.tscn" id="17_7m2bf"]
+[ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Items/LaserShield/shield.tscn" id="17_rqh1q"]
 [ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Items/Weapons/GrenadeLauncher/grenade_launcher.tscn" id="18_drisk"]
-[ext_resource type="PackedScene" uid="uid://bmgsiwipu78v3" path="res://Scenes/ItemScenes/keycard.tscn" id="19_s4a5m"]
 
 [sub_resource type="Gradient" id="Gradient_vp75p"]
 offsets = PackedFloat32Array(0, 0.997696)
@@ -357,18 +357,18 @@ volume_db = -15.0
 autoplay = true
 
 [node name="ItemSpawn" parent="." instance=ExtResource("16_yw5b1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
-item = ExtResource("17_7m2bf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
+item = ExtResource("17_rqh1q")
 
 [node name="ItemSpawn2" parent="." instance=ExtResource("16_yw5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
-item = ExtResource("18_drisk")
 
 [node name="ItemSpawn3" parent="." instance=ExtResource("16_yw5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
-item = ExtResource("19_s4a5m")
+item = ExtResource("17_7m2bf")
 
 [node name="ItemSpawn4" parent="." instance=ExtResource("16_yw5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
+item = ExtResource("18_drisk")
 
 [connection signal="body_entered" from="SpaceCity/FloorKillZone" to="SpaceCity/FloorKillZone" method="_on_body_entered"]

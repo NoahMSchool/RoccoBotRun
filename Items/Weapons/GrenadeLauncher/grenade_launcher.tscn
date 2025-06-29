@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dndtnu600nx6r"]
 
-[ext_resource type="Script" path="res://Scripts/grenade_launcher.gd" id="1_e2ua2"]
+[ext_resource type="Script" path="res://Items/Weapons/GrenadeLauncher/grenade_launcher.gd" id="1_e2ua2"]
 [ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://Items/Weapons/PlasmaCannon/Plasma_Cannon.png" id="2_vwxxk"]
 [ext_resource type="Script" path="res://Components/charge_component.gd" id="3_o4do1"]
 

@@ -29,8 +29,9 @@ func use_item():
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
 		projectile.damage = damage
-		add_child(projectile)
-		projectile.global_transform = global_transform
+		projectile.global_position = global_position
+		get_tree().current_scene.add_child(projectile)
+		
 		#Adding Bloom	
 		var vertical_spread_angle = randf_range(-BLOOM, BLOOM)
 		var vertical_spread_dir = Basis(global_transform.basis.x, vertical_spread_angle)

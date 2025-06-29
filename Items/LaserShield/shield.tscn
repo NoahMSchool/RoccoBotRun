@@ -46,9 +46,9 @@ shadow_mesh = SubResource("ArrayMesh_ct3qg")
 
 [node name="Shield" type="Node3D" node_paths=PackedStringArray("damagable_component", "charge_component") groups=["player"]]
 script = ExtResource("1_4euiw")
+icon = ExtResource("2_mm1j4")
 damagable_component = NodePath("DamagableComponent")
 charge_component = NodePath("ChargeComponent")
-icon = ExtResource("2_mm1j4")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, 0)

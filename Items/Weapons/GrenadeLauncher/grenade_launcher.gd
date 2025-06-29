@@ -31,9 +31,8 @@ func release_item():
 		grenade.accent_color = accent_color
 		var direction = -global_transform.basis.z
 		var impulse = direction * power
-		
-		add_child(grenade)
-		#get_tree().current_scene.add_child(grenade)
+
+		get_tree().current_scene.add_child(grenade)
 		grenade.launch(impulse)
 		time_since_last_release = 0
 

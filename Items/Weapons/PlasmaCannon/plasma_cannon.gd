@@ -22,8 +22,8 @@ func use_item():
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color
 		projectile.damage = damage
-		$SpawnPoint.add_child(projectile)
-		projectile.global_transform = global_transform
+		projectile.global_position = $SpawnPoint.global_position
+		get_tree().current_scene.add_child(projectile)
 		
 		projectile.global_transform = global_transform
 
@@ -33,3 +33,6 @@ func use_item():
 
 func release_item():
 	can_use = true
+
+
+#Bug where cannon being unnequipped deletes projectile blast so make blast independant of the cannon
