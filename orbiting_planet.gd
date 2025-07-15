@@ -12,9 +12,8 @@ func call_api():
 
 
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	#print("result : ", result)
-	#print("response_code : ", response_code)
-	
+	print("response_code : ", response_code)
+	#400s
 	var body_string = body.get_string_from_utf8()
 	var json = JSON.parse_string(body_string)
 	

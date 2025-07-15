@@ -3,12 +3,15 @@ class_name ShootComponent
 
 @export var projectile : Resource
 
-@export var bloom_angle : float
+@export var bloom_angle : float = 0
+#Multiples of PI e.g:PI/72
+
 @export var damage : float
 @export var target_group = "enemies"
-@export var fire_rate : float
+@export var accent_color : String
 
-func shoot():
+func shoot(base_transform):
+	self.global_transform = base_transform
 	var projectile = projectile.instantiate()
 	projectile.target_group = target_group
 	projectile.accent_color = self.accent_color
@@ -23,8 +26,6 @@ func shoot():
 	var horizontal_spread_angle = randf_range(-bloom_angle, bloom_angle)
 	var horizontal_spread_dir = Basis(global_transform.basis.y, horizontal_spread_angle)
 	
-
-
 	var base_dir = -global_transform.basis.z
 
 	var result_dir = vertical_spread_dir * horizontal_spread_dir * base_dir

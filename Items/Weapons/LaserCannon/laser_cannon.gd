@@ -4,6 +4,8 @@ const LASER_PROJECTILE = preload("res://Items/Weapons/LaserCannon/laser_projecti
 const BLOOM = PI/72
 
 @onready var charge_component = $ChargeComponent
+@onready var shoot_component = $ShootComponent
+
 @export var target_group = "enemies"
 @export var fire_rate : float
 @export var damage : float = 30
@@ -11,11 +13,16 @@ const BLOOM = PI/72
 
 
 @onready var shot_time = 1/fire_rate
-#use shoot component maybe
 
 func configure_item():
 	self.accent_color = "blue"
-	
+
+func _ready() -> void:
+	shoot_component.projectile = LASER_PROJECTILE
+	shoot_component.target_group = target_group
+	shoot_component.bloom_angle = BLOOM
+	shoot_component.damage = damage
+	shoot_component.accent_color = accent_color
 
 func use_item():
 	if $Timer.is_stopped() and $ChargeComponent.charge>0:
@@ -25,24 +32,4 @@ func use_item():
 		
 		#Adding projectile
 		$ChargeComponent.reduce_charge()
-		var projectile = LASER_PROJECTILE.instantiate()
-		projectile.target_group = target_group
-		projectile.accent_color = self.accent_color
-		projectile.damage = damage
-		projectile.global_position = global_position
-		get_tree().current_scene.add_child(projectile)
-		
-		#Adding Bloom	
-		var vertical_spread_angle = randf_range(-BLOOM, BLOOM)
-		var vertical_spread_dir = Basis(global_transform.basis.x, vertical_spread_angle)
-
-		var horizontal_spread_angle = randf_range(-BLOOM, BLOOM)
-		var horizontal_spread_dir = Basis(global_transform.basis.y, horizontal_spread_angle)
-		
-
-
-		var base_dir = -global_transform.basis.z
-
-		var result_dir = vertical_spread_dir * horizontal_spread_dir * base_dir
-
-		projectile.look_at(global_transform.origin+result_dir, Vector3.UP)
+		$ShootComponent.shoot(global_transform)

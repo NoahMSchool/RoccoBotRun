@@ -12,6 +12,13 @@ const BLAST_PROJECTILE = preload("res://Items/Weapons/PlasmaCannon/plasma_blast.
 
 @onready var shot_time = 1/fire_rate
 
+func _ready() -> void:
+	shoot_component.projectile = BLAST_PROJECTILE
+	shoot_component.target_group = target_group
+	shoot_component.damage = damage
+	shoot_component.accent_color = accent_color
+
+
 func use_item():
 	if $Timer.is_stopped() and charge_component.charge>0 and can_use:
 		can_use = false
@@ -20,6 +27,8 @@ func use_item():
 		
 		#Adding projectile
 		charge_component.reduce_charge()
+		$ShootComponent.shoot($SpawnPoint.global_transform)
+		return
 		var projectile = BLAST_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color

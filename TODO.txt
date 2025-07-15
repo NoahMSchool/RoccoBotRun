@@ -30,3 +30,9 @@ Fix plasma blaster going through walls
 
 
 Use interactive energy shield shader and starlight shader from asset lib
+
+
+Understand Shoot Component and how it passes down attributes as not all projectiles have damage ect
+how should projectiles be managed to avoid repetition
+
+Get grenade launcher using shoot component

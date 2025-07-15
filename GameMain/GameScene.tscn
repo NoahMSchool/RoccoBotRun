@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=40 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://RoccoBot/rocco_bot.tscn" id="1_hclqn"]
+[ext_resource type="PackedScene" uid="uid://hwrigssg2ql5" path="res://orbiting_planet.tscn" id="1_l8adv"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://RoccoBot/HUD.tscn" id="2_7h5g7"]
 [ext_resource type="MeshLibrary" uid="uid://d26g0c2f5tayg" path="res://Models/Pavement_Wall.tres" id="3_vd4uu"]
 [ext_resource type="Material" uid="uid://y7uwl2abrt1u" path="res://Environment/purple_sky.tres" id="4_0f3bj"]
@@ -159,6 +160,8 @@ material = SubResource("StandardMaterial3D_fbdqu")
 curve = SubResource("Curve_268sc")
 
 [node name="GameRoot" type="Node"]
+
+[node name="OrbitingPlanet" parent="." instance=ExtResource("1_l8adv")]
 
 [node name="RoccoBot" parent="." node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_hclqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
