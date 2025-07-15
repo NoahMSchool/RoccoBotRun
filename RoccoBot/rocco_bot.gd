@@ -4,7 +4,6 @@ extends CharacterBody3D
 @export var health_component : HealthComponent = null
 @export var damagable_component : DamagableComponent = null
 
-
 #Movement Exports
 @export var SPEED = 4.0
 @export var jump_height = 4.5
@@ -16,6 +15,10 @@ var jump_time = 0.0
 var current_speed = SPEED
 var mouse_delta = Vector2.ZERO
 
+#sounds
+#var jump_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
+var jump_sound = preload("res://RoccoBot/Sounds/Jump 01 by Michael Kur95.wav")
+var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
 #HUD
 @onready var hud: CanvasLayer = $"../HUD"
 @export var spawnpoint : Node3D
@@ -33,6 +36,11 @@ func add_item(packed_scene : PackedScene):
 	$Object/Items/InventoryItems.add_child(configured_item)
 	auto_equip_items()
 
+func remove_item(item_location : PlayerItemLocation):
+	var item = get_node(item_location.node_path)
+	item.queue_free()
+	#remove this properly
+	
 func get_equiped_item(item_location : PlayerItemLocation):
 	var slot_node = get_node_or_null(item_location.node_path)
 	if slot_node:
@@ -59,7 +67,9 @@ func equip_item(item : Item, item_location : PlayerItemLocation):
 		#if item.has_signal():
 		var cb = Callable(self, "foreground_item").bind(item_location)
 		item.connect("item_foregrounded", cb)
-		#print("is connected : ", item.is_connected("item_foregrounded", cb))
+		item.connect("item_used", Callable())
+		item.item_used.connect(unequip_item.bind(item_location))
+
 
 
 func foreground_item(foreground : bool, item_location : PlayerItemLocation):
@@ -75,10 +85,8 @@ func unequip_item(item_location : PlayerItemLocation):
 	if item:
 		item.reparent($Object/Items/InventoryItems, false)
 		var cb = Callable(self, "foreground_item").bind(item_location)
-		print("is connected1111 : ", item.is_connected("item_foregrounded", cb))
 		foreground_item(false, item_location)
 		item.disconnect("item_foregrounded", cb)
-		print("is connected2222 : ", item.is_connected("item_foregrounded", cb))
 
 		item.set_enabled(false)
 		
@@ -115,7 +123,9 @@ func _physics_process(delta: float) -> void:
 
 	#jumping
 	if Input.is_action_just_released("jump") and is_on_floor():
-		if jump_time > super_jump_time:
+		$Sounds/JumpSound.stream = jump_sound
+		$Sounds/JumpSound.play()
+		if jump_time >= super_jump_time:
 			velocity.y = super_jump_height
 		else:
 			velocity.y = jump_height
@@ -132,8 +142,13 @@ func _physics_process(delta: float) -> void:
 			use_item_at_location(item_location, true)
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
-		jump_time += delta
-		current_speed /= 2
+		if jump_time<super_jump_time:
+			jump_time += delta
+			if jump_time >= super_jump_time:
+				$Sounds/JumpSound.stream = super_jump_on_sound
+				$Sounds/JumpSound.play()
+				
+			current_speed /= 2
 		
 	else:
 		jump_time = 0

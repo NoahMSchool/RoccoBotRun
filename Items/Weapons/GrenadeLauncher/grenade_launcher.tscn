@@ -3,16 +3,13 @@
 [ext_resource type="Script" path="res://Items/Weapons/GrenadeLauncher/grenade_launcher.gd" id="1_e2ua2"]
 [ext_resource type="Texture2D" uid="uid://emlsnyndlb1h" path="res://Items/Weapons/PlasmaCannon/Plasma_Cannon.png" id="2_vwxxk"]
 [ext_resource type="Script" path="res://Components/charge_component.gd" id="3_o4do1"]
+[ext_resource type="Script" path="res://shoot_component.gd" id="4_ojnqx"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mnxr2"]
 top_radius = 0.15
 bottom_radius = 0.3
 height = 0.5
 radial_segments = 8
-
-[sub_resource type="TextMesh" id="TextMesh_ajfgn"]
-text = " ↑"
-depth = 0.025
 
 [node name="GrenadeLauncher" type="Node3D"]
 script = ExtResource("1_e2ua2")
@@ -31,7 +28,5 @@ script = ExtResource("3_o4do1")
 max_charge = 3
 charge_regen_rate = 1.0
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-visible = false
-mesh = SubResource("TextMesh_ajfgn")
+[node name="ShootComponent" type="Node3D" parent="."]
+script = ExtResource("4_ojnqx")

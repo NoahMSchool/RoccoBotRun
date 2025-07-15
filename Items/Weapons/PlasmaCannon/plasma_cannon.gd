@@ -7,17 +7,19 @@ const BLAST_PROJECTILE = preload("res://Items/Weapons/PlasmaCannon/plasma_blast.
 @export var damage : int
 @export var accent_color : String
 
+@onready var shoot_component = $ShootComponent
+@onready var charge_component = $ChargeComponent
 
 @onready var shot_time = 1/fire_rate
 
 func use_item():
-	if $Timer.is_stopped() and $ChargeComponent.charge>0 and can_use:
+	if $Timer.is_stopped() and charge_component.charge>0 and can_use:
 		can_use = false
 		$Timer.start(shot_time)
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile
-		$ChargeComponent.reduce_charge()
+		charge_component.reduce_charge()
 		var projectile = BLAST_PROJECTILE.instantiate()
 		projectile.target_group = target_group
 		projectile.accent_color = self.accent_color

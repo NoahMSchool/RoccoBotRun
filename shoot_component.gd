@@ -1,11 +1,32 @@
 extends Node3D
+class_name ShootComponent
+
+@export var projectile : Resource
+
+@export var bloom_angle : float
+@export var damage : float
+@export var target_group = "enemies"
+@export var fire_rate : float
+
+func shoot():
+	var projectile = projectile.instantiate()
+	projectile.target_group = target_group
+	projectile.accent_color = self.accent_color
+	projectile.damage = damage
+	projectile.global_position = global_position
+	get_tree().current_scene.add_child(projectile)
+	
+	#Adding Bloom
+	var vertical_spread_angle = randf_range(-bloom_angle, bloom_angle)
+	var vertical_spread_dir = Basis(global_transform.basis.x, vertical_spread_angle)
+
+	var horizontal_spread_angle = randf_range(-bloom_angle, bloom_angle)
+	var horizontal_spread_dir = Basis(global_transform.basis.y, horizontal_spread_angle)
+	
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+	var base_dir = -global_transform.basis.z
 
+	var result_dir = vertical_spread_dir * horizontal_spread_dir * base_dir
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	projectile.look_at(global_transform.origin+result_dir, Vector3.UP)

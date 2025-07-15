@@ -6,7 +6,7 @@ const BLOOM = PI/72
 @onready var charge_component = $ChargeComponent
 @export var target_group = "enemies"
 @export var fire_rate : float
-@export var damage : int
+@export var damage : float = 30
 @export var accent_color : String
 
 

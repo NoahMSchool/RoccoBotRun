@@ -2,6 +2,7 @@ extends Node3D
 class_name Item
 
 signal item_foregrounded(foreground : bool)
+signal item_used
 
 @export var icon : Texture
 var is_equipped : bool = false

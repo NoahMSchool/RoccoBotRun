@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://clnnfd7uia28w"]
+[gd_scene load_steps=7 format=3 uid="uid://clnnfd7uia28w"]
 
-[ext_resource type="Script" path="res://laser_sword.gd" id="1_rgbid"]
-[ext_resource type="AudioStream" uid="uid://875x1m85owlt" path="res://Sounds/638292__captainyulef__laser-sword.wav" id="2_jlyrl"]
+[ext_resource type="Script" path="res://Items/Weapons/LaserSword/laser_sword.gd" id="1_rgbid"]
+[ext_resource type="AudioStream" uid="uid://875x1m85owlt" path="res://Items/Weapons/LaserSword/638292__captainyulef__laser-sword.wav" id="2_jlyrl"]
 [ext_resource type="Script" path="res://Components/deal_damage_component.gd" id="3_p6v48"]
+[ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://Components/charge_component.tscn" id="4_jxapf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_scvj4"]
 size = Vector3(0.25, 0.25, 1)
@@ -12,10 +13,6 @@ size = Vector3(2, 0.25, 2.5)
 
 [node name="LaserSword" type="Node3D"]
 script = ExtResource("1_rgbid")
-max_ammo = 5
-ammo_regen_rate = 0.01
-fire_rate = 10.0
-accent_color = "blue"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
@@ -30,9 +27,10 @@ shape = SubResource("BoxShape3D_kro7w")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_jlyrl")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="DealDamageComponent" type="Node3D" parent="."]
 script = ExtResource("3_p6v48")
+
+[node name="ChargeComponent" parent="." instance=ExtResource("4_jxapf")]
+max_charge = 1
+charge_regen_rate = 5.0
+regen_cooldown = 0.0

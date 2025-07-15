@@ -41,16 +41,6 @@ func _physics_process(delta: float) -> void:
 	var col = mat_dup.albedo_color
 	col.a = lerp(1,0, progress)
 	mat_dup.albedo_color = col
-	"""
-		var alpha = lerp(1.0, 0.0, progress)
-		var mat : StandardMaterial3D = $MeshInstance3D.material_override
-		if mat:
-			var color = mat.albedo_color
-			color.a = alpha
-			mat.albedo_color = color
-	"""	
-
-
 		
 func _on_launch_timer_timeout():
 	var bodies = $Area3D.get_overlapping_bodies()
@@ -61,9 +51,6 @@ func _on_launch_timer_timeout():
 		var result = get_world_3d().direct_space_state.intersect_ray(check_ray)
 		if !result or result.position == body.global_transform.origin:
 			range_bodies.append(body)
-			#print(body, "hit")
-		else:
-			print(body, "miss", result)
 
 	for body in range_bodies:
 		var to_body = body.global_transform.origin - global_transform.origin
@@ -72,7 +59,6 @@ func _on_launch_timer_timeout():
 		if body is RigidBody3D:
 			var strength = explosion_power/distance**2
 			body.apply_impulse(direction*strength)
-			print(strength)
 		$DealDamageComponent.deal_damage(2.5*damage/distance**2, body)
 
 

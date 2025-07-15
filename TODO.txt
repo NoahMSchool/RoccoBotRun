@@ -11,21 +11,22 @@ maybe make a type for projectiles, grenade/laser as they currently share accent 
 
 Finish Animating and rigging
 
+Add sound effects for Player Jump move ect
+
 Fix Items on ground
 
-Fix Grenade
-Fix plasma blaster going through walls
-
-
-Add system to charge regen on charge components
-
-Make signal to allow items to cause the roccobot to do movements
 Maybe make charge bar accessible to charge bar
 
 
-Figure out why sheild node charge component has no timer
-Figure out why shield is not disabling propperly when out of ammo, because it is not getting the timer node
 
 Decide if components need to 
 Improve where saftey if statemesnt are added
 Finish imporove file system
+
+
+Bugs
+
+Fix plasma blaster going through walls
+
+
+Use interactive energy shield shader and starlight shader from asset lib

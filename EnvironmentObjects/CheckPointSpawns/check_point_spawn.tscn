@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://barulqklih133"]
 
-[ext_resource type="Script" path="res://Scripts/check_point_spawn.gd" id="1_xuoex"]
+[ext_resource type="Script" path="res://EnvironmentObjects/CheckPointSpawns/check_point_spawn.gd" id="1_xuoex"]
 [ext_resource type="Texture2D" uid="uid://1r0ou5v850aq" path="res://Textures/CheckPoint_check_point_color.png" id="2_0etbm"]
 [ext_resource type="Texture2D" uid="uid://dncedcq3yn8lg" path="res://Textures/check_point_color.png" id="3_1o7em"]
 
