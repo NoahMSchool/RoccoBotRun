@@ -4,6 +4,7 @@ const EXPLOSION = preload("res://Items/Weapons/GrenadeLauncher/explosion.tscn")
 @export var explosion_time : float = 0.5
 @export var accent_color : String
 @export var damage : int
+@export var target_group = "enemies"
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	$ExplosionTimer.start(explosion_time)
 

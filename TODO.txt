@@ -35,4 +35,5 @@ Use interactive energy shield shader and starlight shader from asset lib
 Understand Shoot Component and how it passes down attributes as not all projectiles have damage ect
 how should projectiles be managed to avoid repetition
 
-Get grenade launcher using shoot component
+Make projectiles conform to some protocol because currently shoot component requires projectile to have certian attributes to work
+or use projectile component

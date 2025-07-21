@@ -9,6 +9,7 @@ const ANGLE_SPEED = PI
 @export var accent_color : String
 
 @onready var charge_component = $ChargeComponent
+@onready var shoot_component = $ShootComponent
 
 var rising : bool
 var angle = 0.0
@@ -17,6 +18,12 @@ var action_pressed := false
 
 var time_since_last_release : float = 0
 
+func _ready() -> void:
+	shoot_component.projectile = GRENADE
+	shoot_component.damage = damage
+	shoot_component.accent_color = accent_color
+	
+	
 func use_item():
 	#if $Timer.is_stopped():
 		rising = true
@@ -27,14 +34,9 @@ func release_item():
 	if $Timer.is_stopped() and charge_component.charge>=1:
 		charge_component.reduce_charge()
 		$Timer.start(throw_cooldown)
-		var grenade = GRENADE.instantiate()
-		grenade.global_transform.origin = global_transform.origin
-		grenade.damage = damage
-		grenade.accent_color = accent_color
+		var grenade = shoot_component.shoot(global_transform)
 		var direction = -global_transform.basis.z
 		var impulse = direction * power
-
-		get_tree().current_scene.add_child(grenade)
 		grenade.launch(impulse)
 		time_since_last_release = 0
 	elif charge_component.charge<1:

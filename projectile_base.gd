@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name ProjectileBase
+class_name ProjectileComponent
 
 @export var damage : int
 @export var target_group : String

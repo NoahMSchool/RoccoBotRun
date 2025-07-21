@@ -31,3 +31,5 @@ func shoot(base_transform):
 	var result_dir = vertical_spread_dir * horizontal_spread_dir * base_dir
 
 	projectile.look_at(global_transform.origin+result_dir, Vector3.UP)
+	
+	return projectile

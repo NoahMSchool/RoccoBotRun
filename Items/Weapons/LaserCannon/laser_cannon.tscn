@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmavnf3gw3whe" path="res://Textures/Baked_Laser_Cannon_color.png" id="2_g4khn"]
 [ext_resource type="AudioStream" uid="uid://6rk8hq0qonrs" path="res://Items/Weapons/LaserCannon/466867__mikee63__blaster-shot-single-5.wav" id="2_nk8b2"]
 [ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://Components/charge_component.tscn" id="5_4xb15"]
-[ext_resource type="Script" path="res://shoot_component.gd" id="6_lywk2"]
+[ext_resource type="Script" path="res://Components/shoot_component.gd" id="6_lywk2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvnk4"]
 
