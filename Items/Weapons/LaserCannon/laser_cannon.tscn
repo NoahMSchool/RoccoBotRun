@@ -48,6 +48,7 @@ roughness = 0.5
 script = ExtResource("1_h5a8w")
 fire_rate = 6.0
 accent_color = "blue"
+bloom_angle = 5.0
 icon = ExtResource("2_b60v4")
 
 [node name="Timer" type="Timer" parent="."]
@@ -64,8 +65,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_r0ftu")
 stream = ExtResource("2_nk8b2")
 
 [node name="ChargeComponent" parent="." instance=ExtResource("5_4xb15")]
-max_charge = 12
-charge_regen_rate = 2.0
 
 [node name="ShootComponent" type="Node3D" parent="."]
 script = ExtResource("6_lywk2")

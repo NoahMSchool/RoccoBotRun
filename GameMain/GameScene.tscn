@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=4 uid="uid://cgx8gqbrg7fjv"]
+[gd_scene load_steps=39 format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://RoccoBot/rocco_bot.tscn" id="1_hclqn"]
-[ext_resource type="PackedScene" uid="uid://hwrigssg2ql5" path="res://orbiting_planet.tscn" id="1_l8adv"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://RoccoBot/HUD.tscn" id="2_7h5g7"]
 [ext_resource type="MeshLibrary" uid="uid://d26g0c2f5tayg" path="res://Models/Pavement_Wall.tres" id="3_vd4uu"]
-[ext_resource type="Material" uid="uid://y7uwl2abrt1u" path="res://Environment/purple_sky.tres" id="4_0f3bj"]
+[ext_resource type="Material" uid="uid://cmwafkv0h60rs" path="res://Environment/blue_sky.tres" id="5_0ttjx"]
 [ext_resource type="Texture2D" uid="uid://b4kae7iakmpjo" path="res://Textures/Shop_color.png" id="5_qya3d"]
 [ext_resource type="PackedScene" uid="uid://d02ntiggwxwqa" path="res://Scenes/WorldObjectScenes/ground_light.tscn" id="6_c5cjr"]
 [ext_resource type="PackedScene" uid="uid://duwuenstgnn4p" path="res://Scenes/WorldObjectScenes/lamppost.tscn" id="7_gb51w"]
@@ -29,7 +28,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0.970833, 0.95, 1)
 gradient = SubResource("Gradient_vp75p")
 
 [sub_resource type="Sky" id="Sky_4gmgn"]
-sky_material = ExtResource("4_0f3bj")
+sky_material = ExtResource("5_0ttjx")
 
 [sub_resource type="Environment" id="Environment_00xa3"]
 background_mode = 2
@@ -161,8 +160,6 @@ curve = SubResource("Curve_268sc")
 
 [node name="GameRoot" type="Node"]
 
-[node name="OrbitingPlanet" parent="." instance=ExtResource("1_l8adv")]
-
 [node name="RoccoBot" parent="." node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_hclqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 SPEED = 5.0
@@ -242,6 +239,11 @@ script = ExtResource("8_u8srl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpaceCity/FloorKillZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -27)
 shape = SubResource("WorldBoundaryShape3D_2yho7")
+
+[node name="FogVolume" type="FogVolume" parent="SpaceCity/FloorKillZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -39)
+visible = false
+size = Vector3(100, 2, 100)
 
 [node name="Stages" type="Node" parent="SpaceCity"]
 

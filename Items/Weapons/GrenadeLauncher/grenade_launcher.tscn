@@ -25,8 +25,6 @@ mesh = SubResource("CylinderMesh_mnxr2")
 
 [node name="ChargeComponent" type="Node3D" parent="."]
 script = ExtResource("3_o4do1")
-max_charge = 3
-charge_regen_rate = 1.0
 
 [node name="ShootComponent" type="Node3D" parent="."]
 script = ExtResource("4_ojnqx")

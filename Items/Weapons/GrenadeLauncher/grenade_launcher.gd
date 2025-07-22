@@ -22,6 +22,8 @@ func _ready() -> void:
 	shoot_component.projectile = GRENADE
 	shoot_component.damage = damage
 	shoot_component.accent_color = accent_color
+	charge_component.max_charge = 4
+	charge_component.can_regen = false
 	
 	
 func use_item():

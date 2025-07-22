@@ -1,14 +1,14 @@
 extends Node3D
 class_name ShootComponent
 
-@export var projectile : Resource
+var projectile : Resource
 
-@export var bloom_angle : float = 0
 #Multiples of PI e.g:PI/72
+var bloom_angle : float = 0
 
-@export var damage : float
-@export var target_group = "enemies"
-@export var accent_color : String
+var damage : float
+var target_group = "enemies"
+var accent_color : String
 
 func shoot(base_transform):
 	self.global_transform = base_transform

@@ -35,8 +35,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qdyja")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="ChargeComponent" parent="." instance=ExtResource("6_d8o80")]
-max_charge = 4
-charge_regen_rate = 0.5
-regen_cooldown = 2.0
 
 [node name="ShootComponent" parent="." instance=ExtResource("7_17u60")]

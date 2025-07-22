@@ -7,6 +7,11 @@ const BLAST_PROJECTILE = preload("res://Items/Weapons/PlasmaCannon/plasma_blast.
 @export var damage : int
 @export var accent_color : String
 
+#Charge Component
+@export var max_charge : int = 4
+@export var regen_rate : float = 0.5
+@export var regen_cooldown = 2
+
 @onready var shoot_component = $ShootComponent
 @onready var charge_component = $ChargeComponent
 
@@ -17,7 +22,9 @@ func _ready() -> void:
 	shoot_component.target_group = target_group
 	shoot_component.damage = damage
 	shoot_component.accent_color = accent_color
-
+	charge_component.max_charge = max_charge
+	charge_component.charge_regen_rate = regen_rate
+	charge_component.regen_cooldown = regen_cooldown
 
 func use_item():
 	if $Timer.is_stopped() and charge_component.charge>0 and can_use:

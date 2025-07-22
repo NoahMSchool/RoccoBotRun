@@ -11,6 +11,13 @@ const BLOOM = PI/72
 @export var damage : float = 30
 @export var accent_color : String
 
+#Charge Component
+@export var max_charge : int = 12
+@export var regen_rate : float = 2
+@export var regen_cooldown = 0.5
+#Shoot Component
+@export var bloom_angle : float = 0
+
 
 @onready var shot_time = 1/fire_rate
 
@@ -23,7 +30,12 @@ func _ready() -> void:
 	shoot_component.bloom_angle = BLOOM
 	shoot_component.damage = damage
 	shoot_component.accent_color = accent_color
-
+	shoot_component.bloom_angle = bloom_angle*PI/180
+		
+	charge_component.max_charge = max_charge
+	charge_component.charge_regen_rate = regen_rate
+	charge_component.regen_cooldown = regen_cooldown
+	
 func use_item():
 	if $Timer.is_stopped() and $ChargeComponent.charge>0:
 		$Timer.start(shot_time)
@@ -31,5 +43,5 @@ func use_item():
 		$AudioStreamPlayer3D.play()
 		
 		#Adding projectile
-		$ChargeComponent.reduce_charge()
-		$ShootComponent.shoot(global_transform)
+		charge_component.reduce_charge()
+		shoot_component.shoot(global_transform)

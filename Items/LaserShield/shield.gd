@@ -22,7 +22,7 @@ func release_item():
 	
 func get_hit():
 	charge_component.reduce_charge()
-	$AudioStreamPlayer3D.pitch_scale = lerp(0.4, 1.2, charge_component.chargef/charge_component.max_charge)
+	$AudioStreamPlayer3D.pitch_scale = lerp(0.4, 1.2, charge_component._chargef/charge_component.max_charge)
 	$AudioStreamPlayer3D.play()
 	if charge_component.charge == 0:
 		$AudioStreamPlayer3D.play()
