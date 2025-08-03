@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blk5s0kp3yr2i"]
+
+[ext_resource type="Texture2D" uid="uid://dabxyau4lr723" path="res://RoccoBot/roccobot_color1.png" id="1_ho6j3"]
+
+[resource]
+albedo_texture = ExtResource("1_ho6j3")
+metallic = 0.8
+roughness = 0.25

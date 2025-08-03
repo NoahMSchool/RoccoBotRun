@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var anim_player = $AnimationPlayer
+
 #Components
 @export var health_component : HealthComponent = null
 @export var damagable_component : DamagableComponent = null
@@ -19,8 +21,10 @@ var mouse_delta = Vector2.ZERO
 #var jump_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
 var jump_sound = preload("res://RoccoBot/Sounds/Jump 01 by Michael Kur95.wav")
 var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
+
 #HUD
 @onready var hud: CanvasLayer = $"../HUD"
+
 @export var spawnpoint : Node3D
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
@@ -113,6 +117,10 @@ func _ready() -> void:
 	$Camera3DFollow.current = false
 	GameManager.connect("reset_level", Callable(self, "respawn"))
 	
+	var anim_player = $AnimationPlayer
+	var old_root = "RoccobotRig/Skeleton3D"
+	var new_root = "Object/RoccobotRig/Skeleton3D"
+
 func _physics_process(delta: float) -> void:
 	current_speed = SPEED
 	#preventing looking behind objects
@@ -120,6 +128,13 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		if velocity.y > 0:
+			anim_player.play("ascend")
+		else:
+			if velocity.y<-jump_height:
+				anim_player.play("falling")
+			else:
+				anim_player.play("descend")
 
 	#jumping
 	if Input.is_action_just_released("jump") and is_on_floor():
@@ -129,27 +144,15 @@ func _physics_process(delta: float) -> void:
 			velocity.y = super_jump_height
 		else:
 			velocity.y = jump_height
-	for item_location in Globals.player_item_locations:
-		if Input.is_action_just_pressed(item_location.swap_action):
-			var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
-			
-			if first_inventory_item:
-				equip_item(first_inventory_item, item_location)
-			
-		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
-			use_item_at_location(item_location, false)
-		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
-			use_item_at_location(item_location, true)
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		if jump_time<super_jump_time:
+			anim_player.play("crouch")
 			jump_time += delta
 			if jump_time >= super_jump_time:
 				$Sounds/JumpSound.stream = super_jump_on_sound
 				$Sounds/JumpSound.play()
-				
-			current_speed /= 2
-		
+			current_speed /= 2	
 	else:
 		jump_time = 0
 	
@@ -167,19 +170,35 @@ func _physics_process(delta: float) -> void:
 
 	#move velocity to direction or to zero
 	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
+		if is_on_floor():
+			velocity.x = direction.x * current_speed
+			velocity.z = direction.z * current_speed
+			anim_player.play("run")
 	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, current_speed)
+			velocity.z = move_toward(velocity.z, 0, current_speed)
+			anim_player.play("idle")
 	
-	
-	
+	#camera
 	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
-
 	
 	move_and_slide()
+	
+	#using items
+	for item_location in Globals.player_item_locations:
+		if Input.is_action_just_pressed(item_location.swap_action):
+			var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+			
+			if first_inventory_item:
+				equip_item(first_inventory_item, item_location)
+			
+		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
+			use_item_at_location(item_location, false)
+		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
+			use_item_at_location(item_location, true)
+	
 	
 	update_HUD()
 

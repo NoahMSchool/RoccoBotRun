@@ -47,8 +47,7 @@ roughness = 0.5
 [node name="LaserCannon" type="Node3D"]
 script = ExtResource("1_h5a8w")
 fire_rate = 6.0
-accent_color = "blue"
-bloom_angle = 5.0
+bloom_angle = 3.0
 icon = ExtResource("2_b60v4")
 
 [node name="Timer" type="Timer" parent="."]
