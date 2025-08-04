@@ -470,7 +470,8 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ypcl"]
-height = 1.25
+radius = 0.35
+height = 1.5
 
 [sub_resource type="Animation" id="Animation_7yim7"]
 resource_name = "RestPose"
@@ -2426,11 +2427,12 @@ collision_mask = 9
 script = ExtResource("1_x72y6")
 health_component = NodePath("HealthComponent")
 damagable_component = NodePath("DamagableComponent")
+super_jump_height = 5
 
 [node name="Object" type="Node3D" parent="."]
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Object"]
-transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, -0.2, 0)
+transform = Transform3D(-1.25, 0, -1.88745e-07, 0, 1.25, 0, 1.88745e-07, 0, -1.25, 0, -0.37, 0)
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, -8.66252e-07, -8.66252e-07, 0, -1, 0, 1, 0, 0, -0.3, -0.1)

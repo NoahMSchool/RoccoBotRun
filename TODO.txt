@@ -37,3 +37,6 @@ how should projectiles be managed to avoid repetition
 
 Make projectiles conform to some protocol because currently shoot component requires projectile to have certian attributes to work
 or use projectile component
+
+
+Look into position of character and rig and collision shape so they match and offset in the simplest way

@@ -162,7 +162,6 @@ curve = SubResource("Curve_268sc")
 
 [node name="RoccoBot" parent="." node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_hclqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-SPEED = 5.0
 spawnpoint = NodePath("../SpaceCity/Stages/Stage0/CheckPointSpawn")
 
 [node name="HUD" parent="." instance=ExtResource("2_7h5g7")]

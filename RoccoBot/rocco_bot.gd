@@ -7,14 +7,16 @@ extends CharacterBody3D
 @export var damagable_component : DamagableComponent = null
 
 #Movement Exports
-@export var SPEED = 4.0
-@export var jump_height = 4.5
-@export var super_jump_height = 9
+@export var speed = 4
+@export var ground_control = 48
+@export var air_control = 12
+@export var jump_height = 4
+@export var super_jump_height = 8
 @export var super_jump_time = 0.5
 @export var cam_sens = 0.00025
 
 var jump_time = 0.0
-var current_speed = SPEED
+var current_speed = speed
 var mouse_delta = Vector2.ZERO
 
 #sounds
@@ -131,7 +133,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(anim_player.current_animation)
-	current_speed = SPEED
+	current_speed = speed
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 
@@ -149,16 +151,33 @@ func _physics_process(delta: float) -> void:
 				anim_player.play("falling")
 			else:
 				anim_player.play("descend")
-				
-		if direction:
-			velocity.x = direction.x * current_speed/2
-			velocity.z = direction.z * current_speed/2
+
+		if direction.x:
+			velocity.x = move_toward(velocity.x, speed*direction.x, air_control*delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0, current_speed/2)
-			velocity.z = move_toward(velocity.z, 0, current_speed/2)
+			velocity.x = move_toward(velocity.x, 0, air_control/2*delta)		
+		if direction.z:
+			velocity.z = move_toward(velocity.z, speed*direction.z, air_control*delta)
+		else:
+			velocity.z = move_toward(velocity.z, 0, air_control/2*delta)
 		
 		
 	else:
+		if direction.x:
+			velocity.x = move_toward(velocity.x, speed*direction.x, ground_control*delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, ground_control*delta)		
+		if direction.z:
+			velocity.z = move_toward(velocity.z, speed*direction.z, ground_control*delta)
+		else:
+			velocity.z = move_toward(velocity.z, 0, ground_control*delta)
+			
+		if direction:
+			anim_player.play("run")
+		else:
+			anim_player.play("idle")
+			
+		
 		#jumping
 		if Input.is_action_just_released("jump"):
 			$Sounds/JumpSound.stream = jump_sound
@@ -169,8 +188,8 @@ func _physics_process(delta: float) -> void:
 				velocity.y = jump_height
 		
 		if Input.is_action_pressed("jump"):
+			anim_player.play("crouch")
 			if jump_time<super_jump_time:
-				anim_player.play("crouch")
 				jump_time += delta
 				if jump_time >= super_jump_time:
 					$Sounds/JumpSound.stream = super_jump_on_sound
@@ -178,16 +197,6 @@ func _physics_process(delta: float) -> void:
 				current_speed /= 2	
 		else:
 			jump_time = 0
-		
-		#move velocity to direction or to zero
-		if direction:
-			velocity.x = direction.x * current_speed
-			velocity.z = direction.z * current_speed
-			anim_player.play("run")
-		else:
-			velocity.x = move_toward(velocity.x, 0, current_speed)
-			velocity.z = move_toward(velocity.z, 0, current_speed)
-			anim_player.play("idle")
 		
 	#camera
 	#preventing looking behind objects
