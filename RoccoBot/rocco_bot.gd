@@ -117,14 +117,28 @@ func _ready() -> void:
 	$Camera3DFollow.current = false
 	GameManager.connect("reset_level", Callable(self, "respawn"))
 	
-	var anim_player = $AnimationPlayer
+	var anim_player : AnimationPlayer = $AnimationPlayer
 	var old_root = "RoccobotRig/Skeleton3D"
 	var new_root = "Object/RoccobotRig/Skeleton3D"
+		
+	if !anim_player:
+		print("no anim player found")
+		return
+	else:
+		print("hi")
+		print(anim_player.current_animation)
+
 
 func _physics_process(delta: float) -> void:
+	#print(anim_player.current_animation)
 	current_speed = SPEED
-	#preventing looking behind objects
-	$CamPivot/Camera3D.position = lerp($CamPivot/Camera3D.position, $CamPivot/SpringArm3D/CamPos.position, 15*delta)
+	#get movement direction
+	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+
+	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if input_dir != Vector2.ZERO:
+		pass
+		$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -135,52 +149,51 @@ func _physics_process(delta: float) -> void:
 				anim_player.play("falling")
 			else:
 				anim_player.play("descend")
-
-	#jumping
-	if Input.is_action_just_released("jump") and is_on_floor():
-		$Sounds/JumpSound.stream = jump_sound
-		$Sounds/JumpSound.play()
-		if jump_time >= super_jump_time:
-			velocity.y = super_jump_height
+				
+		if direction:
+			velocity.x = direction.x * current_speed/2
+			velocity.z = direction.z * current_speed/2
 		else:
-			velocity.y = jump_height
-	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		if jump_time<super_jump_time:
-			anim_player.play("crouch")
-			jump_time += delta
-			if jump_time >= super_jump_time:
-				$Sounds/JumpSound.stream = super_jump_on_sound
-				$Sounds/JumpSound.play()
-			current_speed /= 2	
+			velocity.x = move_toward(velocity.x, 0, current_speed/2)
+			velocity.z = move_toward(velocity.z, 0, current_speed/2)
+		
+		
 	else:
-		jump_time = 0
-	
-	
-	#get movement direction
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	#input_dir = Vector2(	Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left"),
-	#						Input.get_action_strength("left_joystick_right") - Input.get_action_strength("left_joystick_left")
-	#						)
-
-	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if input_dir != Vector2.ZERO:
-		pass
-		$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
-
-	#move velocity to direction or to zero
-	if direction:
-		if is_on_floor():
+		#jumping
+		if Input.is_action_just_released("jump"):
+			$Sounds/JumpSound.stream = jump_sound
+			$Sounds/JumpSound.play()
+			if jump_time >= super_jump_time:
+				velocity.y = super_jump_height
+			else:
+				velocity.y = jump_height
+		
+		if Input.is_action_pressed("jump"):
+			if jump_time<super_jump_time:
+				anim_player.play("crouch")
+				jump_time += delta
+				if jump_time >= super_jump_time:
+					$Sounds/JumpSound.stream = super_jump_on_sound
+					$Sounds/JumpSound.play()
+				current_speed /= 2	
+		else:
+			jump_time = 0
+		
+		#move velocity to direction or to zero
+		if direction:
 			velocity.x = direction.x * current_speed
 			velocity.z = direction.z * current_speed
 			anim_player.play("run")
-	else:
-		if is_on_floor():
+		else:
 			velocity.x = move_toward(velocity.x, 0, current_speed)
 			velocity.z = move_toward(velocity.z, 0, current_speed)
 			anim_player.play("idle")
-	
+		
 	#camera
+	#preventing looking behind objects
+	$CamPivot/Camera3D.position = lerp($CamPivot/Camera3D.position, $CamPivot/SpringArm3D/CamPos.position, 15*delta)
+	
+	
 	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
 	
