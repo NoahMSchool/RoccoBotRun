@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 #Movement Exports
 @export var speed = 4
-@export var ground_control = 48
+@export var ground_grip = 48
 @export var air_control = 12
 @export var jump_height = 4
 @export var super_jump_height = 8
@@ -136,12 +136,12 @@ func _physics_process(delta: float) -> void:
 	current_speed = speed
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-
 	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
 	if input_dir != Vector2.ZERO:
-		pass
 		$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
-	
+		
+	#air logic
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		if velocity.y > 0:
@@ -160,23 +160,21 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, speed*direction.z, air_control*delta)
 		else:
 			velocity.z = move_toward(velocity.z, 0, air_control/2*delta)
-		
-		
+	#air logic
 	else:
 		if direction.x:
-			velocity.x = move_toward(velocity.x, speed*direction.x, ground_control*delta)
+			velocity.x = move_toward(velocity.x, speed*direction.x, ground_grip*delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0, ground_control*delta)		
+			velocity.x = move_toward(velocity.x, 0, ground_grip*delta)		
 		if direction.z:
-			velocity.z = move_toward(velocity.z, speed*direction.z, ground_control*delta)
+			velocity.z = move_toward(velocity.z, speed*direction.z, ground_grip*delta)
 		else:
-			velocity.z = move_toward(velocity.z, 0, ground_control*delta)
+			velocity.z = move_toward(velocity.z, 0, ground_grip*delta)
 			
 		if direction:
-			anim_player.play("run")
+			anim_player.play("walk")
 		else:
 			anim_player.play("idle")
-			
 		
 		#jumping
 		if Input.is_action_just_released("jump"):

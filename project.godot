@@ -33,7 +33,8 @@ folder_colors={
 "res://EnvironmentObjects/": "green",
 "res://GameMain/": "gray",
 "res://Items/": "teal",
-"res://RoccoBot/": "blue"
+"res://RoccoBot/": "blue",
+"res://Tools/": "gray"
 }
 
 [global_group]
