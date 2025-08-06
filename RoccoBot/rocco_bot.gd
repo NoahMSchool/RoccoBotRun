@@ -6,7 +6,14 @@ extends CharacterBody3D
 
 enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
 var current_anim : AnimState = AnimState.IDLE
-var blend_speed = 10
+var blend_speed = 5
+
+var idle_val : float = 0
+var walk_val : float = 0
+var falling_val : float = 0
+var descend_val : float = 0
+var ascend_val : float = 0
+var crouch_val : float = 0
 
 #Components
 @export var health_component : HealthComponent = null
@@ -35,22 +42,79 @@ var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wa
 
 @export var spawnpoint : Node3D
 
-func handle_animations():
+func update_animations(delta):
 	match current_anim:
 		AnimState.IDLE:
-			anim_blend_tree.set("parameters/Movement/transition_request", "Idle")
-		AnimState.WALK:
-			anim_blend_tree.set("parameters/Movement/transition_request", "walk")
-
-		#CROUCHWALK:
-			#
-		#ASC:
-			#
-		#DESC:
-			#
-		#FALLING:
+			#anim_blend_tree.set("parameters/Movement/transition_request", "Idle")
+			idle_val = move_toward(idle_val, 1, blend_speed*delta)
 			
+			walk_val = move_toward(walk_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0, blend_speed*delta)
+
+		AnimState.WALK:
+			walk_val = move_toward(walk_val, 1, blend_speed*delta)
+			
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0, blend_speed*delta)
+
+		AnimState.CROUCH_WALK:
+			walk_val = move_toward(walk_val, 0.5, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0.5, blend_speed*delta)
+			
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
 		
+		AnimState.CROUCH:
+			crouch_val = move_toward(crouch_val, 0.75, blend_speed*delta)
+			walk_val = move_toward(walk_val, 0.25, blend_speed*delta)
+			
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+		
+		AnimState.ASC:
+			ascend_val = move_toward(ascend_val, 1, blend_speed*delta)
+			
+			walk_val = move_toward(walk_val, 0, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0, blend_speed*delta)
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+			
+		AnimState.DESC:
+			descend_val = move_toward(descend_val, 1, blend_speed*delta)
+			
+			walk_val = move_toward(walk_val, 0, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0, blend_speed*delta)
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			falling_val = move_toward(falling_val, 0, blend_speed*delta)
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
+			
+		AnimState.FALLING:
+			falling_val = move_toward(falling_val, 1, blend_speed*delta)
+			
+			idle_val = move_toward(idle_val, 0, blend_speed*delta)
+			walk_val = move_toward(walk_val, 0, blend_speed*delta)
+			descend_val = move_toward(descend_val, 0, blend_speed*delta)
+			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0, blend_speed*delta)
+	
+	anim_blend_tree["parameters/idle/blend_amount"] = idle_val
+	anim_blend_tree["parameters/walk/blend_amount"] = walk_val
+	anim_blend_tree["parameters/falling/blend_amount"] = falling_val
+	anim_blend_tree["parameters/crouch/blend_amount"] = crouch_val
+	anim_blend_tree["parameters/ascend/blend_amount"] = ascend_val
+	anim_blend_tree["parameters/descend/blend_amount"] = descend_val
+
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
@@ -166,12 +230,15 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		if velocity.y > 0:
-			anim_player.play("ascend")
+			#anim_player.play("ascend")
+			current_anim = AnimState.ASC
 		else:
 			if velocity.y<-jump_height:
-				anim_player.play("falling")
+				#anim_player.play("falling")
+				current_anim = AnimState.FALLING
 			else:
-				anim_player.play("descend")
+				#anim_player.play("descend")
+				current_anim = AnimState.DESC
 
 		if direction.x:
 			velocity.x = move_toward(velocity.x, speed*direction.x, air_control*delta)
@@ -181,7 +248,7 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, speed*direction.z, air_control*delta)
 		else:
 			velocity.z = move_toward(velocity.z, 0, air_control/2*delta)
-	#air logic
+	#ground logic
 	else:
 		if direction.x:
 			velocity.x = move_toward(velocity.x, speed*direction.x, ground_grip*delta)
@@ -193,9 +260,11 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, ground_grip*delta)
 			
 		if direction:
-			anim_player.play("walk")
+			#anim_player.play("walk")
+			current_anim = AnimState.WALK
 		else:
-			anim_player.play("idle")
+			#anim_player.play("idle")
+			current_anim = AnimState.IDLE
 		
 		#jumping
 		if Input.is_action_just_released("jump"):
@@ -207,7 +276,12 @@ func _physics_process(delta: float) -> void:
 				velocity.y = jump_height
 		
 		if Input.is_action_pressed("jump"):
-			anim_player.play("crouch")
+			if(direction.x or direction.y):#Do I need both 
+				current_anim = AnimState.CROUCH_WALK
+			else:
+				current_anim = AnimState.CROUCH
+			#anim_player.play("crouch")
+			
 			if jump_time<super_jump_time:
 				jump_time += delta
 				if jump_time >= super_jump_time:
@@ -224,7 +298,7 @@ func _physics_process(delta: float) -> void:
 	
 	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
-	
+	update_animations(delta)
 	move_and_slide()
 	
 	#using items
