@@ -8,7 +8,7 @@ extends Area3D
 @export var damage : float
 
 var expand_time = 0.25
-var max_size = 1
+var max_size = 0.75
 
 func _ready() -> void:
 	var mat = Globals.glow_materials.get(accent_color, Globals.glow_materials["pink"])

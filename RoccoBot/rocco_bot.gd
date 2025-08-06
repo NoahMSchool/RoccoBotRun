@@ -1,6 +1,12 @@
 extends CharacterBody3D
 
+@onready var skeleton : Skeleton3D = $Object/Skeleton3D
 @onready var anim_player = $AnimationPlayer
+@onready var anim_blend_tree = $AnimationTree
+
+enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
+var current_anim : AnimState = AnimState.IDLE
+var blend_speed = 10
 
 #Components
 @export var health_component : HealthComponent = null
@@ -29,12 +35,31 @@ var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wa
 
 @export var spawnpoint : Node3D
 
+func handle_animations():
+	match current_anim:
+		AnimState.IDLE:
+			anim_blend_tree.set("parameters/Movement/transition_request", "Idle")
+		AnimState.WALK:
+			anim_blend_tree.set("parameters/Movement/transition_request", "walk")
+
+		#CROUCHWALK:
+			#
+		#ASC:
+			#
+		#DESC:
+			#
+		#FALLING:
+			
+		
+
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
 	if is_release:
 		item.release_item()
 	else:
 		item.use_item()
+	
+	
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene)
@@ -76,16 +101,6 @@ func equip_item(item : Item, item_location : PlayerItemLocation):
 		item.connect("item_used", Callable())
 		item.item_used.connect(unequip_item.bind(item_location))
 
-
-
-func foreground_item(foreground : bool, item_location : PlayerItemLocation):
-	
-	if foreground:
-		get_node(item_location.node_path).position = item_location.foreground_position
-	else:
-		get_node(item_location.node_path).position = item_location.rest_position
-	
-
 func unequip_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
@@ -95,8 +110,14 @@ func unequip_item(item_location : PlayerItemLocation):
 		item.disconnect("item_foregrounded", cb)
 
 		item.set_enabled(false)
-		
 
+	
+func foreground_item(foreground : bool, item_location : PlayerItemLocation):
+	if foreground:
+		get_node(item_location.node_path).position = item_location.foreground_position
+	else:
+		get_node(item_location.node_path).position = item_location.rest_position
+	
 func update_HUD():
 	var inventory_items : Array = get_inventory_items()
 	var equipped_items : Array = []
@@ -218,8 +239,6 @@ func _physics_process(delta: float) -> void:
 			use_item_at_location(item_location, false)
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)
-	
-	
 	update_HUD()
 
 func _process(delta: float) -> void:

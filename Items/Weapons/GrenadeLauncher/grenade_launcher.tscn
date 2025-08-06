@@ -20,7 +20,7 @@ icon = ExtResource("2_vwxxk")
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_mnxr2")
 
 [node name="ChargeComponent" type="Node3D" parent="."]
