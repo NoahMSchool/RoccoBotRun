@@ -73,11 +73,11 @@ func update_animations(delta):
 			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
 		
 		AnimState.CROUCH:
-			crouch_val = move_toward(crouch_val, 0.75, blend_speed*delta)
-			walk_val = move_toward(walk_val, 0.25, blend_speed*delta)
+			crouch_val = move_toward(crouch_val, 0.5, blend_speed*delta)
+			idle_val = move_toward(idle_val, 0.5, blend_speed*delta)
 			
+			walk_val = move_toward(walk_val, 0, blend_speed*delta)
 			ascend_val = move_toward(ascend_val, 0, blend_speed*delta)
-			idle_val = move_toward(idle_val, 0, blend_speed*delta)
 			falling_val = move_toward(falling_val, 0, blend_speed*delta)
 			descend_val = move_toward(descend_val, 0, blend_speed*delta)
 		
@@ -225,7 +225,7 @@ func _physics_process(delta: float) -> void:
 
 	if input_dir != Vector2.ZERO:
 		$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
-		
+	
 	#air logic
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -241,21 +241,27 @@ func _physics_process(delta: float) -> void:
 				current_anim = AnimState.DESC
 
 		if direction.x:
-			velocity.x = move_toward(velocity.x, speed*direction.x, air_control*delta)
+			velocity.x = move_toward(velocity.x, current_speed*direction.x, air_control*delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, air_control/2*delta)		
 		if direction.z:
-			velocity.z = move_toward(velocity.z, speed*direction.z, air_control*delta)
+			velocity.z = move_toward(velocity.z, current_speed*direction.z, air_control*delta)
 		else:
 			velocity.z = move_toward(velocity.z, 0, air_control/2*delta)
 	#ground logic
 	else:
+		
+		#Put this in same if statement
+		if Input.is_action_pressed("jump"):
+			pass
+			current_speed *= 0.75
+
 		if direction.x:
-			velocity.x = move_toward(velocity.x, speed*direction.x, ground_grip*delta)
+			velocity.x = move_toward(velocity.x, current_speed*direction.x, ground_grip*delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, ground_grip*delta)		
 		if direction.z:
-			velocity.z = move_toward(velocity.z, speed*direction.z, ground_grip*delta)
+			velocity.z = move_toward(velocity.z, current_speed*direction.z, ground_grip*delta)
 		else:
 			velocity.z = move_toward(velocity.z, 0, ground_grip*delta)
 			
@@ -287,7 +293,6 @@ func _physics_process(delta: float) -> void:
 				if jump_time >= super_jump_time:
 					$Sounds/JumpSound.stream = super_jump_on_sound
 					$Sounds/JumpSound.play()
-				current_speed /= 2	
 		else:
 			jump_time = 0
 		
