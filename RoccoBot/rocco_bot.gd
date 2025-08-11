@@ -4,6 +4,10 @@ extends CharacterBody3D
 @onready var anim_player = $AnimationPlayer
 @onready var anim_blend_tree = $AnimationTree
 
+@onready var right_aim_ik: SkeletonIK3D = $Object/Skeleton3D/RightAimIK
+@onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
+
+
 enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
 var current_anim : AnimState = AnimState.IDLE
 var blend_speed = 5
@@ -118,10 +122,19 @@ func update_animations(delta):
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
+	var ik = get_node_or_null(item_location.targeting_IK_path)
 	if is_release:
 		item.release_item()
+		ik.stop()
+		#right_aim_ik.influence = 0
+		#left_aim_ik.influence = 0
 	else:
+		#left_aim_ik.influence = 1
+		#right_aim_ik.influence = 1
+
+		ik.start()
 		item.use_item()
+
 	
 	
 
@@ -170,18 +183,10 @@ func unequip_item(item_location : PlayerItemLocation):
 	if item:
 		item.reparent($Object/Items/InventoryItems, false)
 		var cb = Callable(self, "foreground_item").bind(item_location)
-		foreground_item(false, item_location)
 		item.disconnect("item_foregrounded", cb)
 
 		item.set_enabled(false)
 
-	
-func foreground_item(foreground : bool, item_location : PlayerItemLocation):
-	if foreground:
-		get_node(item_location.node_path).position = item_location.foreground_position
-	else:
-		get_node(item_location.node_path).position = item_location.rest_position
-	
 func update_HUD():
 	var inventory_items : Array = get_inventory_items()
 	var equipped_items : Array = []
