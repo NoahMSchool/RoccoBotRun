@@ -3,22 +3,34 @@ extends Item
 @export var damagable_component : DamagableComponent
 @export var charge_component : ChargeComponent
 
+@export var max_charge : int = 8
+@export var regen_rate : float = 0.5
+@export var regen_cooldown : float = 2
+
+#var activated = false:
+#	set(value):
+		#activated = value
+		#$MeshInstance3D.visible = value
+		#$Area3D/CollisionShape3D.disabled = not value
+
+
 func _ready() -> void:
 	damagable_component.get_hit.connect(get_hit)
 	
+	charge_component.max_charge = max_charge
+	charge_component.charge_regen_rate = regen_rate
+	charge_component.regen_cooldown = regen_cooldown
 	var parent = get_parent()
 	#if parent:
-		
-
-func _physics_process(delta: float) -> void:
-	#print(charge_component.charge)
-	set_activation(charge_component.charge>0)
 
 func use_item():
-	item_foregrounded.emit(true)
+	if charge_component.charge>0:
+		set_activation(true)
+	else:
+		set_activation(false)
 
 func release_item():
-	item_foregrounded.emit(false)
+	set_activation(false)
 	
 func get_hit():
 	charge_component.reduce_charge()
@@ -31,6 +43,3 @@ func set_activation(is_activated : bool) -> void:
 	$MeshInstance3D.visible = is_activated
 	$Area3D/CollisionShape3D.disabled = not is_activated
 	
-
-#Add functionality to allow use item to place sheild forward, maybe have signal that is connected to player
-#Make configure Item Function place shield in pl
