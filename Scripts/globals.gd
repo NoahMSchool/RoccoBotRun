@@ -1,24 +1,23 @@
 extends Node
 
+
 var player_item_locations = [
-							#"Object/Items/EquippedItems/LeftHandItem" Vector3(-0.75,0.15,-0.25), Vector3(-0.45,0.15,-0.75)
-							#"Object/Items/EquippedItems/RightHandItem" Vector3(0.75,0.15,-0.25), Vector3(0.45,0.15,-0.75)
-							PlayerItemLocation.new("Object/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/LeftAimIK"),
-							PlayerItemLocation.new("Object/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/RightAimIK"), 
-							]
+	PlayerItemLocation.new("Object/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/LeftAimIK"),
+	PlayerItemLocation.new("Object/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/RightAimIK"), 
+	]
 
+var teams = {
+	"neutral" : Team.new("neutral", "white"),
+	"player" : Team.new("player", "blue"),
+	"enemy_robot" : Team.new("enemies", "red"),	
+}
+func get_team(team_string):
+	var team = Globals.teams.get(team_string, Globals.teams["neutral"])
+	if team == Globals.teams["neutral"] and team_string != "neutral":
+		print("Invalid Team used, set to neutral")
+		push_warning("%s tried to use invalid team '%s', defaulting to neutral")
+	return team
 
-#@onready var item_progress_bars: Dictionary = {
-	#Globals.ItemLocation.LEFT: NodePath("Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator"),
-	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot/RightAmmoIndicator"),
-	#Globals.ItemLocation.BACK: NodePath("Control/Panel/AmmoIndicators/BackAmmoIndicator"),
-#}
-#
-#@onready var item_slots: Dictionary = {
-	#Globals.ItemLocation.LEFT:  NodePath("Control/Inventory/EquippedItems/LeftItemSlot"),
-	#Globals.ItemLocation.RIGHT: NodePath("Control/Inventory/EquippedItems/RightItemSlot"),
-	#Globals.ItemLocation.BACK:  NodePath("Control/ItemSlots/BackItemSlot"),
-#}
 
 var glow_materials = {
 	"blue" : preload("res://Materials/blue_laser_mat.tres"), 

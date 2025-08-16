@@ -6,7 +6,6 @@ const ANGLE_SPEED = PI
 
 @export var throw_cooldown : float = 1
 @export var damage : int = 150
-@export var accent_color : String
 
 @onready var charge_component = $ChargeComponent
 @onready var shoot_component = $ShootComponent

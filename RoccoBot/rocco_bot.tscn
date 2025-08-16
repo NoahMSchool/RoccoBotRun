@@ -2898,17 +2898,7 @@ script = ExtResource("8_fjiog")
 transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, -0.625, 0)
 visible = false
 
-[node name="Items" type="Node3D" parent="Object"]
-
-[node name="InventoryItems" type="Node3D" parent="Object/Items"]
-
-[node name="EquippedItems" type="Node3D" parent="Object/Items"]
-
-[node name="RightHandItem" type="Node3D" parent="Object/Items/EquippedItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.15, -0.25)
-
-[node name="LeftHandItem" type="Node3D" parent="Object/Items/EquippedItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.15, -0.25)
+[node name="InventoryItems" type="Node3D" parent="Object"]
 
 [node name="TailRestTarget" type="Node3D" parent="Object"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.5)

@@ -20,6 +20,8 @@ func _ready() -> void:
 	charge_component.max_charge = max_charge
 	charge_component.charge_regen_rate = regen_rate
 	charge_component.regen_cooldown = regen_cooldown
+	
+	set_activation(false)
 	var parent = get_parent()
 	#if parent:
 

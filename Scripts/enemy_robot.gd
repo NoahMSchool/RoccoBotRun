@@ -5,7 +5,9 @@ var health = max_health
 
 @onready var health_component = $HealthComponent
 @onready var damagable_component = $DamagableComponent
-
+@onready var weapon = $LaserCannon
+@onready var team_string = "enemy_robot"
+@onready var team : Team
 
 func spot_player(player : CharacterBody3D):
 	var player_pos = player.global_position
@@ -17,10 +19,14 @@ func die():
 	print("robot eliminated")
 	queue_free()
 
-
 func _ready() -> void:
+	team = Globals.get_team(team_string)
+	if weapon:
+		weapon.configure_item(team.accent_color)
 	if health_component:
 		health_component.health_out.connect(die)
+	
+	
 		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

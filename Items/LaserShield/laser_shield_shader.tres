@@ -1,9 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://crl7il0p8och8"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://crl7il0p8och8"]
 
 [ext_resource type="Shader" path="res://Items/LaserShield/laser_shield.gdshader" id="1_lcjq0"]
+[ext_resource type="Texture2D" uid="uid://dbtph4cmip470" path="res://Textures/sheild_alpha_mid.png" id="2_2rvoc"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_lcjq0")
 shader_parameter/emmission_strength = 1.0
 shader_parameter/alpha_strength = 1.0
+shader_parameter/sheild_alpha_tex = ExtResource("2_2rvoc")
