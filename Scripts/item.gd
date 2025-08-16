@@ -1,21 +1,26 @@
 extends Node3D
 class_name Item
 
-signal item_foregrounded(foreground : bool)
 signal item_used
 
 @export var icon : Texture
 var is_equipped : bool = false
 var can_use = true
+var accent_color : String = "pink"
+#:
+	##set(value):
+		##print(self, value)
+		#accent_color = value
+		
 
-func configure_item():
-	#self.accent_color = "blue"
+func configure_item(accent_color):
+	self.accent_color = accent_color
 	#self.target_group = "enemies"
-	pass
 	
-static func create_item(packed_scene: PackedScene)->Item:
+	
+static func create_item(packed_scene: PackedScene, accent_color : String = "pink")->Item:
 	var item = packed_scene.instantiate()
-	item.configure_item()
+	item.configure_item(accent_color)
 	return item
 
 func set_equipped(is_equipped):

@@ -31,6 +31,10 @@ var crouch_val : float = 0
 @export var super_jump_height = 8
 @export var super_jump_time = 0.5
 @export var cam_sens = 0.00025
+@export var item_pullout : = 15
+
+@onready var team_string = "player"
+@onready var team :Team
 
 var jump_time = 0.0
 var current_speed = speed
@@ -40,6 +44,7 @@ var mouse_delta = Vector2.ZERO
 #var jump_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
 var jump_sound = preload("res://RoccoBot/Sounds/Jump 01 by Michael Kur95.wav")
 var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wav")
+
 
 #HUD
 @onready var hud: CanvasLayer = $"../HUD"
@@ -122,26 +127,20 @@ func update_animations(delta):
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
-	var ik = get_node_or_null(item_location.targeting_IK_path)
-	if is_release:
-		item.release_item()
-		ik.stop()
-		#right_aim_ik.influence = 0
-		#left_aim_ik.influence = 0
-	else:
-		#left_aim_ik.influence = 1
-		#right_aim_ik.influence = 1
-
-		ik.start()
-		item.use_item()
-
-	
-	
+	var ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
+	if ik.influence == 1.0:
+		if is_release:
+			item.release_item()
+			#ik.influence = 0.0	
+		else:
+			#ik.influence = 1.0
+			item.use_item()
 
 func add_item(packed_scene : PackedScene):
-	var configured_item = Item.create_item(packed_scene)
+	var configured_item = Item.create_item(packed_scene, team.accent_color)
+	print(team, team.accent_color, team.group)
 	configured_item.set_enabled(false)
-	$Object/Items/InventoryItems.add_child(configured_item)
+	$Object/InventoryItems.add_child(configured_item)
 	auto_equip_items()
 
 func remove_item(item_location : PlayerItemLocation):
@@ -155,7 +154,7 @@ func get_equiped_item(item_location : PlayerItemLocation):
 		return slot_node.get_child(0)
 
 func auto_equip_items():
-	var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+	var first_inventory_item = $Object/InventoryItems.get_child(0)
 	if first_inventory_item:
 		for item_location in Globals.player_item_locations:
 			var slot_node = get_node_or_null(item_location.node_path)
@@ -165,8 +164,7 @@ func auto_equip_items():
 
 func equip_item(item : Item, item_location : PlayerItemLocation):
 	var slot_node = get_node_or_null(item_location.node_path)
-	item_location.used_last = true
-	
+
 	if slot_node:
 		$Sounds/EquipWeapon.play()
 		unequip_item(item_location)
@@ -181,7 +179,7 @@ func equip_item(item : Item, item_location : PlayerItemLocation):
 func unequip_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
-		item.reparent($Object/Items/InventoryItems, false)
+		item.reparent($Object/InventoryItems, false)
 		var cb = Callable(self, "foreground_item").bind(item_location)
 		item.disconnect("item_foregrounded", cb)
 
@@ -201,10 +199,12 @@ func update_HUD():
 	
 
 func get_inventory_items() -> Array:
-	return $Object/Items/InventoryItems.get_children()
+	return $Object/InventoryItems.get_children()
 
 func _ready() -> void:
+	team = Globals.get_team(team_string)	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 	$CamPivot/Camera3D.current = true
 	$Camera3DFollow.current = false
 	GameManager.connect("reset_level", Callable(self, "respawn"))
@@ -212,14 +212,6 @@ func _ready() -> void:
 	var anim_player : AnimationPlayer = $AnimationPlayer
 	var old_root = "RoccobotRig/Skeleton3D"
 	var new_root = "Object/RoccobotRig/Skeleton3D"
-		
-	if !anim_player:
-		print("no anim player found")
-		return
-	else:
-		print("hi")
-		print(anim_player.current_animation)
-
 
 func _physics_process(delta: float) -> void:
 	#print(anim_player.current_animation)
@@ -313,16 +305,21 @@ func _physics_process(delta: float) -> void:
 	
 	#using items
 	for item_location in Globals.player_item_locations:
+		var item_location_ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
 		if Input.is_action_just_pressed(item_location.swap_action):
-			var first_inventory_item = $Object/Items/InventoryItems.get_child(0)
+			var first_inventory_item = $Object/InventoryItems.get_child(0)
 			
 			if first_inventory_item:
 				equip_item(first_inventory_item, item_location)
 			
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, false)
+			item_location_ik.influence = move_toward(item_location_ik.influence, 1.0, delta*item_pullout)
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)
+		else:
+			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
+			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
 	update_HUD()
 
 func _process(delta: float) -> void:
