@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c7yxqtch7isnw"]
+
+[ext_resource type="Texture2D" uid="uid://c16ofmcebdy1h" path="res://Enemy/EnemyRobotColor4.png" id="1_jwskq"]
+[ext_resource type="Texture2D" uid="uid://dft7nkwgk1l6d" path="res://Enemy/EnemyRobotRoughness2.png" id="2_6nm4t"]
+
+[resource]
+albedo_texture = ExtResource("1_jwskq")
+roughness_texture = ExtResource("2_6nm4t")
