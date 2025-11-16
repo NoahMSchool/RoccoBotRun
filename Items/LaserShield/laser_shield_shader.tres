@@ -8,4 +8,5 @@ render_priority = 0
 shader = ExtResource("1_lcjq0")
 shader_parameter/emmission_strength = 1.0
 shader_parameter/alpha_strength = 1.0
+shader_parameter/color = Vector3(0, 50, 0)
 shader_parameter/sheild_alpha_tex = ExtResource("2_2rvoc")
