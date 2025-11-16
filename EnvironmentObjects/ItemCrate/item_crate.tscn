@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://da3vxgkak2l5h"]
+
+[ext_resource type="Script" path="res://EnvironmentObjects/ItemCrate/item_crate.gd" id="1_cwfl3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epmvd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yb6wb"]
+
+[node name="ItemCrate" type="StaticBody3D"]
+script = ExtResource("1_cwfl3")
+dissapear_on_use = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_epmvd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yb6wb")

@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://EnvironmentObjects/MovingPlatforms/moving_platform.tscn" id="13_pgu73"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Enemy/enemy_robot.tscn" id="14_7aaf6"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Environment/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="15_1ndow"]
-[ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://EnvironmentObjects/ItemSpawns/item_spawn.tscn" id="16_yw5b1"]
+[ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://EnvironmentObjects/ItemSpawns/item_loose.tscn" id="16_yw5b1"]
 [ext_resource type="PackedScene" uid="uid://2xncat2u1tud" path="res://Items/Weapons/PlasmaCannon/plasma_cannon.tscn" id="17_7m2bf"]
 [ext_resource type="PackedScene" uid="uid://5an5vujsy33f" path="res://Items/LaserShield/shield.tscn" id="17_rqh1q"]
 [ext_resource type="PackedScene" uid="uid://dndtnu600nx6r" path="res://Items/Weapons/GrenadeLauncher/grenade_launcher.tscn" id="18_drisk"]
