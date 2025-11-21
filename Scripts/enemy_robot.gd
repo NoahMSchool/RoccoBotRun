@@ -9,6 +9,8 @@ var health = max_health
 @onready var team_string = "enemy_robot"
 @onready var team : Team
 
+const ITEM_CRATE = preload("res://EnvironmentObjects/ItemCrate/item_crate.tscn")
+
 func spot_player(player : CharacterBody3D):
 	var player_pos = player.global_position
 	$LaserCannon.use_item()
@@ -17,7 +19,9 @@ func spot_player(player : CharacterBody3D):
 
 func die():
 	print("robot eliminated")
+	make_death_crate()
 	queue_free()
+	
 
 func _ready() -> void:
 	team = Globals.get_team(team_string)
@@ -36,3 +40,9 @@ func _physics_process(delta: float) -> void:
 	$Vision.force_shapecast_update()
 	if $Vision.is_colliding():
 		spot_player($Vision.get_collider(0))
+		
+func make_death_crate():
+	var death_crate = ITEM_CRATE.instantiate()
+	death_crate.items[0] = (preload("res://Items/Weapons/LaserSword/laser_sword.tscn"))
+	death_crate.global_position = global_position
+	get_tree().get_root().add_child(death_crate)

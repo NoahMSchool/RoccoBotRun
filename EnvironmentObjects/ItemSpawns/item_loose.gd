@@ -9,7 +9,7 @@ func _ready() -> void:
 		if item.instantiate() is Item:
 			var item_mesh = item.instantiate().find_child("MeshInstance3D")
 			$MeshInstance3D.mesh = item_mesh.mesh
-			$MeshInstance3D.material_override = item_mesh
+			#$MeshInstance3D.material_override = item_mesh
 		else:
 			print("item Spawner does not conain item")
 			

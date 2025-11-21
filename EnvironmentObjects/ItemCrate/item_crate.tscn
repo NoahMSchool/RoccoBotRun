@@ -8,7 +8,6 @@
 
 [node name="ItemCrate" type="StaticBody3D"]
 script = ExtResource("1_cwfl3")
-dissapear_on_use = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_epmvd")

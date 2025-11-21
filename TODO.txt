@@ -40,3 +40,18 @@ or use projectile component
 
 
 Look into position of character and rig and collision shape so they match and offset in the simplest way
+
+
+## Next Steps
+
+Item crate 
+Interactable item crate that instantiates an item loose.
+
+More robust data structure for items and storing item data. Picking up and dropping items with item keeping state. See Gemini chat
+
+Map out levels using physics objects with LaunchBoom doors and item crates
+
+Add modifier on player system for icy feet, (jump/run buffs)
+
+Make enemy robot weapon more accessible to generalise and so its item crate spawns its own item
+Add pathing to enemy robot
