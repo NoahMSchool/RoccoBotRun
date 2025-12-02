@@ -10,6 +10,7 @@ var health = max_health
 @onready var team : Team
 
 const ITEM_CRATE = preload("res://EnvironmentObjects/ItemCrate/item_crate.tscn")
+const DEATH_CRATE_TYPE = preload("res://EnvironmentObjects/ItemCrate/EnemyRobotDeathCrate.tres")
 
 func spot_player(player : CharacterBody3D):
 	var player_pos = player.global_position
@@ -44,5 +45,7 @@ func _physics_process(delta: float) -> void:
 func make_death_crate():
 	var death_crate = ITEM_CRATE.instantiate()
 	death_crate.items[0] = (preload("res://Items/Weapons/LaserSword/laser_sword.tscn"))
+	death_crate.crate_type = DEATH_CRATE_TYPE
 	death_crate.global_position = global_position
+	death_crate.rotation.y = rotation.y
 	get_tree().get_root().add_child(death_crate)

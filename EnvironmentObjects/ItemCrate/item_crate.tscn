@@ -1,16 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://da3vxgkak2l5h"]
+[gd_scene load_steps=5 format=3 uid="uid://da3vxgkak2l5h"]
 
 [ext_resource type="Script" path="res://EnvironmentObjects/ItemCrate/item_crate.gd" id="1_cwfl3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_epmvd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yb6wb"]
+size = Vector3(1, 0.8, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cj32v"]
+size = Vector3(1, 0.2, 0.8)
 
 [node name="ItemCrate" type="StaticBody3D"]
 script = ExtResource("1_cwfl3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_epmvd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="BoxPiv" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="BoxMesh" type="MeshInstance3D" parent="BoxPiv"]
 mesh = SubResource("BoxMesh_yb6wb")
+skeleton = NodePath("../..")
+
+[node name="LidPiv" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
+
+[node name="CapMesh" type="MeshInstance3D" parent="LidPiv"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.4)
+mesh = SubResource("BoxMesh_cj32v")
+skeleton = NodePath("../..")
