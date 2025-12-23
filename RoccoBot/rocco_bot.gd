@@ -8,6 +8,13 @@ extends CharacterBody3D
 @onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
 
+enum Modifiers {
+	ICEFEET
+}
+
+var active_effects : Array[Modifiers] = []
+
+
 enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
 var current_anim : AnimState = AnimState.IDLE
 var blend_speed = 5
@@ -24,14 +31,22 @@ var crouch_val : float = 0
 @export var damagable_component : DamagableComponent = null
 
 #Movement Exports
-@export var speed = 4
-@export var ground_grip = 48
-@export var air_control = 12
-@export var jump_height = 4
-@export var super_jump_height = 8
+@export var speed_default = 4
+@export var ground_grip_default = 48
+@export var air_control_default = 12
+@export var jump_height_default = 4
+@export var super_jump_height_default = 8
 @export var super_jump_time = 0.5
 @export var cam_sens = 0.00025
 @export var item_pullout : = 15
+
+var speed = speed_default
+var ground_grip = ground_grip_default
+var air_control = air_control_default
+var jump_height = jump_height_default
+var super_jump_height = super_jump_height_default
+
+
 
 @onready var team_string = "player"
 @onready var team :Team
@@ -123,6 +138,25 @@ func update_animations(delta):
 	anim_blend_tree["parameters/crouch/blend_amount"] = crouch_val
 	anim_blend_tree["parameters/ascend/blend_amount"] = ascend_val
 	anim_blend_tree["parameters/descend/blend_amount"] = descend_val
+
+func add_effect(effect : Modifiers):
+	active_effects.append(effect)
+	update_effects()
+func remove_effect(effect : Modifiers):
+	active_effects.erase(effect)
+	update_effects()
+	
+
+func update_effects():
+	for effect in active_effects:
+		if effect == Modifiers.ICEFEET:
+			ground_grip = 2
+			air_control = 4
+			speed = speed_default + 4/3
+		else:
+			ground_grip = ground_grip_default
+			air_control = air_control_default
+			speed = speed_default
 
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
@@ -348,6 +382,7 @@ func die():
 
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
+	add_effect(Modifiers.ICEFEET)
 
 #TODO
 """
