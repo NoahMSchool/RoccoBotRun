@@ -4,8 +4,6 @@ extends StaticBody3D
 @export var crate_type : CrateType
 @export var dissapear_on_use := false
 
-
-
 const item_loose = preload("res://EnvironmentObjects/ItemSpawns/item_loose.tscn")
 
 
@@ -41,6 +39,11 @@ func config_crate():
 			#$CollisionShape3D.shape = shape to fit
 			pass
 
+func interact():
+	
+	open()
+	if dissapear_on_use:
+			queue_free()
 
 func open():
 	if crate_type:
@@ -55,8 +58,13 @@ func open():
 	new_loose.global_position = global_position + Vector3(0,0,crate_type.place_infront_distance)
 	get_tree().get_root().add_child(new_loose)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("plus"):
-		open()
-		if dissapear_on_use:
-			queue_free()
+
+func _on_selection_range_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		body.add_interactable(self)
+		print("added")
+
+func _on_selection_range_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		body.remove_interactable(self)
+		print("removed")

@@ -13,7 +13,7 @@ enum Modifiers {
 }
 
 var active_effects : Array[Modifiers] = []
-
+var interactable_items : Array[Node3D]
 
 enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
 var current_anim : AnimState = AnimState.IDLE
@@ -47,7 +47,6 @@ var jump_height = jump_height_default
 var super_jump_height = super_jump_height_default
 
 
-
 @onready var team_string = "player"
 @onready var team :Team
 
@@ -65,6 +64,13 @@ var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wa
 @onready var hud: CanvasLayer = $"../HUD"
 
 @export var spawnpoint : Node3D
+
+func add_interactable(item):
+	self.interactable_items.append(item)
+	print("aaaaaaaadddeedd")
+func remove_interactable(item):
+	self.interactable_items.erase(item)
+	print("reeeeeemoveeeddd")
 
 func update_animations(delta):
 	match current_anim:
@@ -355,6 +361,12 @@ func _physics_process(delta: float) -> void:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
 	update_HUD()
+	
+	if Input.is_action_just_pressed("interact"):
+		print("pp[reessed ]")
+		for i in interactable_items:
+			i.interact()
+			print(i)
 
 func _process(delta: float) -> void:
 	#controller look doesnt work
