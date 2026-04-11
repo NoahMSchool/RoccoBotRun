@@ -38,6 +38,11 @@ var crouch_val : float = 0
 @export var super_jump_height_default = 8
 @export var super_jump_time = 0.5
 @export var cam_sens = 0.00025
+#GoTo Line 250 to swich camera being used
+@export var camangle : float = 0
+@export var topdown_angle : float = 35
+@export var topdown_distance : float = 7.5
+
 @export var item_pullout : = 15
 
 var speed = speed_default
@@ -245,8 +250,11 @@ func _ready() -> void:
 	team = Globals.get_team(team_string)	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	$CamPivot/Camera3D.current = true
-	$Camera3DFollow.current = false
+	$CamPivot/Camera3D.current = false
+	$Camera3DFollow.current = true
+	$SpringArm3D.rotation.x = -deg_to_rad(topdown_angle)
+	$Camera3DFollow.rotation.x = -deg_to_rad(topdown_angle)
+	$SpringArm3D.spring_length = topdown_distance
 	GameManager.connect("reset_level", Callable(self, "respawn"))
 	
 	var anim_player : AnimationPlayer = $AnimationPlayer
@@ -363,11 +371,15 @@ func _physics_process(delta: float) -> void:
 	update_HUD()
 	
 	if Input.is_action_just_pressed("interact"):
-		print("pp[reessed ]")
 		for i in interactable_items:
 			i.interact()
 			print(i)
-
+	if Input.is_action_just_pressed("rightarrow"):
+		$CamPivot.rotation.y+=PI/2
+	if Input.is_action_just_pressed("leftarrow"):
+		$CamPivot.rotation.y-=PI/2
+			
+"""
 func _process(delta: float) -> void:
 	#controller look doesnt work
 	var lx = Input.get_action_strength("right_joystick_right") - Input.get_action_strength("right_joystick_left")
@@ -387,8 +399,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	#$CamPivot.rotate_y(-lx * cam_sens*100)
 	#$CamPivot.rotate_x(-ly * cam_sens*100)
+"""
 
-	
 func die():
 	pass
 

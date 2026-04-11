@@ -41,6 +41,7 @@ or use projectile component
 
 Look into position of character and rig and collision shape so they match and offset in the simplest way
 
+Look into making rotating arms for aim using motion controls from nintendo switch joycons
 
 ## Next Steps
 
@@ -55,3 +56,8 @@ Add modifier on player system for icy feet, (jump/run buffs)
 
 Make enemy robot weapon more accessible to generalise and so its item crate spawns its own item
 Add pathing to enemy robot
+
+
+Make itemcrate use interactable component
+Camera rotate in 90 degree increments using arrows
+Allow control of targetting by making arms aim in different directions
