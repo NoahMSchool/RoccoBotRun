@@ -26,6 +26,16 @@ var descend_val : float = 0
 var ascend_val : float = 0
 var crouch_val : float = 0
 
+#@export var rotation_increment_degrees/fraction : float = PI/2
+
+const rotation_time = 0.25
+const rotation_increment : float = PI/2
+var target_facing_direction : float = 0
+var facing_direction : float = 0
+var time_last_rotated : float = 0
+var last_set_rotation : float = facing_direction
+
+
 #Components
 @export var health_component : HealthComponent = null
 @export var damagable_component : DamagableComponent = null
@@ -72,10 +82,8 @@ var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wa
 
 func add_interactable(item):
 	self.interactable_items.append(item)
-	print("aaaaaaaadddeedd")
 func remove_interactable(item):
 	self.interactable_items.erase(item)
-	print("reeeeeemoveeeddd")
 
 func update_animations(delta):
 	match current_anim:
@@ -251,6 +259,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	$CamPivot/Camera3D.current = false
+	
 	$Camera3DFollow.current = true
 	$SpringArm3D.rotation.x = -deg_to_rad(topdown_angle)
 	$Camera3DFollow.rotation.x = -deg_to_rad(topdown_angle)
@@ -266,11 +275,12 @@ func _physics_process(delta: float) -> void:
 	current_speed = speed
 	#get movement direction
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction = ($CamPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
-	if input_dir != Vector2.ZERO:
-		$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
 	
+	var direction = ($SpringArm3D.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if input_dir != Vector2.ZERO:
+		#$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
+		rotation.y = atan2(direction.x, direction.z)+PI
 	#air logic
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -295,7 +305,6 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, air_control/2*delta)
 	#ground logic
 	else:
-		
 		#Put this in same if statement
 		if Input.is_action_pressed("jump"):
 			pass
@@ -344,9 +353,11 @@ func _physics_process(delta: float) -> void:
 	#camera
 	#preventing looking behind objects
 	$CamPivot/Camera3D.position = lerp($CamPivot/Camera3D.position, $CamPivot/SpringArm3D/CamPos.position, 15*delta)
+	#OLD
 	
-	
-	$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
+	#$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
+	$SpringArm3D.global_position = global_position
+
 	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
 	update_animations(delta)
 	move_and_slide()
@@ -369,44 +380,34 @@ func _physics_process(delta: float) -> void:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
 	update_HUD()
-	
+func _process(delta: float) -> void:
+	time_last_rotated += delta
+	time_last_rotated = min(time_last_rotated, rotation_time)
 	if Input.is_action_just_pressed("interact"):
 		for i in interactable_items:
 			i.interact()
 			print(i)
 	if Input.is_action_just_pressed("rightarrow"):
-		$CamPivot.rotation.y+=PI/2
+		target_facing_direction -=PI/2
+		time_last_rotated = 0
+		last_set_rotation = facing_direction
+		#target_facing_direction = snappedf(target_facing_direction, PI/2)
 	if Input.is_action_just_pressed("leftarrow"):
-		$CamPivot.rotation.y-=PI/2
-			
-"""
-func _process(delta: float) -> void:
-	#controller look doesnt work
-	var lx = Input.get_action_strength("right_joystick_right") - Input.get_action_strength("right_joystick_left")
-	var ly = Input.get_action_strength("right_joystick_down") - Input.get_action_strength("right_joystick_up")
+		target_facing_direction+=PI/2
+		time_last_rotated = 0
+		last_set_rotation = facing_direction
+		#target_facing_direction = snappedf(target_facing_direction, PI/2)
 	
-	$CamPivot.rotation.y += -lx * cam_sens*10000*delta
-	$CamPivot.rotation.x += -ly * cam_sens*10000*delta
-	$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
-
-func _unhandled_input(event: InputEvent) -> void:
-	
-	if event is InputEventMouseMotion:
-		$CamPivot.rotation.y -= event.relative.x*cam_sens
-		$CamPivot.rotation.x -= event.relative.y*cam_sens
-		$CamPivot.rotation.x = clamp($CamPivot.rotation.x, -PI/4, PI/8)
-	
-	
-	#$CamPivot.rotate_y(-lx * cam_sens*100)
-	#$CamPivot.rotate_x(-ly * cam_sens*100)
-"""
+	if facing_direction != target_facing_direction:
+		facing_direction = lerp_angle(last_set_rotation, target_facing_direction, time_last_rotated/rotation_time)
+	$SpringArm3D.rotation.y = facing_direction
+	$Camera3DFollow.rotation.y = facing_direction
 
 func die():
 	pass
 
 func respawn():
 	global_transform = spawnpoint.get_node("SpawnPos").global_transform
-	add_effect(Modifiers.ICEFEET)
 
 #TODO
 """
