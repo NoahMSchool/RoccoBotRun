@@ -26,7 +26,6 @@ var descend_val : float = 0
 var ascend_val : float = 0
 var crouch_val : float = 0
 
-#@export var rotation_increment_degrees/fraction : float = PI/2
 
 const rotation_time = 0.25
 const rotation_increment : float = PI/2
@@ -35,6 +34,7 @@ var facing_direction : float = 0
 var time_last_rotated : float = 0
 var last_set_rotation : float = facing_direction
 
+var target_pos : Vector3
 
 #Components
 @export var health_component : HealthComponent = null
@@ -49,8 +49,9 @@ var last_set_rotation : float = facing_direction
 @export var super_jump_time = 0.5
 @export var cam_sens = 0.00025
 #GoTo Line 250 to swich camera being used
+@onready var current_cam = $Camera3DFollow
 @export var camangle : float = 0
-@export var topdown_angle : float = 35
+@export var topdown_angle : float = 45
 @export var topdown_distance : float = 7.5
 
 @export var item_pullout : = 15
@@ -254,15 +255,28 @@ func update_HUD():
 func get_inventory_items() -> Array:
 	return $Object/InventoryItems.get_children()
 
+func get_raymousepos():
+	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
+	var ray_length = 1000
+	var from = current_cam.project_ray_origin(mouse_pos)
+	var to = from + current_cam.project_ray_normal(mouse_pos)*ray_length
+	var space = get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.new()
+	ray_query.from = from
+	ray_query.to = to
+	var raycast_result = space.intersect_ray(ray_query)
+	if raycast_result:
+		target_pos = raycast_result["position"]
+	print(target_pos)
+
 func _ready() -> void:
 	team = Globals.get_team(team_string)	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	$CamPivot/Camera3D.current = false
-	
-	$Camera3DFollow.current = true
+	#$CamPivot/Camera3D.current = false
+	current_cam.current = true
 	$SpringArm3D.rotation.x = -deg_to_rad(topdown_angle)
-	$Camera3DFollow.rotation.x = -deg_to_rad(topdown_angle)
+	current_cam.rotation.x = -deg_to_rad(topdown_angle)
 	$SpringArm3D.spring_length = topdown_distance
 	GameManager.connect("reset_level", Callable(self, "respawn"))
 	
@@ -350,18 +364,16 @@ func _physics_process(delta: float) -> void:
 		else:
 			jump_time = 0
 		
-	#camera
-	#preventing looking behind objects
-	$CamPivot/Camera3D.position = lerp($CamPivot/Camera3D.position, $CamPivot/SpringArm3D/CamPos.position, 15*delta)
-	#OLD
-	
+
 	#$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$SpringArm3D.global_position = global_position
 
-	$Camera3DFollow.global_position = lerp($Camera3DFollow.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
+	current_cam.global_position = lerp(current_cam.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
 	update_animations(delta)
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("select_primary"):
+		get_raymousepos()
 	#using items
 	for item_location in Globals.player_item_locations:
 		var item_location_ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
@@ -401,7 +413,7 @@ func _process(delta: float) -> void:
 	if facing_direction != target_facing_direction:
 		facing_direction = lerp_angle(last_set_rotation, target_facing_direction, time_last_rotated/rotation_time)
 	$SpringArm3D.rotation.y = facing_direction
-	$Camera3DFollow.rotation.y = facing_direction
+	current_cam.rotation.y = facing_direction
 
 func die():
 	pass
