@@ -27,6 +27,7 @@ window/size/viewport_height=2000
 [file_customization]
 
 folder_colors={
+"res://Blender/": "orange",
 "res://Components/": "purple",
 "res://Enemy/": "red",
 "res://Environment/": "orange",
