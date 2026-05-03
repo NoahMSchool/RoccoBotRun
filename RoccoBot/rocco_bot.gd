@@ -375,6 +375,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("select_primary"):
 		get_raymousepos()
 	#using items
+	"""
 	for item_location in Globals.player_item_locations:
 		var item_location_ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
 		if Input.is_action_just_pressed(item_location.swap_action):
@@ -392,6 +393,7 @@ func _physics_process(delta: float) -> void:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
 	update_HUD()
+	"""
 func _process(delta: float) -> void:
 	time_last_rotated += delta
 	time_last_rotated = min(time_last_rotated, rotation_time)
