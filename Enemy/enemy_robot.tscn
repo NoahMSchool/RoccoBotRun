@@ -1,13 +1,15 @@
-[gd_scene load_steps=25 format=4 uid="uid://jtm38tyo8fqf"]
+[gd_scene load_steps=27 format=4 uid="uid://jtm38tyo8fqf"]
 
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="1_5qop7"]
 [ext_resource type="Script" path="res://Scripts/enemy_robot.gd" id="1_xjh2w"]
 [ext_resource type="PackedScene" uid="uid://b0ymtfwpm8xae" path="res://HealthBar.tscn" id="3_uli57"]
 [ext_resource type="PackedScene" uid="uid://dgmhajb66a61j" path="res://Components/health_component.tscn" id="4_gdwyv"]
 [ext_resource type="PackedScene" uid="uid://bwsxqfvb48ic6" path="res://Components/damagable_component.tscn" id="5_ogs8y"]
+[ext_resource type="PackedScene" uid="uid://bvi7gilhhxvy7" path="res://Blender/OtherRobots.blend" id="6_35kx3"]
 [ext_resource type="Material" uid="uid://c7yxqtch7isnw" path="res://Enemy/EnemyRobotMat.tres" id="6_l0hr1"]
 [ext_resource type="ArrayMesh" uid="uid://3yxtr38sb7ny" path="res://Enemy/enemy_robot_cap_mesh.tres" id="7_aogt8"]
 [ext_resource type="ArrayMesh" uid="uid://d8oybltdyk2o" path="res://Enemy/enemy_robot_body_mesh.tres" id="8_aujd6"]
+[ext_resource type="Material" uid="uid://cma5xeaj2rxuy" path="res://Materials/red_laser_mat.tres" id="8_epv8f"]
 [ext_resource type="Material" uid="uid://cm0paif0htais" path="res://MatteBlack.tres" id="8_pc0f8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_68edu"]
@@ -204,40 +206,70 @@ health_bar = NodePath("../SubViewport/HealthBar")
 [node name="DamagableComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_ogs8y")]
 health_component = NodePath("../HealthComponent")
 
+[node name="OtherRobots" parent="." instance=ExtResource("6_35kx3")]
+
+[node name="EnemyRoboEyeCase" parent="OtherRobots" index="0"]
+surface_material_override/0 = ExtResource("6_l0hr1")
+
+[node name="EnemyRoboHead" parent="OtherRobots" index="1"]
+surface_material_override/0 = ExtResource("6_l0hr1")
+
+[node name="EnemyRoboCap" parent="OtherRobots" index="2"]
+surface_material_override/0 = ExtResource("6_l0hr1")
+
+[node name="EnemyRoboBody" parent="OtherRobots" index="3"]
+surface_material_override/0 = ExtResource("6_l0hr1")
+surface_material_override/1 = ExtResource("6_l0hr1")
+
+[node name="EnemyRoboEye" parent="OtherRobots" index="4"]
+surface_material_override/0 = ExtResource("8_epv8f")
+
+[node name="EnemyRoboWheels" parent="OtherRobots" index="5"]
+surface_material_override/0 = ExtResource("6_l0hr1")
+
 [node name="MeshContainer" type="Node3D" parent="."]
 transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
+visible = false
 
 [node name="EnemyRoboEyeCase" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(0.05, 0, 0, 0, 0, -0.05, 0, 0.025, 0, 0, 0.4, 0.2)
 material_override = ExtResource("6_l0hr1")
 mesh = SubResource("ArrayMesh_77dkb")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboHead" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.3, 0)
 material_override = ExtResource("6_l0hr1")
 mesh = SubResource("ArrayMesh_k1pm6")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboCap" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.45, 0)
 material_override = ExtResource("6_l0hr1")
 mesh = ExtResource("7_aogt8")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboBody" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.15, 0)
 material_override = ExtResource("6_l0hr1")
 mesh = ExtResource("8_aujd6")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboEye" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(0.045, 0, 0, 0, 0, -0.045, 0, 0.045, 0, 0, 0.4, 0.23)
 mesh = SubResource("ArrayMesh_rvfil")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboWheels" type="MeshInstance3D" parent="MeshContainer"]
 transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
 material_override = ExtResource("8_pc0f8")
 mesh = SubResource("ArrayMesh_uac31")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("6_l0hr1")
+
+[editable path="OtherRobots"]

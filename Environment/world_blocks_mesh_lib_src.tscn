@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj8ro058qfldc"]
+
+[ext_resource type="PackedScene" uid="uid://cpydhd8xbvlcy" path="res://Blender/worldblocks.blend" id="1_hoeqi"]
+
+[node name="WorldBlocksMeshLibSrc" type="Node3D"]
+
+[node name="worldblocks" parent="." instance=ExtResource("1_hoeqi")]
