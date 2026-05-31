@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtkushob8ycvx"
-path.s3tc="res://.godot/imported/dirty_rust_color.png-04c2cf569bf2e451d6c6c52cab34773d.s3tc.ctex"
+uid="uid://cq1rt44v3lqbm"
+path.s3tc="res://.godot/imported/brick_color.png-5606eadeb90c27f2e7c81ace3e8a4ed7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Blender/textures/dirty_rust_color.png"
-dest_files=["res://.godot/imported/dirty_rust_color.png-04c2cf569bf2e451d6c6c52cab34773d.s3tc.ctex"]
+source_file="res://brick_color.png"
+dest_files=["res://.godot/imported/brick_color.png-5606eadeb90c27f2e7c81ace3e8a4ed7.s3tc.ctex"]
 
 [params]
 

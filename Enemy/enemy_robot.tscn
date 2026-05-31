@@ -9,7 +9,7 @@
 [ext_resource type="Material" uid="uid://c7yxqtch7isnw" path="res://Enemy/EnemyRobotMat.tres" id="6_l0hr1"]
 [ext_resource type="ArrayMesh" uid="uid://3yxtr38sb7ny" path="res://Enemy/enemy_robot_cap_mesh.tres" id="7_aogt8"]
 [ext_resource type="ArrayMesh" uid="uid://d8oybltdyk2o" path="res://Enemy/enemy_robot_body_mesh.tres" id="8_aujd6"]
-[ext_resource type="Material" uid="uid://cma5xeaj2rxuy" path="res://Materials/red_laser_mat.tres" id="8_epv8f"]
+[ext_resource type="Material" uid="uid://bi8es3b638jga" path="res://Materials/pink_laser_mat.tres" id="8_i2b5w"]
 [ext_resource type="Material" uid="uid://cm0paif0htais" path="res://MatteBlack.tres" id="8_pc0f8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_68edu"]
@@ -178,7 +178,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 shape = SubResource("CylinderShape3D_ayg46")
 
 [node name="LaserCannon" parent="." instance=ExtResource("1_5qop7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.5)
 target_group = "player"
 max_charge = 24
 regen_cooldown = 1.0
@@ -222,7 +222,7 @@ surface_material_override/0 = ExtResource("6_l0hr1")
 surface_material_override/1 = ExtResource("6_l0hr1")
 
 [node name="EnemyRoboEye" parent="OtherRobots" index="4"]
-surface_material_override/0 = ExtResource("8_epv8f")
+surface_material_override/0 = ExtResource("8_i2b5w")
 
 [node name="EnemyRoboWheels" parent="OtherRobots" index="5"]
 surface_material_override/0 = ExtResource("6_l0hr1")

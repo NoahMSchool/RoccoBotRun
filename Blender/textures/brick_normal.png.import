@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtkushob8ycvx"
-path.s3tc="res://.godot/imported/dirty_rust_color.png-04c2cf569bf2e451d6c6c52cab34773d.s3tc.ctex"
+uid="uid://81phs5kpfx33"
+path.s3tc="res://.godot/imported/brick_normal.png-42b6435f26ddf09cf2904fa5cbc88909.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Blender/textures/dirty_rust_color.png"
-dest_files=["res://.godot/imported/dirty_rust_color.png-04c2cf569bf2e451d6c6c52cab34773d.s3tc.ctex"]
+source_file="res://Blender/textures/brick_normal.png"
+dest_files=["res://.godot/imported/brick_normal.png-42b6435f26ddf09cf2904fa5cbc88909.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Blender/textures/brick_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

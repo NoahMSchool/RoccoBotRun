@@ -2522,100 +2522,119 @@ health_component = NodePath("HealthComponent")
 damagable_component = NodePath("DamagableComponent")
 air_control_default = 8
 
-[node name="Rocco" parent="." instance=ExtResource("2_y8xuh")]
+[node name="Character" parent="." instance=ExtResource("2_y8xuh")]
 
-[node name="Skeleton3D" parent="Rocco/RoccoBotRig" index="0"]
+[node name="Skeleton3D" parent="Character/RoccoBotRig" index="0"]
+bones/1/position = Vector3(-2.75293e-07, 0.13, -0.32)
+bones/1/rotation = Quaternion(-0.67559, 3.40808e-07, 2.6918e-07, 0.737277)
+bones/2/rotation = Quaternion(-0.0871557, -1.67466e-14, 2.65893e-14, 0.996195)
+bones/3/rotation = Quaternion(3.72529e-09, -7.18326e-15, -8.86724e-16, 1)
 bones/4/rotation = Quaternion(-0.518139, -0.481178, -0.481178, 0.518139)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(1.87337e-09, 3.48534e-08, -0.0738717, 0.997268)
-bones/6/rotation = Quaternion(-3.74466e-10, 3.90568e-10, 0.0369611, 0.999317)
+bones/5/rotation = Quaternion(1.98358e-09, 3.30389e-08, -0.0738717, 0.997268)
+bones/6/rotation = Quaternion(-6.78855e-10, -3.34853e-09, 0.0369611, 0.999317)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-7.34635e-08, 0.0369612, 0.999317, 2.48208e-08)
-bones/7/scale = Vector3(1, 1, 1.00001)
-bones/8/rotation = Quaternion(-0.0738712, 1.93956e-09, 3.08623e-08, 0.997268)
+bones/7/rotation = Quaternion(-9.28239e-08, 0.00227622, 0.999997, 2.49442e-08)
+bones/7/scale = Vector3(1, 1, 1.00002)
+bones/8/rotation = Quaternion(-0.00245707, 1.94481e-09, 1.02674e-09, 0.999997)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.626175, 4.06533e-07, 3.60817e-07, 0.779683)
-bones/10/rotation = Quaternion(4.56644e-08, 0.0369612, 0.999317, 2.92269e-08)
-bones/10/scale = Vector3(1, 1, 1.00001)
-bones/11/rotation = Quaternion(-0.0738712, 3.36393e-08, 4.61266e-08, 0.997268)
+bones/9/rotation = Quaternion(0.561516, 4.54828e-07, 3.90141e-07, 0.827466)
+bones/10/rotation = Quaternion(-2.24066e-08, 0.00227618, 0.999997, 8.35971e-10)
+bones/10/scale = Vector3(1, 1, 1.00002)
+bones/11/rotation = Quaternion(-0.00245707, 3.37313e-08, 1.53458e-09, 0.999997)
 bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.561516, -4.40989e-07, -2.72157e-07, 0.827466)
+bones/13/position = Vector3(0.47, 0.24, 2.40035e-08)
 bones/14/rotation = Quaternion(-0.518139, 0.481178, 0.481178, 0.518139)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(1.58004e-09, -3.83245e-08, 0.0738717, 0.997268)
-bones/16/rotation = Quaternion(-3.65797e-10, -6.45289e-10, -0.0369611, 0.999317)
+bones/15/rotation = Quaternion(1.76285e-09, -3.47642e-08, 0.0738717, 0.997268)
+bones/16/rotation = Quaternion(-5.11406e-10, 3.08793e-09, -0.0369611, 0.999317)
+bones/17/position = Vector3(-0.47, 0.24, -3.33167e-08)
 bones/17/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
+bones/18/rotation = Quaternion(0.5, 0.5, -0.5, -0.499999)
+bones/19/rotation = Quaternion(1.80745e-14, 2.7818e-08, 1.11755e-08, 1)
+bones/20/rotation = Quaternion(-1.06578e-14, -2.22051e-15, 5.90048e-28, 1)
+bones/21/rotation = Quaternion(3.90802e-14, -2.6646e-15, -5.601e-20, 1)
+bones/22/rotation = Quaternion(-8.52648e-14, 1.7763e-15, 1.49012e-08, 1)
+bones/23/rotation = Quaternion(2.50173e-14, -8.14178e-15, -2.98023e-08, 1)
+bones/24/position = Vector3(3.17865e-08, 0.07, -0.5)
+bones/25/position = Vector3(0.075, 0.02, -8.88108e-08)
+bones/25/rotation = Quaternion(-7.5808e-08, 0.996195, 0.0871557, -6.77106e-07)
 bones/26/rotation = Quaternion(-0.145213, 3.2252e-07, -3.35323e-08, 0.9894)
+bones/28/position = Vector3(-0.075, 0.02, 4.1127e-08)
+bones/28/rotation = Quaternion(-3.42489e-08, 0.996195, 0.0871557, -2.02083e-07)
 bones/29/rotation = Quaternion(-0.145213, -2.98657e-07, 1.96123e-07, 0.9894)
+bones/31/position = Vector3(-6.01211e-07, 0.35, -0.6)
 
-[node name="Body" parent="Rocco/RoccoBotRig/Skeleton3D" index="0"]
+[node name="Body" parent="Character/RoccoBotRig/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Eyes" parent="Rocco/RoccoBotRig/Skeleton3D" index="1"]
+[node name="Eyes" parent="Character/RoccoBotRig/Skeleton3D" index="1"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Head" parent="Rocco/RoccoBotRig/Skeleton3D" index="2"]
+[node name="Head" parent="Character/RoccoBotRig/Skeleton3D" index="2"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="LeftArm" parent="Rocco/RoccoBotRig/Skeleton3D" index="3"]
+[node name="LeftArm" parent="Character/RoccoBotRig/Skeleton3D" index="3"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="LeftFoot" parent="Rocco/RoccoBotRig/Skeleton3D" index="4"]
+[node name="LeftFoot" parent="Character/RoccoBotRig/Skeleton3D" index="4"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="LeftLeg" parent="Rocco/RoccoBotRig/Skeleton3D" index="5"]
-surface_material_override/0 = ExtResource("2_jq3y0")
-surface_material_override/1 = ExtResource("2_jq3y0")
-
-[node name="LeftPaw" parent="Rocco/RoccoBotRig/Skeleton3D" index="6"]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="Mouth" parent="Rocco/RoccoBotRig/Skeleton3D" index="7"]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="Neck" parent="Rocco/RoccoBotRig/Skeleton3D" index="8"]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="Nose" parent="Rocco/RoccoBotRig/Skeleton3D" index="9"]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="RightArm" parent="Rocco/RoccoBotRig/Skeleton3D" index="10"]
+[node name="LeftLeg" parent="Character/RoccoBotRig/Skeleton3D" index="5"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="RightFoot" parent="Rocco/RoccoBotRig/Skeleton3D" index="11"]
+[node name="LeftPaw" parent="Character/RoccoBotRig/Skeleton3D" index="6"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="RightLeg" parent="Rocco/RoccoBotRig/Skeleton3D" index="12"]
+[node name="Mouth" parent="Character/RoccoBotRig/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="Neck" parent="Character/RoccoBotRig/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="Nose" parent="Character/RoccoBotRig/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="RightArm" parent="Character/RoccoBotRig/Skeleton3D" index="10"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="RightPaw" parent="Rocco/RoccoBotRig/Skeleton3D" index="13"]
+[node name="RightFoot" parent="Character/RoccoBotRig/Skeleton3D" index="11"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="Tail" parent="Rocco/RoccoBotRig/Skeleton3D" index="14"]
+[node name="RightLeg" parent="Character/RoccoBotRig/Skeleton3D" index="12"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Whiskers" parent="Rocco/RoccoBotRig/Skeleton3D" index="15"]
+[node name="RightPaw" parent="Character/RoccoBotRig/Skeleton3D" index="13"]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="InventoryItems" type="Node3D" parent="Rocco"]
+[node name="Tail" parent="Character/RoccoBotRig/Skeleton3D" index="14"]
+surface_material_override/0 = ExtResource("2_jq3y0")
+surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="TailRestTarget" type="Node3D" parent="Rocco"]
+[node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="15"]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="InventoryItems" type="Node3D" parent="Character"]
+
+[node name="TailRestTarget" type="Node3D" parent="Character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.5)
 
-[node name="TailIKTarget" type="Node3D" parent="Rocco"]
+[node name="TailIKTarget" type="Node3D" parent="Character"]
 top_level = true
 script = ExtResource("9_baf7l")
 
-[node name="RightArmAimIKTarget" type="Node3D" parent="Rocco"]
+[node name="RightArmAimIKTarget" type="Node3D" parent="Character"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 0, -0.3)
 
-[node name="LeftArmAimIKTarget" type="Node3D" parent="Rocco"]
+[node name="LeftArmAimIKTarget" type="Node3D" parent="Character"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.5, 0, -0.3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -2990,7 +3009,7 @@ surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
 [node name="FaceAttatch" type="BoneAttachment3D" parent="Skeleton3D"]
-transform = Transform3D(1, -5.68434e-14, -6.50028e-19, 5.68434e-14, 1, -4.4081e-39, 6.50028e-19, -3.69498e-32, 1, 6.19593e-13, 0.5, -3.69498e-33)
+transform = Transform3D(1, -5.68434e-14, -6.50028e-19, 5.68434e-14, 1, -2.93874e-39, 6.50028e-19, -3.69498e-32, 1, 2.50111e-13, 0.5, -3.69498e-33)
 bone_name = "head"
 bone_idx = 3
 
@@ -3023,7 +3042,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_jq3y0")
 
 [node name="RightItemAttatch" type="BoneAttachment3D" parent="Skeleton3D"]
-transform = Transform3D(-4.84288e-07, -1, 6.8798e-09, 1.49012e-08, 6.87979e-09, 1, -1, 4.54485e-07, 1.49012e-08, -0.47, 0.24, 7.35745e-08)
+transform = Transform3D(-3.57628e-07, -1, 6.87978e-09, 1.49012e-08, 6.87978e-09, 1, -1, 3.8743e-07, 1.49012e-08, -0.47, 0.24, 6.79865e-08)
 bone_name = "hand.R"
 bone_idx = 16
 
@@ -3031,7 +3050,7 @@ bone_idx = 16
 transform = Transform3D(1, 0, 8.52651e-14, 0, -4.37114e-08, -1, 1.77636e-15, 1, -4.37114e-08, 0, 0.15, 0)
 
 [node name="LeftItemAttatch" type="BoneAttachment3D" parent="Skeleton3D"]
-transform = Transform3D(-4.84288e-07, 1, -6.87991e-09, -1.49012e-08, 6.8799e-09, 1, 1, 4.54485e-07, 1.49012e-08, 0.47, 0.24, 7.35745e-08)
+transform = Transform3D(-3.57628e-07, 1, -6.8799e-09, -1.49012e-08, 6.8799e-09, 1, 1, 3.8743e-07, 1.49012e-08, 0.47, 0.24, 6.79865e-08)
 bone_name = "hand.L"
 bone_idx = 6
 
@@ -3041,21 +3060,21 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1
 [node name="TailIK" type="SkeletonIK3D" parent="Skeleton3D"]
 root_bone = &"tail1"
 tip_bone = &"tail6"
-target_node = NodePath("../../Rocco/TailIKTarget")
+target_node = NodePath("../../Character/TailIKTarget")
 script = ExtResource("7_b723h")
 
 [node name="RightAimIK" type="SkeletonIK3D" parent="Skeleton3D"]
 root_bone = &"upper_arm.R"
 tip_bone = &"hand.R"
 use_magnet = true
-target_node = NodePath("../../Rocco/RightArmAimIKTarget")
+target_node = NodePath("../../Character/RightArmAimIKTarget")
 script = ExtResource("8_fjiog")
 
 [node name="LeftAimIK" type="SkeletonIK3D" parent="Skeleton3D"]
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
 use_magnet = true
-target_node = NodePath("../../Rocco/LeftArmAimIKTarget")
+target_node = NodePath("../../Character/LeftArmAimIKTarget")
 script = ExtResource("8_fjiog")
 
-[editable path="Rocco"]
+[editable path="Character"]

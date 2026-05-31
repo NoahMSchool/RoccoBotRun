@@ -1,12 +1,16 @@
 extends CharacterBody3D
 
-@onready var skeleton : Skeleton3D = $Object/Skeleton3D
+@onready var skeleton : Skeleton3D = $Character/RoccoBotRig/Skeleton3D
 @onready var anim_player = $AnimationPlayer
 @onready var anim_blend_tree = $AnimationTree
 
 @onready var right_aim_ik: SkeletonIK3D = $Object/Skeleton3D/RightAimIK
 @onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
+var item_locations = [
+	PlayerItemLocation.new("Character/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/LeftAimIK"),
+	PlayerItemLocation.new("Object/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/RightAimIK"), 
+	]
 
 enum Modifiers {
 	ICEFEET
@@ -194,7 +198,7 @@ func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene, team.accent_color)
 	print(team, team.accent_color, team.group)
 	configured_item.set_enabled(false)
-	$Object/InventoryItems.add_child(configured_item)
+	$Character/InventoryItems.add_child(configured_item)
 	auto_equip_items()
 
 func remove_item(item_location : PlayerItemLocation):
@@ -208,9 +212,9 @@ func get_equiped_item(item_location : PlayerItemLocation):
 		return slot_node.get_child(0)
 
 func auto_equip_items():
-	var first_inventory_item = $Object/InventoryItems.get_child(0)
+	var first_inventory_item = $Character/InventoryItems.get_child(0)
 	if first_inventory_item:
-		for item_location in Globals.player_item_locations:
+		for item_location in item_locations:
 			var slot_node = get_node_or_null(item_location.node_path)
 			if slot_node and slot_node.get_child(0) == null:
 				equip_item(first_inventory_item, item_location)
@@ -233,7 +237,7 @@ func equip_item(item : Item, item_location : PlayerItemLocation):
 func unequip_item(item_location : PlayerItemLocation):
 	var item = get_equiped_item(item_location)
 	if item:
-		item.reparent($Object/InventoryItems, false)
+		item.reparent($Character/InventoryItems, false)
 		var cb = Callable(self, "foreground_item").bind(item_location)
 		item.disconnect("item_foregrounded", cb)
 
@@ -243,7 +247,7 @@ func update_HUD():
 	var inventory_items : Array = get_inventory_items()
 	var equipped_items : Array = []
 	
-	for item_location in Globals.player_item_locations:
+	for item_location in item_locations:
 		var slot_node = get_node_or_null(item_location.node_path)
 		if slot_node and slot_node.get_child_count()>0:
 			var item = slot_node.get_child(0)
@@ -253,7 +257,7 @@ func update_HUD():
 	
 
 func get_inventory_items() -> Array:
-	return $Object/InventoryItems.get_children()
+	return $Character/InventoryItems.get_children()
 
 func get_raymousepos():
 	var mouse_pos : Vector2 = get_viewport().get_mouse_position()
@@ -293,7 +297,6 @@ func _physics_process(delta: float) -> void:
 	var direction = ($SpringArm3D.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if input_dir != Vector2.ZERO:
-		#$Object.rotation_degrees.y = $CamPivot.rotation_degrees.y - rad_to_deg(input_dir.angle())-90
 		rotation.y = atan2(direction.x, direction.z)+PI
 	#air logic
 	if not is_on_floor():
@@ -376,10 +379,10 @@ func _physics_process(delta: float) -> void:
 		get_raymousepos()
 	#using items
 	"""
-	for item_location in Globals.player_item_locations:
+	for item_location in item_locations:
 		var item_location_ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
 		if Input.is_action_just_pressed(item_location.swap_action):
-			var first_inventory_item = $Object/InventoryItems.get_child(0)
+			var first_inventory_item = $Character/InventoryItems.get_child(0)
 			
 			if first_inventory_item:
 				equip_item(first_inventory_item, item_location)

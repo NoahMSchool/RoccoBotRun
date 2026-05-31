@@ -1,11 +1,5 @@
 extends Node
 
-
-var player_item_locations = [
-	PlayerItemLocation.new("Object/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/LeftAimIK"),
-	PlayerItemLocation.new("Object/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/RightAimIK"), 
-	]
-
 var teams = {
 	"neutral" : Team.new("neutral", "white"),
 	"player" : Team.new("player", "blue"),
