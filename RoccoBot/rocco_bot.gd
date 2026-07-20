@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 @onready var skeleton : Skeleton3D = $Character/RoccoBotRig/Skeleton3D
 @onready var anim_player = $Character/AnimationPlayer
-@onready var anim_blend_tree = $AnimationTree
+@onready var anim_blend_tree = $Character/AnimationTree
 
-@onready var right_aim_ik: SkeletonIK3D = $Object/Skeleton3D/RightAimIK
-@onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
+#@onready var right_aim_ik: SkeletonIK3D = $Object/Skeleton3D/RightAimIK
+#@onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
 var item_locations = [
 	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftAimIK"),
