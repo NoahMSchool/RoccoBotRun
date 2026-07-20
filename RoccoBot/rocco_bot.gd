@@ -1,15 +1,15 @@
 extends CharacterBody3D
 
 @onready var skeleton : Skeleton3D = $Character/RoccoBotRig/Skeleton3D
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player = $Character/AnimationPlayer
 @onready var anim_blend_tree = $AnimationTree
 
 @onready var right_aim_ik: SkeletonIK3D = $Object/Skeleton3D/RightAimIK
 @onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
 var item_locations = [
-	PlayerItemLocation.new("Character/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/LeftAimIK"),
-	PlayerItemLocation.new("Object/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Object/Skeleton3D/RightAimIK"), 
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftAimIK"),
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/RightAimIK"), 
 	]
 
 enum Modifiers {
@@ -19,6 +19,8 @@ enum Modifiers {
 var active_effects : Array[Modifiers] = []
 var interactable_items : Array[Node3D]
 
+
+#animation
 enum AnimState {IDLE, WALK, CROUCH_WALK, CROUCH, ASC, DESC, FALLING}
 var current_anim : AnimState = AnimState.IDLE
 var blend_speed = 5
@@ -30,9 +32,9 @@ var descend_val : float = 0
 var ascend_val : float = 0
 var crouch_val : float = 0
 
-
+#camera rotation
 const rotation_time = 0.25
-const rotation_increment : float = PI/2
+const rotation_increment : float = PI/4
 var target_facing_direction : float = 0
 var facing_direction : float = 0
 var time_last_rotated : float = 0
@@ -55,7 +57,7 @@ var target_pos : Vector3
 #GoTo Line 250 to swich camera being used
 @onready var current_cam = $Camera3DFollow
 @export var camangle : float = 0
-@export var topdown_angle : float = 45
+@export var topdown_angle : float = 045
 @export var topdown_distance : float = 7.5
 
 @export var item_pullout : = 15
@@ -185,7 +187,7 @@ func update_effects():
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
-	var ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
+	var ik : SkeletonModifier3D = get_node_or_null(item_location.targeting_IK_path)
 	if ik.influence == 1.0:
 		if is_release:
 			item.release_item()
@@ -282,11 +284,7 @@ func _ready() -> void:
 	$SpringArm3D.rotation.x = -deg_to_rad(topdown_angle)
 	current_cam.rotation.x = -deg_to_rad(topdown_angle)
 	$SpringArm3D.spring_length = topdown_distance
-	GameManager.connect("reset_level", Callable(self, "respawn"))
-	
-	var anim_player : AnimationPlayer = $AnimationPlayer
-	var old_root = "RoccobotRig/Skeleton3D"
-	var new_root = "Object/RoccobotRig/Skeleton3D"
+	GameManager.connect("reset_level", Callable(self, "respawn"))	
 
 func _physics_process(delta: float) -> void:
 	#print(anim_player.current_animation)
@@ -370,6 +368,7 @@ func _physics_process(delta: float) -> void:
 
 	#$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$SpringArm3D.global_position = global_position
+	print(current_anim)
 
 	current_cam.global_position = lerp(current_cam.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
 	update_animations(delta)
@@ -378,9 +377,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("select_primary"):
 		get_raymousepos()
 	#using items
-	"""
+	
 	for item_location in item_locations:
-		var item_location_ik : SkeletonIK3D = get_node_or_null(item_location.targeting_IK_path)
+		var item_location_ik : SkeletonModifier3D = get_node_or_null(item_location.targeting_IK_path)
 		if Input.is_action_just_pressed(item_location.swap_action):
 			var first_inventory_item = $Character/InventoryItems.get_child(0)
 			
@@ -396,7 +395,7 @@ func _physics_process(delta: float) -> void:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
 	update_HUD()
-	"""
+	
 func _process(delta: float) -> void:
 	time_last_rotated += delta
 	time_last_rotated = min(time_last_rotated, rotation_time)
@@ -405,12 +404,12 @@ func _process(delta: float) -> void:
 			i.interact()
 			print(i)
 	if Input.is_action_just_pressed("rightarrow"):
-		target_facing_direction -=PI/2
+		target_facing_direction -=rotation_increment
 		time_last_rotated = 0
 		last_set_rotation = facing_direction
 		#target_facing_direction = snappedf(target_facing_direction, PI/2)
 	if Input.is_action_just_pressed("leftarrow"):
-		target_facing_direction+=PI/2
+		target_facing_direction+=rotation_increment
 		time_last_rotated = 0
 		last_set_rotation = facing_direction
 		#target_facing_direction = snappedf(target_facing_direction, PI/2)

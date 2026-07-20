@@ -3,6 +3,7 @@ extends Node3D
 @export var tail_speed = 2.5
 
 @onready var rest_target = $"../TailRestTarget"
+@onready var rocco_bot: CharacterBody3D = $"../.."
 
 func _ready() -> void:
 	global_position = rest_target.global_position
@@ -17,7 +18,7 @@ func _process(delta: float) -> void:
 	global_position.y = lerpf(old_pos.y, rest_target.global_position.y, delta*tail_speed)
 	global_position.z = lerpf(old_pos.z, rest_target.global_position.z, delta*tail_speed)
 	
-	position.x += 0.0025*sin(cycle)
-	position.y += 0.001*cos(cycle)
+	global_position += 0.0025*sin(cycle) * (rocco_bot.transform.basis.x.normalized())
+	global_position.y += 0.001*cos(cycle)
 	
 	look_at(old_pos)

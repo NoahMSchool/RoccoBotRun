@@ -2,8 +2,8 @@
 extends EditorScript
 
 #var old_path = "RoccoBotRig/Skeleton3D"
-var old_path = "Object/Skeleton"
-var new_path = "Object/Skeleton3D"
+var old_path = "Object/Skeleton3D"
+var new_path = "Character/RoccoBotRig/Skeleton3D"
 
 func _run() -> void:
 	var scene = get_scene()

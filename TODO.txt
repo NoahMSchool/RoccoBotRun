@@ -59,5 +59,6 @@ Add pathing to enemy robot
 
 
 Make itemcrate use interactable component
-Camera rotate in 90 degree increments using arrows
 Allow control of targetting by making arms aim in different directions
+
+Make A camera viewing object system to focus on targets

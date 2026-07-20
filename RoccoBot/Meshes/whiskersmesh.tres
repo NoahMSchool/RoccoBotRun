@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://ds22q867i704o"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://ds22q867i704o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykcct"]
 resource_name = "Titanium"

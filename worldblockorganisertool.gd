@@ -67,6 +67,7 @@ func generate_mesh_library():
 		var block_name = block_ref.name
 		var block_mesh : Mesh = block_ref.mesh
 		var block_material = block_ref.get_active_material(0).duplicate() # block_ref.mesh.surface_get_material(0).duplicate()
+		
 		print(block_material)
 		#block_mesh.surface_set_material(0, block_material)
 		var block_col_shape = block_ref.get_child(0).get_child(0).shape
@@ -85,7 +86,7 @@ func generate_mesh_library():
 		print(library.get_item_mesh(i))
 		library.set_item_shapes(i, [block_col_shape, Transform3D()])
 	#var library_export_path = file_path+file_name+".res"
-	var library_export_path = "res://Environment/world_blocks.res"
+	var library_export_path = "res://Environment/world_blocks3.res"
 	var error = ResourceSaver.save(library, library_export_path)#, ResourceSaver.FLAG_BUNDLE_RESOURCES
 	print(error == 0)
 	
