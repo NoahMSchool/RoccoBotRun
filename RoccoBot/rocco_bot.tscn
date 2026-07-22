@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dgbo77vv6x77c" path="res://RoccoBot/rocco_bot.gd" id="1_x72y6"]
 [ext_resource type="Material" uid="uid://blk5s0kp3yr2i" path="res://RoccoBot/RoccoBot_Metal_material.tres" id="2_jq3y0"]
 [ext_resource type="PackedScene" uid="uid://blsilcdno71x8" path="res://Blender/RoccoBotRig.blend" id="2_y8xuh"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://beprffrfd7j2h" path="res://RoccoBot/roccobot_animation_blend_tree.tres" id="3_2orn4"]
 [ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://RoccoBot/Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
 [ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="4_6fyap"]
 [ext_resource type="Script" uid="uid://b6wff7giijf2a" path="res://Components/damagable_component.gd" id="4_coywe"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cr3tjjry2jfkp" path="res://RoccoBot/roccobot_transision_animation_blend_tree.tres" id="5_6fyap"]
 [ext_resource type="Script" uid="uid://xvwxx385sjpl" path="res://Components/health_component.gd" id="5_oixeu"]
 [ext_resource type="Script" uid="uid://cgfnfufsy002e" path="res://RoccoBot/tail_ik_target.gd" id="9_baf7l"]
 
@@ -33,36 +33,38 @@ air_control_default = 8
 [node name="Character" parent="." unique_id=1713808702 instance=ExtResource("2_y8xuh")]
 
 [node name="Skeleton3D" parent="Character/RoccoBotRig" parent_id_path=PackedInt32Array(1713808702, 1185804411) index="0" unique_id=1958528734]
-bones/1/position = Vector3(-2.3388792e-07, 0.099999994, -0.27)
-bones/1/rotation = Quaternion(-0.7071068, 3.2874263e-07, 2.8378975e-07, 0.7071068)
-bones/2/rotation = Quaternion(-4.291502e-21, -1.0663706e-26, 2.842171e-14, 1)
-bones/3/rotation = Quaternion(5.6797985e-26, -3.63032e-40, 1.4513698e-27, 1)
-bones/4/rotation = Quaternion(-0.6514638, -0.27494532, -0.6293732, 0.32231876)
-bones/5/rotation = Quaternion(-0.2588191, 3.1664968e-08, -0.07135451, 0.96328664)
-bones/6/rotation = Quaternion(6.9631922e-09, 1.7399601e-10, 0.0369611, 0.9993167)
-bones/7/rotation = Quaternion(-8.261171e-08, 0.23826592, 0.9712, 1.398233e-08)
-bones/7/scale = Vector3(1, 1.000002, 1.0000201)
-bones/8/rotation = Quaternion(-0.46280566, -1.299491e-08, -5.4172133e-09, 0.8864598)
-bones/9/rotation = Quaternion(0.7708965, 3.3828496e-07, 4.5637773e-07, 0.63696057)
-bones/10/rotation = Quaternion(-1.7064504e-08, 0.23826587, 0.9712, 5.4707435e-08)
-bones/10/scale = Vector3(1, 1.000002, 1.0000203)
-bones/11/rotation = Quaternion(-0.46280566, 1.5182854e-08, 9.021336e-08, 0.8864598)
-bones/11/scale = Vector3(1, 1.0000046, 0.99999547)
-bones/12/rotation = Quaternion(0.77089643, -3.5731406e-07, -4.4250626e-07, 0.63696045)
-bones/13/position = Vector3(0.47000003, 0.24000007, 2.9879303e-08)
-bones/14/rotation = Quaternion(-0.65146387, 0.2749453, 0.6293732, 0.32231885)
-bones/15/rotation = Quaternion(-0.25881913, -4.0978193e-08, 0.071354516, 0.96328664)
-bones/16/rotation = Quaternion(-7.943177e-09, -7.730434e-10, -0.03696109, 0.9993167)
-bones/17/position = Vector3(-0.47, 0.24000007, -2.98793e-08)
+bones/1/position = Vector3(-2.7529333e-07, 0.13, -0.32000002)
+bones/1/rotation = Quaternion(-0.67559016, 3.408084e-07, 2.6918002e-07, 0.7372774)
+bones/2/rotation = Quaternion(-0.08715574, -1.674656e-14, 2.658934e-14, 0.9961948)
+bones/3/rotation = Quaternion(3.7252903e-09, -7.1832595e-15, -8.867242e-16, 1)
+bones/4/rotation = Quaternion(-0.5181389, -0.48117784, -0.48117787, 0.5181388)
+bones/5/rotation = Quaternion(1.9934232e-09, 3.4747654e-08, -0.07387169, 0.99726784)
+bones/6/rotation = Quaternion(-3.0313613e-10, -1.4052848e-09, 0.0369611, 0.9993167)
+bones/7/rotation = Quaternion(-8.7335295e-08, 0.0022762048, 0.9999975, 1.2747072e-08)
+bones/7/scale = Vector3(1, 1.0000004, 1.000022)
+bones/8/rotation = Quaternion(-0.0024570676, 1.9475712e-09, 1.0267273e-09, 0.9999971)
+bones/9/rotation = Quaternion(0.56151646, 4.5255308e-07, 3.7696196e-07, 0.82746553)
+bones/10/rotation = Quaternion(-1.6917985e-08, 0.0022761824, 0.9999975, -1.1361205e-08)
+bones/10/scale = Vector3(1, 1.0000004, 1.000022)
+bones/11/rotation = Quaternion(-0.002457075, 3.3734082e-08, 1.534572e-09, 0.9999971)
+bones/11/scale = Vector3(1, 0.9999988, 0.99999994)
+bones/12/rotation = Quaternion(0.56151646, -4.4326393e-07, -2.8533594e-07, 0.82746553)
+bones/13/position = Vector3(0.47, 0.24000007, 2.7728804e-08)
+bones/14/rotation = Quaternion(-0.51813895, 0.4811778, 0.48117775, 0.5181388)
+bones/15/rotation = Quaternion(2.1334388e-09, -3.819129e-08, 0.07387169, 0.99726784)
+bones/16/rotation = Quaternion(-6.248636e-10, 4.7634243e-09, -0.03696109, 0.9993167)
+bones/17/position = Vector3(-0.47000003, 0.24000007, -2.8427296e-08)
 bones/18/rotation = Quaternion(0.49999964, 0.50000054, -0.5000005, -0.49999952)
-bones/19/rotation = Quaternion(1.4211077e-14, 8.742279e-08, -4.7813977e-13, 1)
-bones/20/rotation = Quaternion(1.4211424e-14, -1.3526057e-19, -8.2355265e-14, 1)
-bones/21/rotation = Quaternion(7.1054856e-14, -1.3187244e-19, -6.1766476e-14, 1)
-bones/22/rotation = Quaternion(-1.4210795e-13, -1.2853725e-19, -4.1177423e-14, 1)
-bones/23/rotation = Quaternion(1.5632003e-13, -1.2520206e-19, -2.0589001e-14, 1)
-bones/24/position = Vector3(3.1786538e-08, 0.06999999, -0.5)
+bones/19/rotation = Quaternion(3.8783885e-15, 8.7422876e-08, 3.724915e-09, 1)
+bones/20/rotation = Quaternion(-3.5523927e-15, 2.708938e-14, -4.4045716e-20, 1)
+bones/21/rotation = Quaternion(3.9080172e-14, 2.8421648e-14, -5.939815e-20, 1)
+bones/22/rotation = Quaternion(-1.0658109e-13, 3.241845e-14, 2.1196992e-19, 1)
+bones/23/rotation = Quaternion(9.2370874e-14, 1.3322066e-15, -2.321576e-19, 1)
+bones/24/position = Vector3(3.1786485e-08, 0.069999985, -0.5)
 bones/25/position = Vector3(0.075, 0.020000001, -9.477119e-08)
+bones/25/rotation = Quaternion(-7.580798e-08, 0.9961948, 0.08715574, -6.7710585e-07)
 bones/28/position = Vector3(-0.075, 0.019999975, 3.5166543e-08)
+bones/28/rotation = Quaternion(-3.4248902e-08, 0.9961948, 0.08715574, -2.0208327e-07)
 bones/31/position = Vector3(-6.175034e-07, 0.40000004, -0.6)
 
 [node name="Body" parent="Character/RoccoBotRig/Skeleton3D" index="0" unique_id=1582752309]
@@ -179,14 +181,14 @@ settings/0/joints/5/limitation = null
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.4, 0.5, 0.2)
 
 [node name="RightItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="19" unique_id=1767716573]
-transform = Transform3D(3.4473032e-07, 0.34201977, 0.9396927, 1.4974087e-07, -0.93969256, 0.34202003, 0.9999999, 3.725291e-08, -5.046853e-07, 0.34958863, 0.29636532, -9.49949e-08)
+transform = Transform3D(4.917383e-07, 0.9999999, 5.2801212e-08, 0.08715578, -1.1521626e-07, 0.99619484, 0.9961946, -4.9904935e-07, -0.087155834, 0.4699999, 0.55908674, -0.050917614)
 bone_name = "hand.R"
 bone_idx = 16
 
 [node name="RightItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/RightItemAttatch" unique_id=799303014]
 
 [node name="LeftItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="20" unique_id=1378156194]
-transform = Transform3D(0.9280484, -0.013276761, -0.37222272, 0.37244704, 0.041220684, 0.92713755, 0.003033951, -0.99906164, 0.04319965, -0.32, 0.525, -0.17999992)
+transform = Transform3D(0.97629064, 0.0010663272, -0.21646148, 0.2164401, 0.010079428, 0.9762439, 0.0032228008, -0.9999487, 0.009609601, -0.31999996, 0.525, -0.17999999)
 bone_name = "hand.L"
 bone_idx = 6
 
@@ -199,14 +201,8 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0
 surface_material_override/0 = ExtResource("2_jq3y0")
 
 [node name="AnimationTree" type="AnimationTree" parent="Character" unique_id=1287787877]
-tree_root = ExtResource("3_2orn4")
+tree_root = ExtResource("5_6fyap")
 anim_player = NodePath("../AnimationPlayer")
-parameters/ascend/blend_amount = 0.0
-parameters/crouch/blend_amount = 0.0
-parameters/descend/blend_amount = 0.0
-parameters/falling/blend_amount = 0.0
-parameters/idle/blend_amount = 0.0
-parameters/walk/blend_amount = 0.0
 
 [node name="InventoryItems" type="Node3D" parent="Character" unique_id=343928510]
 
