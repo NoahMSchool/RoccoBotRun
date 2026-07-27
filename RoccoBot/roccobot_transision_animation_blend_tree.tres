@@ -1,8 +1,48 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://cr3tjjry2jfkp"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o7bhf"]
+animation = &"Ascend"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dbh0s"]
+animation = &"Descend"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5tk7"]
+animation = &"RestPose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2r5ul"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uwdaa"]
+animation = &"RunCycle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10ybk"]
+animation = &"Falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g5kwk"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qd2yj"]
+animation = &"Crouch"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_uwdaa"]
 
 [resource]
-graph_offset = Vector2(-604.2363, -35.6221)
+graph_offset = Vector2(-362.71228, -182.39291)
+nodes/output/position = Vector2(800, 250)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qd2yj")
-nodes/Animation/position = Vector2(-30, 670)
+nodes/Animation/position = Vector2(225, 225)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_o7bhf")
+"nodes/Animation 2/position" = Vector2(-125, 225)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_dbh0s")
+"nodes/Animation 3/position" = Vector2(50, 225)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_a5tk7")
+"nodes/Animation 4/position" = Vector2(-125, -50)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_2r5ul")
+"nodes/Animation 5/position" = Vector2(50, -50)
+nodes/Transition/node = SubResource("AnimationNodeTransition_uwdaa")
+nodes/Transition/position = Vector2(450, 0)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_uwdaa")
+"nodes/Animation 6/position" = Vector2(-125, 425)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_10ybk")
+"nodes/Animation 7/position" = Vector2(50, 425)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_g5kwk")
+"nodes/Animation 8/position" = Vector2(225, 425)
