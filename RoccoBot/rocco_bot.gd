@@ -198,7 +198,7 @@ func use_item_at_location(item_location : PlayerItemLocation, is_release):
 
 func add_item(packed_scene : PackedScene):
 	var configured_item = Item.create_item(packed_scene, team.accent_color)
-	print(team, team.accent_color, team.group)
+	#print(team, team.accent_color, team.group)
 	configured_item.set_enabled(false)
 	$Character/InventoryItems.add_child(configured_item)
 	auto_equip_items()
@@ -368,7 +368,6 @@ func _physics_process(delta: float) -> void:
 
 	#$SpringArm3D.global_position = lerp($SpringArm3D.global_position, global_position, 5*delta)
 	$SpringArm3D.global_position = global_position
-	print(current_anim)
 
 	current_cam.global_position = lerp(current_cam.global_position, $SpringArm3D/CamPos.global_position, 7.5*delta)
 	update_animations(delta)
@@ -388,6 +387,9 @@ func _physics_process(delta: float) -> void:
 			
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, false)
+			#var rightbone: bone = $Character/RoccoBotRig/Skeleton3D.find_bone("hand.R")
+#
+			#$Character/RoccoBotRig/Skeleton3D.set_bone_pose_rotation(rightbone, lerpf())
 			item_location_ik.influence = move_toward(item_location_ik.influence, 1.0, delta*item_pullout)
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)

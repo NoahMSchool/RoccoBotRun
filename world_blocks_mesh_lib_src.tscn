@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bj8ro058qfldc"]
+
+[ext_resource type="Script" uid="uid://c6h32t11hyu6k" path="res://worldblockorganisertool.gd" id="1_827oy"]
+[ext_resource type="PackedScene" uid="uid://cpydhd8xbvlcy" path="res://Blender/worldblocks.blend" id="2_qk4ll"]
+
+[node name="WorldBlocksMeshLibSrc" type="Node3D" unique_id=372679266]
+script = ExtResource("1_827oy")
+file_name = "worldblocks4"
+
+[node name="Referenceblocks" parent="." unique_id=449413406 instance=ExtResource("2_qk4ll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+
+[editable path="Referenceblocks"]

@@ -60,7 +60,7 @@ func generate_mesh_library():
 
 	var block_array = reference_blocks.get_children()
 	block_array.sort_custom(func(a, b): return a.name.naturalnocasecmp_to(b.name) < 0)
-	
+	print(block_array)
 	for i in range(block_array.size()):
 		var block_ref : MeshInstance3D = block_array[i]
 		var block_id = block_ref.name.left(3)
@@ -68,7 +68,7 @@ func generate_mesh_library():
 		var block_mesh : Mesh = block_ref.mesh
 		var block_material = block_ref.get_active_material(0).duplicate() # block_ref.mesh.surface_get_material(0).duplicate()
 		
-		print(block_material)
+		#print(block_material)
 		#block_mesh.surface_set_material(0, block_material)
 		var block_col_shape = block_ref.get_child(0).get_child(0).shape
 		
@@ -83,10 +83,10 @@ func generate_mesh_library():
 		library.create_item(i)
 		library.set_item_name(i, block_name)
 		library.set_item_mesh(i, new_mesh)
-		print(library.get_item_mesh(i))
+		#print(library.get_item_mesh(i))
 		library.set_item_shapes(i, [block_col_shape, Transform3D()])
-	#var library_export_path = file_path+file_name+".res"
-	var library_export_path = "res://Environment/world_blocks3.res"
+	var library_export_path = file_path+file_name+".res"
+	#var library_export_path = "res://Environment/world_blocks3.res"
 	var error = ResourceSaver.save(library, library_export_path)#, ResourceSaver.FLAG_BUNDLE_RESOURCES
 	print(error == 0)
 	

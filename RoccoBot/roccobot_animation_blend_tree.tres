@@ -4,31 +4,31 @@
 filters = ["Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83trr"]
-animation = &"ascend"
+animation = &"AscendPose"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2kxeb"]
 filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rm62e"]
-animation = &"crouch"
+animation = &"CrouchPose"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_463g1"]
 filters = ["Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xnwf1"]
-animation = &"descend"
+animation = &"DescendPose"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7bath"]
 filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ymod"]
-animation = &"falling"
+animation = &"FallingAnim"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_i1g4h"]
 filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f3c6e"]
-animation = &"Idle"
+animation = &"IdleAnim"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blmy2"]
 animation = &"RestPose"
@@ -37,10 +37,10 @@ animation = &"RestPose"
 filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R", "RoccoBotRig/Skeleton3D:armik.L", "RoccoBotRig/Skeleton3D:armik.R", "RoccoBotRig/Skeleton3D:armikDriver", "RoccoBotRig/Skeleton3D:body", "RoccoBotRig/Skeleton3D:foot.L", "RoccoBotRig/Skeleton3D:foot.R", "RoccoBotRig/Skeleton3D:hand.L", "RoccoBotRig/Skeleton3D:hand.R", "RoccoBotRig/Skeleton3D:head", "RoccoBotRig/Skeleton3D:heel.L", "RoccoBotRig/Skeleton3D:heel.R", "RoccoBotRig/Skeleton3D:lower_arm.L", "RoccoBotRig/Skeleton3D:lower_arm.R", "RoccoBotRig/Skeleton3D:lower_leg.L", "RoccoBotRig/Skeleton3D:lower_leg.R", "RoccoBotRig/Skeleton3D:neck", "RoccoBotRig/Skeleton3D:tail1", "RoccoBotRig/Skeleton3D:tail2", "RoccoBotRig/Skeleton3D:tail3", "RoccoBotRig/Skeleton3D:tail4", "RoccoBotRig/Skeleton3D:tail5", "RoccoBotRig/Skeleton3D:tail6", "RoccoBotRig/Skeleton3D:tailik", "RoccoBotRig/Skeleton3D:upper_arm.L", "RoccoBotRig/Skeleton3D:upper_arm.R", "RoccoBotRig/Skeleton3D:upper_leg.L", "RoccoBotRig/Skeleton3D:upper_leg.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ucq0b"]
-animation = &"RunCycle"
+animation = &"WalkCycleAnim"
 
 [resource]
-graph_offset = Vector2(-365.10217, 421.99274)
+graph_offset = Vector2(-366.06082, 375.90656)
 nodes/output/position = Vector2(1260, 650)
 nodes/walk_anim/node = SubResource("AnimationNodeAnimation_ucq0b")
 nodes/walk_anim/position = Vector2(200, 925)
