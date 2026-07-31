@@ -70,8 +70,6 @@ func generate_mesh_library():
 		
 		#print(block_material)
 		#block_mesh.surface_set_material(0, block_material)
-		var block_col_shape = block_ref.get_child(0).get_child(0).shape
-		
 		var surface_tool  := SurfaceTool.new()
 		surface_tool.append_from(block_mesh, 0, Transform3D())
 		surface_tool.set_material(block_material)
@@ -83,8 +81,12 @@ func generate_mesh_library():
 		library.create_item(i)
 		library.set_item_name(i, block_name)
 		library.set_item_mesh(i, new_mesh)
-		#print(library.get_item_mesh(i))
-		library.set_item_shapes(i, [block_col_shape, Transform3D()])
+
+		if block_ref.get_child_count()>0: #check if block has collision shape, if so add it
+			var block_static_body = block_ref.get_child(0)
+			var block_col_shape = block_static_body.get_child(0).shape
+			library.set_item_shapes(i, [block_col_shape, Transform3D()])
+	
 	var library_export_path = file_path+file_name+".res"
 	#var library_export_path = "res://Environment/world_blocks3.res"
 	var error = ResourceSaver.save(library, library_export_path)#, ResourceSaver.FLAG_BUNDLE_RESOURCES

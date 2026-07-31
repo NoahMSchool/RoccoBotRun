@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=53 format=4 uid="uid://d26g0c2f5tayg"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://d26g0c2f5tayg"]
 
 [ext_resource type="Material" uid="uid://dyuwjehk3w1u2" path="res://Materials/GridMapMaterials/DarkPavement.tres" id="1_075os"]
 [ext_resource type="Texture2D" uid="uid://wk4sy4kqyki8" path="res://Textures/GridMap1Textures/lower_pavement_slab_roughness.png" id="2_0e7kf"]
