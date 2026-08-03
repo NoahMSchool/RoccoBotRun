@@ -28,6 +28,10 @@ GameManager="*res://Scripts/game_manager.gd"
 window/size/viewport_width=3000
 window/size/viewport_height=2000
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/KeepCustomProperties/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

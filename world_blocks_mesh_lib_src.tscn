@@ -68,12 +68,13 @@ shadow_mesh = SubResource("ArrayMesh_l5yb4")
 
 [node name="WorldBlocksMeshLibSrc" type="Node3D" unique_id=372679266]
 script = ExtResource("1_827oy")
-file_name = "worldblocks9"
+collection_name = "SpaceCityBlocks"
+file_name = "worldblocks900"
 
 [node name="Referenceblocks" parent="." unique_id=449413406 instance=ExtResource("2_qk4ll")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="008DirtyBlock" type="MeshInstance3D" parent="Referenceblocks/008DirtyBlock" parent_id_path=PackedInt32Array(449413406, 1406743281) index="1" unique_id=1130012292]
+[node name="008DirtyBlock" type="MeshInstance3D" parent="Referenceblocks/008DirtyBlock" parent_id_path=PackedInt32Array(449413406, 924207449) index="1" unique_id=1130012292]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 mesh = SubResource("ArrayMesh_q3w46")
 skeleton = NodePath("")
