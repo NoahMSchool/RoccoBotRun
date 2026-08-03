@@ -74,7 +74,12 @@ file_name = "worldblocks900"
 [node name="Referenceblocks" parent="." unique_id=449413406 instance=ExtResource("2_qk4ll")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="008DirtyBlock" type="MeshInstance3D" parent="Referenceblocks/008DirtyBlock" parent_id_path=PackedInt32Array(449413406, 924207449) index="1" unique_id=1130012292]
+[node name="000LowerPavementRamp" parent="Referenceblocks/SpaceCityBlocks" parent_id_path=PackedInt32Array(449413406, 1013921862) index="0" unique_id=712406563]
+metadata/extras = {
+"mesh_lib_id": 0.39
+}
+
+[node name="008DirtyBlock" type="MeshInstance3D" parent="." unique_id=1130012292]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 mesh = SubResource("ArrayMesh_q3w46")
 skeleton = NodePath("")

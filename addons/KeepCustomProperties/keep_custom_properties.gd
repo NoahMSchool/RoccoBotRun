@@ -1,22 +1,13 @@
 @tool
-extends EditorPlugin
+extends GLTFDocumentExtension
 
 
-func _enable_plugin() -> void:
-	# Add autoloads here.
-	pass
-
-
-func _disable_plugin() -> void:
-	# Remove autoloads here.
-	pass
-
-
-func _enter_tree() -> void:
-	# Initialization of the plugin goes here.
-	pass
-
-
-func _exit_tree() -> void:
-	# Clean-up of the plugin goes here.
-	pass
+func _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node) -> Error:
+	if json.has("extras"):
+		print(node.name, json)
+		var extras = json["extras"]
+		
+		for key in extras:
+			if key == "mesh_lib_id":
+				node.set_meta(key, int(extras[key]))
+	return OK
