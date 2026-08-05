@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bj8ro058qfldc"]
 
-[ext_resource type="Script" uid="uid://c6h32t11hyu6k" path="res://worldblockorganisertool.gd" id="1_827oy"]
+[ext_resource type="Script" uid="uid://c6h32t11hyu6k" path="res://Tools/worldblockorganisertool.gd" id="1_827oy"]
 [ext_resource type="PackedScene" uid="uid://cpydhd8xbvlcy" path="res://Blender/worldblocks.blend" id="2_qk4ll"]
 [ext_resource type="Texture2D" uid="uid://dtkushob8ycvx" path="res://Blender/textures/dirty_rust_color.png" id="3_qk4ll"]
 
@@ -74,7 +74,7 @@ file_name = "worldblocks900"
 [node name="Referenceblocks" parent="." unique_id=449413406 instance=ExtResource("2_qk4ll")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="000LowerPavementRamp" parent="Referenceblocks/SpaceCityBlocks" parent_id_path=PackedInt32Array(449413406, 1013921862) index="0" unique_id=712406563]
+[node name="000LowerPavementRamp" parent="Referenceblocks/SpaceCityBlocks" parent_id_path=PackedInt32Array(449413406, 32994723) index="0" unique_id=67289255]
 metadata/extras = {
 "mesh_lib_id": 0.39
 }
