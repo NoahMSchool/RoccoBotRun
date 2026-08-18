@@ -67,7 +67,7 @@ def unwrap_children(container):
     bpy.ops.object.mode_set(mode='OBJECT')
     bpy.ops.object.select_all(action='DESELECT')
 
-def bake_atlas_texture(container):
+def bake_atlas_texture(container, bake_type = "color"):
     unwrap_children(container)
     #give it unique name
     all_names = []
@@ -76,8 +76,9 @@ def bake_atlas_texture(container):
     texture_name = ""
     num = 0
     while texture_name == "" or texture_name in all_names:
-        texture_name = container.name+"_color_atlas"+str(num)
-    print(texture_name)
+        texture_name = container.name+"_"+bake_type+"_atlas"+str(num)
+        num = num + 1
+        print(texture_name)
 
     #make texture
     texture = bpy.data.images.new(texture_name,width=1048, height=1048, alpha = False)
@@ -109,21 +110,40 @@ def bake_atlas_texture(container):
     bpy.context.view_layer.objects.active = container_children[0]
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.object.mode_set(mode='OBJECT')
-    
+    bpy.ops.object.mode_set(mode='OBJECT')    
     #bake
     bpy.context.scene.render.engine = 'CYCLES'
-    bpy.ops.object.bake(
-    type='DIFFUSE',
-    pass_filter={'COLOR'},   # base color only, no lighting baked in
-    margin=4,
-    margin_type='EXTEND',
-    use_selected_to_active=False,
-    save_mode='INTERNAL'
-    )
-    for n in bake_nodes:
+    if bake_type == "color":
+        bpy.ops.object.bake(
+        type='DIFFUSE',
+        pass_filter={'COLOR'},   # base color only, no lighting baked in
+        margin=4,
+        margin_type='EXTEND',
+        use_selected_to_active=False,
+        save_mode='INTERNAL'
+        )
+    elif bake_type == "roughness":
+        bpy.ops.object.bake(
+        type='ROUGHNESS',
+        pass_filter={'COLOR'},   # base color only, no lighting baked in
+        margin=4,
+        margin_type='EXTEND',
+        use_selected_to_active=False,
+        save_mode='INTERNAL'
+        )
+    elif bake_type == "normal":
+        bpy.ops.object.bake(
+        type='NORMAL',
+        pass_filter={'COLOR'},   # base color only, no lighting baked in
+        margin=4,
+        margin_type='EXTEND',
+        use_selected_to_active=False,
+        save_mode='INTERNAL'
+        )
+    for n in bake_nodes: #remove tempory bake nodes
         n.id_data.nodes.remove(n)
     texture.save()
+    bpy.ops.object.select_all(action='DESELECT') #deselect all
 
 current_container = bpy.data.objects["SpaceCityBlocks"]
 
@@ -135,7 +155,7 @@ current_container = bpy.data.objects["SpaceCityBlocks"]
 
 #gridify_container_children(current_container)
 #unwrap_children(current_container)
-bake_atlas_texture(current_container)
+bake_atlas_texture(current_container, "normal")
 
 '''
 terminal commands

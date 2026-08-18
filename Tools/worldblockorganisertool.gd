@@ -6,11 +6,17 @@ extends Node3D
 		generate_mesh_library()
 		trigger = false
 
+
 func generate_mesh_library():
 	var collection_name := "SpaceCityBlocks"
-	var file_name = "spacecityblocks2"
+	var file_name = "spacecityblocks8"
 	var file_path = "res://Environment/GridMapMeshLibraries/"
-	var color_mat_path = "res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_color_atlas0.png"
+	var color_tex_path = "res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_color_atlas4.png"
+	var roughness_tex_path = "res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_normal_atlas0.png"
+	var roughness_tex_scale = 0.5
+	var normal_tex_path = "res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_roughness_atlas1.png"
+	var normal_tex_scale = 0
+
 	var library = MeshLibrary.new()
 	#var reference_blocks = $Referenceblocks
 	
@@ -19,20 +25,21 @@ func generate_mesh_library():
 		print("__________started_generation__________")
 
 		var block_array = collection_continer.get_children()
-		if block_array[0].has_meta("mesh_lib_id"):
-			print("has mlid")
-		else : 
-			print("none")
 		
 		block_array.sort_custom(func(a, b): return a.get_meta("mesh_lib_id") < b.get_meta("mesh_lib_id"))
 
 		print(block_array)
 		for i in range(block_array.size()):
-			var block_ref : MeshInstance3D = block_array[i]
+			var block_ref = block_array[i]
 			var block_name = block_ref.name
 			var block_mesh : Mesh = block_ref.mesh
 			var block_material = StandardMaterial3D.new()
-			block_material.albedo_texture = load(color_mat_path)
+			block_material.albedo_texture = load(color_tex_path)
+			block_material.roughness_texture = load(roughness_tex_path)
+			block_material.rougness = roughness_tex_scale
+			block_material.normal_enabled = true
+			block_material.normal_texture = load(normal_tex_path)
+			block_material.normal_scale = normal_tex_scale
 			#block_ref.get_active_material(0).duplicate() # block_ref.mesh.surface_get_material(0).duplicate()
 			
 			#print(block_material)
