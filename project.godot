@@ -21,7 +21,6 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
-GameManager="*res://Scripts/game_manager.gd"
 
 [display]
 

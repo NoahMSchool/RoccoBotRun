@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal died
+
 @onready var skeleton : Skeleton3D = $Character/RoccoBotRig/Skeleton3D
 @onready var anim_player = $Character/AnimationPlayer
 @onready var anim_blend_tree = $Character/AnimationTree
@@ -84,8 +86,6 @@ var super_jump_on_sound = preload("res://RoccoBot/Sounds/Sound Jump by Odeean.wa
 
 #HUD
 @onready var hud: CanvasLayer = $"../HUD"
-
-@export var spawnpoint : Node3D
 
 func add_interactable(item):
 	self.interactable_items.append(item)
@@ -284,7 +284,6 @@ func _ready() -> void:
 	$SpringArm3D.rotation.x = -deg_to_rad(topdown_angle)
 	current_cam.rotation.x = -deg_to_rad(topdown_angle)
 	$SpringArm3D.spring_length = topdown_distance
-	GameManager.connect("reset_level", Callable(self, "respawn"))	
 
 func _physics_process(delta: float) -> void:
 	#print(anim_player.current_animation)
@@ -422,10 +421,12 @@ func _process(delta: float) -> void:
 	current_cam.rotation.y = facing_direction
 
 func die():
-	pass
+	emit_signal("died")
+	print("emmiting")
 
 func respawn():
-	global_transform = spawnpoint.get_node("SpawnPos").global_transform
+	pass
+	
 
 #TODO
 """

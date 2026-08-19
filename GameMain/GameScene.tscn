@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://cgx8gqbrg7fjv"]
 
 [ext_resource type="PackedScene" uid="uid://dkckw5nilwpij" path="res://RoccoBot/rocco_bot.tscn" id="1_hclqn"]
+[ext_resource type="Script" uid="uid://banthdv324c76" path="res://GameMain/game_root.gd" id="1_v8r8i"]
 [ext_resource type="PackedScene" uid="uid://b1ge1b1q2qk8a" path="res://RoccoBot/HUD.tscn" id="2_7h5g7"]
 [ext_resource type="MeshLibrary" uid="uid://lgjrnjvea2no" path="res://Environment/GridMapMeshLibraries/spacecityblocks8.res" id="3_l1yrc"]
+[ext_resource type="Script" uid="uid://ba3r2jvdhiwhu" path="res://GameMain/stage_planet.gd" id="4_uiwur"]
 [ext_resource type="Material" uid="uid://cmwafkv0h60rs" path="res://Environment/blue_sky.tres" id="5_0ttjx"]
 [ext_resource type="Texture2D" uid="uid://b4kae7iakmpjo" path="res://Textures/Shop_color.png" id="5_qya3d"]
 [ext_resource type="PackedScene" uid="uid://d02ntiggwxwqa" path="res://Scenes/WorldObjectScenes/ground_light.tscn" id="6_c5cjr"]
@@ -160,14 +162,15 @@ material = SubResource("StandardMaterial3D_fbdqu")
 curve = SubResource("Curve_268sc")
 
 [node name="GameRoot" type="Node" unique_id=1758468985]
+script = ExtResource("1_v8r8i")
 
-[node name="RoccoBot" parent="." unique_id=1104997397 node_paths=PackedStringArray("spawnpoint") groups=["player"] instance=ExtResource("1_hclqn")]
+[node name="RoccoBot" parent="." unique_id=1104997397 groups=["player"] instance=ExtResource("1_hclqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-spawnpoint = NodePath("../SpaceCity/Stages/Stage0/CheckPointSpawn")
 
 [node name="HUD" parent="." unique_id=1388601935 instance=ExtResource("2_7h5g7")]
 
 [node name="SpaceCity" type="Node3D" parent="." unique_id=1348614515]
+script = ExtResource("4_uiwur")
 
 [node name="Environment" type="Node3D" parent="SpaceCity" unique_id=1742103595]
 
