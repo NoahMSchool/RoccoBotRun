@@ -41,6 +41,7 @@ folder_colors={
 "res://EnvironmentObjects/": "green",
 "res://GameMain/": "gray",
 "res://Items/": "teal",
+"res://PlanetWorlds/": "green",
 "res://RoccoBot/": "blue",
 "res://Tools/": "gray"
 }

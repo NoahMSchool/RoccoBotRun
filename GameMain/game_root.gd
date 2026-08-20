@@ -6,7 +6,8 @@ var current_planet_num = 0
 
 @onready var planet_container: Node3D = $PlanetContainer
 
-var planets = [[preload("res://Environment/PlanetScenes/space_city.tscn"), null]
+var planets = [	[preload("res://PlanetWorlds/space_city.tscn"), null],
+				[preload("res://PlanetWorlds/cathedral_city.tscn"), null]
 			]
 
 func _ready() -> void:
