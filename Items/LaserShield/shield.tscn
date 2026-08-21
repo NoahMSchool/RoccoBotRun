@@ -44,32 +44,32 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ct3qg")
 
-[node name="Shield" type="Node3D" node_paths=PackedStringArray("damagable_component", "charge_component") groups=["player"]]
+[node name="Shield" type="Node3D" unique_id=1592544860 node_paths=PackedStringArray("damagable_component", "charge_component") groups=["player"]]
 script = ExtResource("1_4euiw")
 damagable_component = NodePath("DamagableComponent")
 charge_component = NodePath("ChargeComponent")
 regen_rate = 2.0
 icon = ExtResource("2_mm1j4")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1590869763]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, 0)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=452296706]
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_eu120")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1449872748]
 transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0ptxi")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_b7s03")
 
-[node name="DamagableComponent" type="Node3D" parent="."]
+[node name="DamagableComponent" type="Node3D" parent="." unique_id=1131210490]
 script = ExtResource("5_sgihd")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1149070162]
 stream = ExtResource("7_5ucky")
 
-[node name="ChargeComponent" parent="." instance=ExtResource("6_c7crl")]
+[node name="ChargeComponent" parent="." unique_id=407087077 instance=ExtResource("6_c7crl")]

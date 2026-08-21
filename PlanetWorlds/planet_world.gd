@@ -23,7 +23,8 @@ func _ready() -> void:
 		cps.connect("checkpoint_reached", self.stage_reached)
 
 		#var err = cps.connect("checkpoint_reached", Callable(self, "stage_reached"))
-
+	reset_level()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Die"):
 		player_die()

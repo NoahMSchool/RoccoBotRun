@@ -158,8 +158,9 @@ use_particle_trails = true
 material = SubResource("StandardMaterial3D_fbdqu")
 curve = SubResource("Curve_268sc")
 
-[node name="SpaceCity" type="Node3D" unique_id=1689960382]
+[node name="SpaceCity" type="Node3D" unique_id=1689960382 node_paths=PackedStringArray("player_spawnpoint")]
 script = ExtResource("1_tcfn8")
+player_spawnpoint = NodePath("Stages/Stage0/CheckPointSpawn")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1600026186]
 

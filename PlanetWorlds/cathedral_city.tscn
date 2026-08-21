@@ -24,8 +24,9 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2yho7"]
 
-[node name="SpaceCity" type="Node3D" unique_id=1689960382]
+[node name="CathedralCity" type="Node3D" unique_id=1689960382 node_paths=PackedStringArray("player_spawnpoint")]
 script = ExtResource("1_281fc")
+player_spawnpoint = NodePath("Stages/Stage0/CheckPointSpawn")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1600026186]
 
@@ -65,8 +66,5 @@ item = ExtResource("5_0fcv4")
 [node name="CheckPointSpawn" parent="Stages/Stage0" unique_id=1572197154 instance=ExtResource("6_4bxk6")]
 
 [node name="StageObjects" type="Node3D" parent="Stages/Stage0" unique_id=1790280163]
-
-[node name="TestBlocks" type="Node3D" parent="Stages/Stage0/StageObjects" unique_id=2144130166]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, -29)
 
 [connection signal="body_entered" from="FloorKillZone" to="FloorKillZone" method="_on_body_entered"]
