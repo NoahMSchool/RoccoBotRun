@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c23ncusee28na"]
 
 [ext_resource type="Script" uid="uid://ct872lr4nyoe2" path="res://PlanetWorlds/planet_world.gd" id="1_281fc"]
-[ext_resource type="MeshLibrary" uid="uid://cnb3ufx41cgi8" path="res://Environment/GridMapMeshLibraries/cathedralcityblocks8.res" id="2_fkpdb"]
+[ext_resource type="MeshLibrary" uid="uid://dcw2pyshwrlwb" path="res://Environment/GridMapMeshLibraries/cathedralcityblocks9.res" id="2_281fc"]
 [ext_resource type="Script" uid="uid://c8wkgxrq7coiq" path="res://EnvironmentObjects/Killzone/kill_zone.gd" id="3_gf8ik"]
 [ext_resource type="PackedScene" uid="uid://xmwqtq01uwm7" path="res://EnvironmentObjects/ItemSpawns/item_loose.tscn" id="4_gyu8h"]
 [ext_resource type="PackedScene" uid="uid://clnnfd7uia28w" path="res://Items/Weapons/LaserSword/laser_sword.tscn" id="5_0fcv4"]
@@ -33,12 +33,12 @@ script = ExtResource("1_281fc")
 environment = SubResource("Environment_7w1mh")
 
 [node name="GridMap" type="GridMap" parent="Environment" unique_id=1831786492]
-mesh_library = ExtResource("2_fkpdb")
+mesh_library = ExtResource("2_281fc")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(-1, 65534, 1441793, -1, 65533, 655361, -65535, 65535, 1048577, -65534, 65535, 1, -65534, 0, 1, -3, 65535, 1441793, -3, 65534, 1, -3, 65533, 1048577, -2, 65534, 1441793, -65534, 1, 1, -65534, 2, 1, -65535, 1, 655361, -3, 2, 1, -3, 1, 1048577, -2, 1, 1441793, -1, 1, 1441793, -1, 2, 1441793, -2, 2, 1441793, -2, 0, 1441793, -3, 0, 1441793, -2, 65533, 655361, -2, 65535, 1, -1, 65535, 1441793, -65536, 65534, 1441793, -65536, 65533, 1441793, -65535, 65533, 1441793, -65534, 65533, 1441793, -65534, 65534, 1, -65535, 65534, 1441793, -65536, 65535, 1441793, -1, 0, 1048577, -65536, 0, 1, -65536, 1, 1441793, -65536, 2, 1441793, -65535, 2, 1441793, -65535, 0, 1048577)
+"cells": PackedInt32Array(-1, 65534, 655370, -1, 65533, 655370, -65535, 65535, 655370, -65534, 65535, 655370, -65534, 0, 655370, -3, 65535, 655370, -3, 65534, 655370, -3, 65533, 655370, -2, 65534, 655370, -65534, 1, 655370, -65534, 2, 655370, -65535, 1, 655370, -3, 2, 655370, -3, 1, 655370, -2, 1, 655370, -1, 1, 655370, -1, 2, 655370, -2, 2, 655370, -2, 0, 655370, -3, 0, 655370, -2, 65533, 655370, -2, 65535, 655370, -1, 65535, 655370, -65536, 65534, 655370, -65536, 65533, 655370, -65535, 65533, 655370, -65534, 65533, 655370, -65534, 65534, 655370, -65535, 65534, 655370, -65536, 65535, 655370, -1, 0, 655370, -65536, 0, 655370, -65536, 1, 655370, -65536, 2, 655370, -65535, 2, 655370, -65535, 0, 655370, 65533, 65532, 1048587, 65534, 65532, 1048587, 65535, 65532, 1048587, 0, 65532, 1048587, 1, 65532, 1048587, 2, 65532, 1048587, 65533, 65531, 1048588, 65534, 65531, 1048588, 65535, 65531, 1048588, 0, 65531, 1048588, 1, 65531, 1048588, 2, 65531, 1048588)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="FloorKillZone" type="Area3D" parent="." unique_id=1931154237]
 collision_mask = 2

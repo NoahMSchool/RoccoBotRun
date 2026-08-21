@@ -9,12 +9,12 @@ extends Node3D
 
 func generate_mesh_library():
 	var collection_name := "CathedralCityBlocks"
-	var file_name = "cathedralcityblocks8"
+	var file_name = "cathedralcityblocks9"
 	var file_path = "res://Environment/GridMapMeshLibraries/"
-	var color_tex_path = "res://Environment/GridMapMaterialAtlases/CathedralCityBlocks_color_atlas0.png"
-	var roughness_tex_path = null#"res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_normal_atlas0.png"
+	var color_tex_path = "res://Environment/GridMapMaterialAtlases/CathedralCityBlocks_color_atlas1.png"
+	var roughness_tex_path = "res://Environment/GridMapMaterialAtlases/CathedralCityBlocks_normal_atlas0.png"
 	var roughness_tex_scale = 0.5
-	var normal_tex_path = null#"res://Environment/GridMapMaterialAtlases/SpaceCityBlocks_roughness_atlas1.png"
+	var normal_tex_path = "res://Environment/GridMapMaterialAtlases/CathedralCityBlocks_roughness_atlas0.png"
 	var normal_tex_scale = 0
 
 	var library = MeshLibrary.new()

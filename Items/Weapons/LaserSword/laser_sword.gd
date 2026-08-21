@@ -7,7 +7,6 @@ extends Item
 @export var attack_cooldown = 0.25
 
 func use_item():
-	
 	if $Timer.is_stopped() and can_use:
 		can_use = false
 		$Timer.start(attack_cooldown)
