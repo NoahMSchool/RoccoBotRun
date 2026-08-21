@@ -20,7 +20,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
-Globals="*res://Scripts/globals.gd"
+Globals="*res://GameMain/globals.gd"
 
 [display]
 
@@ -43,7 +43,8 @@ folder_colors={
 "res://Items/": "teal",
 "res://PlanetWorlds/": "green",
 "res://RoccoBot/": "blue",
-"res://Tools/": "gray"
+"res://Tools/": "gray",
+"res://UserInterface/": "pink"
 }
 
 [global_group]

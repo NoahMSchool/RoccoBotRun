@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="CrateType" load_steps=6 format=3 uid="uid://c1cj8gssqbi11"]
+[gd_resource type="Resource" script_class="CrateType" format=3 uid="uid://c1cj8gssqbi11"]
 
-[ext_resource type="Script" path="res://EnvironmentObjects/ItemCrate/CrateSpec.gd" id="1_4c2oe"]
-[ext_resource type="AudioStream" uid="uid://bqpy438ssesgf" path="res://744170__artninja__custom_starwars_inspired_scifi_corridor_door_sound.wav" id="1_e6q2o"]
+[ext_resource type="Script" uid="uid://dt0jdli82llkr" path="res://EnvironmentObjects/ItemCrate/CrateSpec.gd" id="1_4c2oe"]
+[ext_resource type="AudioStream" uid="uid://bqpy438ssesgf" path="res://Sounds/744170__artninja__custom_starwars_inspired_scifi_corridor_door_sound.wav" id="1_e6q2o"]
 [ext_resource type="Material" uid="uid://c7yxqtch7isnw" path="res://Enemy/EnemyRobotMat.tres" id="1_pgtpa"]
 [ext_resource type="ArrayMesh" uid="uid://d8oybltdyk2o" path="res://Enemy/enemy_robot_body_mesh.tres" id="2_tidhu"]
 [ext_resource type="ArrayMesh" uid="uid://3yxtr38sb7ny" path="res://Enemy/enemy_robot_cap_mesh.tres" id="3_g517v"]
