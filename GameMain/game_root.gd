@@ -2,7 +2,7 @@ extends Node
 
 @onready var player_node : Node3D
 
-var current_planet_num = 1
+var current_planet_num = 0
 
 @onready var planet_container: Node3D = $PlanetContainer
 

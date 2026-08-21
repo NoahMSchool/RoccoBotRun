@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://barulqklih133" path="res://EnvironmentObjects/CheckPointSpawns/check_point_spawn.tscn" id="8_5gfng"]
 [ext_resource type="PackedScene" uid="uid://crojdccbnbknb" path="res://EnvironmentObjects/WorldObjectScenes/block.tscn" id="9_imam3"]
 [ext_resource type="PackedScene" uid="uid://b3byiyj3lmwiy" path="res://EnvironmentObjects/WorldObjectScenes/barrier.tscn" id="10_qcgv4"]
-[ext_resource type="Script" uid="uid://cv57oxoj242wm" path="res://Scripts/moving_platforms.gd" id="11_yuyr0"]
+[ext_resource type="Script" uid="uid://cv57oxoj242wm" path="res://EnvironmentObjects/MovingPlatforms/moving_platforms.gd" id="11_yuyr0"]
 [ext_resource type="PackedScene" uid="uid://siu5wkef8jqi" path="res://EnvironmentObjects/MovingPlatforms/moving_platform.tscn" id="12_vpxwv"]
 [ext_resource type="PackedScene" uid="uid://jtm38tyo8fqf" path="res://Enemy/enemy_robot.tscn" id="13_flcjw"]
 [ext_resource type="AudioStream" uid="uid://cvx7yo7ia3vpb" path="res://Environment/EnvironmentSounds/573204__itinerantmonk108__city-night-rain-stereo-1.wav" id="14_yvmpk"]

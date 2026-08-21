@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1ge1b1q2qk8a"]
+[gd_scene format=3 uid="uid://b1ge1b1q2qk8a"]
 
-[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cdtph"]
+[ext_resource type="Script" uid="uid://kd11qvy2ixhm" path="res://UserInterface/hud.gd" id="1_cdtph"]
 [ext_resource type="PackedScene" uid="uid://b44st57didil5" path="res://RoccoBot/item_slot.tscn" id="2_30qwi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di38d"]
