@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://blk5s0kp3yr2i" path="res://RoccoBot/RoccoBot_Metal_material.tres" id="2_jq3y0"]
 [ext_resource type="PackedScene" uid="uid://blsilcdno71x8" path="res://Blender/RoccoBotRig.blend" id="2_y8xuh"]
 [ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://RoccoBot/Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
-[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="4_6fyap"]
 [ext_resource type="Script" uid="uid://b6wff7giijf2a" path="res://Components/damagable_component.gd" id="4_coywe"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://beprffrfd7j2h" path="res://RoccoBot/roccobot_animation_blend_tree.tres" id="5_6fyap"]
 [ext_resource type="Script" uid="uid://xvwxx385sjpl" path="res://Components/health_component.gd" id="5_oixeu"]
@@ -190,8 +189,6 @@ bone_idx = 6
 
 [node name="LeftItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/LeftItemAttatch" unique_id=36366503]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
-
-[node name="LaserCannon" parent="Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation" unique_id=1435217558 instance=ExtResource("4_6fyap")]
 
 [node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="22" unique_id=1402802706]
 surface_material_override/0 = ExtResource("2_jq3y0")

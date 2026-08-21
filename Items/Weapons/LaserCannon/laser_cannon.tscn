@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://bnfa46j5hc2ww"]
+[gd_scene format=4 uid="uid://bnfa46j5hc2ww"]
 
-[ext_resource type="Script" path="res://Items/Weapons/LaserCannon/laser_cannon.gd" id="1_h5a8w"]
+[ext_resource type="Script" uid="uid://dhywr0sbmh87u" path="res://Items/Weapons/LaserCannon/laser_cannon.gd" id="1_h5a8w"]
 [ext_resource type="Texture2D" uid="uid://cxneilx6t1uhc" path="res://Items/Weapons/LaserCannon/Laser_Cannon_Icon.png" id="2_b60v4"]
 [ext_resource type="Texture2D" uid="uid://bmavnf3gw3whe" path="res://Textures/Baked_Laser_Cannon_color.png" id="2_g4khn"]
 [ext_resource type="AudioStream" uid="uid://6rk8hq0qonrs" path="res://Items/Weapons/LaserCannon/466867__mikee63__blaster-shot-single-5.wav" id="2_nk8b2"]
 [ext_resource type="PackedScene" uid="uid://piykro5eexix" path="res://Components/charge_component.tscn" id="5_4xb15"]
-[ext_resource type="Script" path="res://Components/shoot_component.gd" id="6_lywk2"]
+[ext_resource type="Script" uid="uid://do86e16gska1x" path="res://Components/shoot_component.gd" id="6_lywk2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvnk4"]
 
@@ -44,26 +44,26 @@ albedo_texture = ExtResource("2_g4khn")
 metallic = 1.0
 roughness = 0.5
 
-[node name="LaserCannon" type="Node3D"]
+[node name="LaserCannon" type="Node3D" unique_id=2105187366]
 script = ExtResource("1_h5a8w")
 fire_rate = 6.0
 bloom_angle = 3.0
 icon = ExtResource("2_b60v4")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1408641791]
 wait_time = 0.2
 one_shot = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1777653767]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_3b8so")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_r0ftu")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1033214554]
 stream = ExtResource("2_nk8b2")
 
-[node name="ChargeComponent" parent="." instance=ExtResource("5_4xb15")]
+[node name="ChargeComponent" parent="." unique_id=850621049 instance=ExtResource("5_4xb15")]
 
-[node name="ShootComponent" type="Node3D" parent="."]
+[node name="ShootComponent" type="Node3D" parent="." unique_id=2021161345]
 script = ExtResource("6_lywk2")

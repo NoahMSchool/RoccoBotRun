@@ -5,7 +5,7 @@ extends GLTFDocumentExtension
 
 func _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node) -> Error:
 	if json.has("extras"):
-		print(node.name, json)
+		#print(node.name, json)
 		var extras = json["extras"]
 		
 		for key in extras:

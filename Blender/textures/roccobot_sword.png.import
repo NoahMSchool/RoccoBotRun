@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn30l6vs15gwh"
-path.s3tc="res://.godot/imported/pavement_roughness_atlas.png-c4d51917cec5e90921e1b34e4ee6b820.s3tc.ctex"
+uid="uid://dff64kjfmyvj5"
+path.s3tc="res://.godot/imported/roccobot_sword.png-c44e47c4d571757d2b532651c95b99a3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Blender/textures/pavement_roughness_atlas.png"
-dest_files=["res://.godot/imported/pavement_roughness_atlas.png-c4d51917cec5e90921e1b34e4ee6b820.s3tc.ctex"]
+source_file="res://Blender/textures/roccobot_sword.png"
+dest_files=["res://.godot/imported/roccobot_sword.png-c44e47c4d571757d2b532651c95b99a3.s3tc.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=6
 roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
