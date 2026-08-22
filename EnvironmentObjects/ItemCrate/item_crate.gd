@@ -62,9 +62,9 @@ func open():
 func _on_selection_range_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		body.add_interactable(self)
-		print("added")
+		#print("added")
 
 func _on_selection_range_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		body.remove_interactable(self)
-		print("removed")
+		#wprint("removed")

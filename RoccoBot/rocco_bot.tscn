@@ -4,21 +4,28 @@
 [ext_resource type="Material" uid="uid://blk5s0kp3yr2i" path="res://RoccoBot/RoccoBot_Metal_material.tres" id="2_jq3y0"]
 [ext_resource type="PackedScene" uid="uid://blsilcdno71x8" path="res://Blender/RoccoBotRig.blend" id="2_y8xuh"]
 [ext_resource type="AudioStream" uid="uid://bepxd6tmql2ji" path="res://RoccoBot/Sounds/170273__knova__change-weapon-sound.wav" id="3_rhlt7"]
+[ext_resource type="PackedScene" uid="uid://bnfa46j5hc2ww" path="res://Items/Weapons/LaserCannon/laser_cannon.tscn" id="4_6fyap"]
 [ext_resource type="Script" uid="uid://b6wff7giijf2a" path="res://Components/damagable_component.gd" id="4_coywe"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://beprffrfd7j2h" path="res://RoccoBot/roccobot_animation_blend_tree.tres" id="5_6fyap"]
 [ext_resource type="Script" uid="uid://xvwxx385sjpl" path="res://Components/health_component.gd" id="5_oixeu"]
 [ext_resource type="Script" uid="uid://cgfnfufsy002e" path="res://RoccoBot/tail_ik_target.gd" id="9_baf7l"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_6fyap"]
+size = Vector3(0.05, 0.05, 0.2)
+
 [sub_resource type="SphereMesh" id="SphereMesh_witln"]
 radius = 0.1
 height = 0.2
 
-[sub_resource type="BoxMesh" id="BoxMesh_6fyap"]
-size = Vector3(0.05, 0.05, 0.2)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n78yj"]
 radius = 0.35
 height = 1.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_pefu6"]
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
 
 [node name="RoccoBot" type="CharacterBody3D" unique_id=43311826 node_paths=PackedStringArray("health_component", "damagable_component")]
 collision_layer = 2
@@ -62,63 +69,69 @@ bones/25/position = Vector3(0.075, 0.020000001, -9.477119e-08)
 bones/28/position = Vector3(-0.075, 0.019999975, 3.5166543e-08)
 bones/31/position = Vector3(-6.175034e-07, 0.40000004, -0.6)
 
-[node name="Body" parent="Character/RoccoBotRig/Skeleton3D" index="0" unique_id=250989854]
+[node name="HeadLook" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="0" unique_id=1730488039]
+influence = 0.0
+target_node = NodePath("../../../../Indicatorsphere")
+bone_name = "head"
+bone = 3
+
+[node name="Body" parent="Character/RoccoBotRig/Skeleton3D" index="1" unique_id=250989854]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Eyes" parent="Character/RoccoBotRig/Skeleton3D" index="1" unique_id=2093345316]
+[node name="Eyes" parent="Character/RoccoBotRig/Skeleton3D" index="2" unique_id=2093345316]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Head" parent="Character/RoccoBotRig/Skeleton3D" index="2" unique_id=1092108639]
+[node name="Head" parent="Character/RoccoBotRig/Skeleton3D" index="3" unique_id=1092108639]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="LeftArm" parent="Character/RoccoBotRig/Skeleton3D" index="3" unique_id=34921466]
+[node name="LeftArm" parent="Character/RoccoBotRig/Skeleton3D" index="4" unique_id=34921466]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="LeftFoot" parent="Character/RoccoBotRig/Skeleton3D" index="4" unique_id=516219918]
+[node name="LeftFoot" parent="Character/RoccoBotRig/Skeleton3D" index="5" unique_id=516219918]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="LeftLeg" parent="Character/RoccoBotRig/Skeleton3D" index="5" unique_id=1505422393]
-surface_material_override/0 = ExtResource("2_jq3y0")
-surface_material_override/1 = ExtResource("2_jq3y0")
-
-[node name="LeftPaw" parent="Character/RoccoBotRig/Skeleton3D" index="6" unique_id=2096505353]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="Mouth" parent="Character/RoccoBotRig/Skeleton3D" index="7" unique_id=644245752]
-surface_material_override/0 = ExtResource("2_jq3y0")
-
-[node name="Neck" parent="Character/RoccoBotRig/Skeleton3D" index="8" unique_id=2066705596]
+[node name="LeftLeg" parent="Character/RoccoBotRig/Skeleton3D" index="6" unique_id=1505422393]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="Nose" parent="Character/RoccoBotRig/Skeleton3D" index="9" unique_id=1050875141]
+[node name="LeftPaw" parent="Character/RoccoBotRig/Skeleton3D" index="7" unique_id=2096505353]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="RightArm" parent="Character/RoccoBotRig/Skeleton3D" index="10" unique_id=721995893]
-surface_material_override/0 = ExtResource("2_jq3y0")
-surface_material_override/1 = ExtResource("2_jq3y0")
-
-[node name="RightFoot" parent="Character/RoccoBotRig/Skeleton3D" index="11" unique_id=1299237679]
+[node name="Mouth" parent="Character/RoccoBotRig/Skeleton3D" index="8" unique_id=644245752]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="RightLeg" parent="Character/RoccoBotRig/Skeleton3D" index="12" unique_id=661649340]
+[node name="Neck" parent="Character/RoccoBotRig/Skeleton3D" index="9" unique_id=2066705596]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="RightPaw" parent="Character/RoccoBotRig/Skeleton3D" index="13" unique_id=537937514]
+[node name="Nose" parent="Character/RoccoBotRig/Skeleton3D" index="10" unique_id=1050875141]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="Tail" parent="Character/RoccoBotRig/Skeleton3D" index="14" unique_id=349828298]
+[node name="RightArm" parent="Character/RoccoBotRig/Skeleton3D" index="11" unique_id=721995893]
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="RightAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="15" unique_id=596802797]
+[node name="RightFoot" parent="Character/RoccoBotRig/Skeleton3D" index="12" unique_id=1299237679]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="RightLeg" parent="Character/RoccoBotRig/Skeleton3D" index="13" unique_id=661649340]
+surface_material_override/0 = ExtResource("2_jq3y0")
+surface_material_override/1 = ExtResource("2_jq3y0")
+
+[node name="RightPaw" parent="Character/RoccoBotRig/Skeleton3D" index="14" unique_id=537937514]
+surface_material_override/0 = ExtResource("2_jq3y0")
+
+[node name="Tail" parent="Character/RoccoBotRig/Skeleton3D" index="15" unique_id=349828298]
+surface_material_override/0 = ExtResource("2_jq3y0")
+surface_material_override/1 = ExtResource("2_jq3y0")
+
+[node name="RightAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="16" unique_id=596802797]
 setting_count = 1
-settings/0/target_node = NodePath("../../../RightArmAimIKTarget")
+settings/0/target_node = NodePath("../../../../Indicatorsphere")
 settings/0/pole_node = NodePath("../RightIKPoleTarget")
 settings/0/root_bone_name = "upper_arm.R"
 settings/0/root_bone = 14
@@ -130,7 +143,7 @@ settings/0/end_bone = 16
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="LeftAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="16" unique_id=539541097]
+[node name="LeftAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="17" unique_id=539541097]
 setting_count = 1
 settings/0/target_node = NodePath("../../../LeftArmAimIKTarget")
 settings/0/pole_node = NodePath("../LeftIKPoleTarget")
@@ -146,7 +159,7 @@ settings/0/extend_end_bone = true
 settings/0/end_bone/direction = 6
 settings/0/end_bone/length = 0.0
 
-[node name="TailIKJak" type="FABRIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="17" unique_id=1472316191]
+[node name="TailIKJak" type="FABRIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="18" unique_id=1472316191]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 setting_count = 1
 settings/0/target_node = NodePath("../../../TailIKTarget")
@@ -169,28 +182,37 @@ settings/0/joints/4/limitation = null
 settings/0/joints/5/rotation_axis = 3
 settings/0/joints/5/limitation = null
 
-[node name="LeftIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="18" unique_id=1150124747]
+[node name="LeftIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="19" unique_id=1150124747]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.4, 0.5, 0.2)
 
-[node name="RightIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="19" unique_id=595791742]
+[node name="RightIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="20" unique_id=595791742]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.4, 0.5, 0.2)
 
-[node name="RightItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="20" unique_id=1767716573]
-transform = Transform3D(0.99225795, 0.028107569, 0.12097123, -0.121770844, 0.028726187, 0.9921426, 0.024411574, -0.99919206, 0.031926416, 0.32000002, 0.5249999, -0.18000002)
+[node name="RightItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="21" unique_id=1767716573]
+transform = Transform3D(-0.07345517, -0.35370713, 0.93246764, 0.10598126, -0.9324676, -0.34535846, 0.99165136, 0.073455706, 0.105981, 0.10596821, 0.28611422, -3.3060243e-08)
 bone_name = "hand.R"
 bone_idx = 16
 
 [node name="RightItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/RightItemAttatch" unique_id=799303014]
 
-[node name="LeftItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="21" unique_id=1378156194]
+[node name="LaserCannon" parent="Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation" unique_id=2105187366 instance=ExtResource("4_6fyap")]
+fire_rate = 12.0
+bloom_angle = 0.0
+
+[node name="LeftItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="22" unique_id=1378156194]
 transform = Transform3D(0.9922578, -0.028107893, -0.12097175, 0.12177132, 0.0287269, 0.9921424, -0.024411794, -0.9991919, 0.031927176, -0.32, 0.525, -0.17999995)
 bone_name = "hand.L"
 bone_idx = 6
 
-[node name="LeftItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/LeftItemAttatch" unique_id=36366503]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character/RoccoBotRig/Skeleton3D/LeftItemAttatch" unique_id=1568420040]
+transform = Transform3D(1.0000002, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_6fyap")
+skeleton = NodePath("../../LeftAimIK")
 
-[node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="22" unique_id=1402802706]
+[node name="LeftItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/LeftItemAttatch" unique_id=36366503]
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 0, 0, 0)
+
+[node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="23" unique_id=1402802706]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
 [node name="AnimationTree" type="AnimationTree" parent="Character" unique_id=1287787877]
@@ -202,6 +224,7 @@ parameters/descend/blend_amount = 0.0
 parameters/falling/blend_amount = 0.0
 parameters/idle/blend_amount = 0.0
 parameters/walk/blend_amount = 0.0
+parameters/Blend2/blend_amount = 1.0
 
 [node name="InventoryItems" type="Node3D" parent="Character" unique_id=343928510]
 
@@ -217,16 +240,14 @@ script = ExtResource("9_baf7l")
 visible = false
 mesh = SubResource("SphereMesh_witln")
 
-[node name="RightArmAimIKTarget" type="Node3D" parent="Character" unique_id=264353736]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.525, -0.18)
-
 [node name="LeftArmAimIKTarget" type="Node3D" parent="Character" unique_id=384243104]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.32, 0.525, -0.18)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Character/LeftArmAimIKTarget" unique_id=1568420040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
-mesh = SubResource("BoxMesh_6fyap")
-skeleton = NodePath("../../RoccoBotRig/Skeleton3D/LeftAimIK")
+[node name="RightIKPivot" type="Node3D" parent="Character" unique_id=204985021]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.32, 0.55, 0)
+
+[node name="RightArmAimIKTarget" type="Node3D" parent="Character/RightIKPivot" unique_id=264353736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1428097023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
@@ -272,5 +293,9 @@ margin = 0.1
 
 [node name="CamPos" type="Node3D" parent="CamPivot/SpringArm3D" unique_id=1017103580]
 visible = false
+
+[node name="Indicatorsphere" type="MeshInstance3D" parent="." unique_id=1049839273]
+top_level = true
+mesh = SubResource("SphereMesh_pefu6")
 
 [editable path="Character"]

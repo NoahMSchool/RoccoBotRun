@@ -49,4 +49,8 @@ func player_die():
 	reset_level()
 
 func reset_level():
+	player_node.respawn()
+	spawn_player()
+	
+func spawn_player():
 	player_node.global_transform = player_spawnpoint.get_node("SpawnPos").global_transform

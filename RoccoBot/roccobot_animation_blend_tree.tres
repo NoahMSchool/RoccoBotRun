@@ -1,5 +1,12 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://beprffrfd7j2h"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fi2p"]
+animation = &"RestPose"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o2ol1"]
+filter_enabled = true
+filters = ["RoccoBotRig/Skeleton3D:hand.L", "RoccoBotRig/Skeleton3D:hand.R", "RoccoBotRig/Skeleton3D:lower_arm.L", "RoccoBotRig/Skeleton3D:lower_arm.R", "RoccoBotRig/Skeleton3D:upper_arm.L", "RoccoBotRig/Skeleton3D:upper_arm.R"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_lp1wf"]
 filters = ["Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
@@ -40,8 +47,8 @@ filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleto
 animation = &"WalkCycleAnim"
 
 [resource]
-graph_offset = Vector2(-366.06082, 375.90656)
-nodes/output/position = Vector2(1260, 650)
+graph_offset = Vector2(-142.45456, 373.13635)
+nodes/output/position = Vector2(1490, 690)
 nodes/walk_anim/node = SubResource("AnimationNodeAnimation_ucq0b")
 nodes/walk_anim/position = Vector2(200, 925)
 nodes/ascend/node = SubResource("AnimationNodeBlend2_lp1wf")
@@ -49,7 +56,7 @@ nodes/ascend/position = Vector2(900, 650)
 nodes/ascend_pos/node = SubResource("AnimationNodeAnimation_83trr")
 nodes/ascend_pos/position = Vector2(725, 925)
 nodes/crouch/node = SubResource("AnimationNodeBlend2_2kxeb")
-nodes/crouch/position = Vector2(1075, 650)
+nodes/crouch/position = Vector2(1080, 650)
 nodes/crouch_pos/node = SubResource("AnimationNodeAnimation_rm62e")
 nodes/crouch_pos/position = Vector2(900, 925)
 nodes/descend/node = SubResource("AnimationNodeBlend2_463g1")
@@ -68,4 +75,8 @@ nodes/walk/node = SubResource("AnimationNodeBlend2_2v1tm")
 nodes/walk/position = Vector2(375, 650)
 nodes/rest_pos/node = SubResource("AnimationNodeAnimation_blmy2")
 nodes/rest_pos/position = Vector2(-90, 710)
-node_connections = [&"output", 0, &"crouch", &"ascend", 0, &"descend", &"ascend", 1, &"ascend_pos", &"crouch", 0, &"ascend", &"crouch", 1, &"crouch_pos", &"descend", 0, &"falling", &"descend", 1, &"descend_pos", &"falling", 0, &"walk", &"falling", 1, &"falling_anim", &"idle", 0, &"rest_pos", &"idle", 1, &"idle_anim", &"walk", 0, &"idle", &"walk", 1, &"walk_anim"]
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_o2ol1")
+nodes/Blend2/position = Vector2(1330, 670)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_1fi2p")
+nodes/Animation/position = Vector2(1141.3, 946.15)
+node_connections = [&"output", 0, &"Blend2", &"ascend", 0, &"descend", &"ascend", 1, &"ascend_pos", &"crouch", 0, &"ascend", &"crouch", 1, &"crouch_pos", &"descend", 0, &"falling", &"descend", 1, &"descend_pos", &"falling", 0, &"walk", &"falling", 1, &"falling_anim", &"idle", 0, &"rest_pos", &"idle", 1, &"idle_anim", &"walk", 0, &"idle", &"walk", 1, &"walk_anim", &"Blend2", 0, &"crouch", &"Blend2", 1, &"Animation"]

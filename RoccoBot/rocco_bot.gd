@@ -272,8 +272,9 @@ func get_raymousepos():
 	ray_query.to = to
 	var raycast_result = space.intersect_ray(ray_query)
 	if raycast_result:
-		target_pos = raycast_result["position"]
-	print(target_pos)
+		return raycast_result["position"]
+	else:
+		return null
 
 func _ready() -> void:
 	team = Globals.get_team(team_string)	
@@ -390,11 +391,17 @@ func _physics_process(delta: float) -> void:
 #
 			#$Character/RoccoBotRig/Skeleton3D.set_bone_pose_rotation(rightbone, lerpf())
 			item_location_ik.influence = move_toward(item_location_ik.influence, 1.0, delta*item_pullout)
+			#anim_blend_tree["parameters/leftarmfilter/blend_amount"] = item_location_ik.influence
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)
 		else:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
+	$Character/RightIKPivot.look_at(target_pos)
+	
+	#var dir_to_target = (target_pos-global_position).normalized()
+	#dir_to_target.y = 0
+	#rotation.y = atan2(dir_to_target.x, dir_to_target.z)+PI
 	update_HUD()
 	
 func _process(delta: float) -> void:
@@ -419,6 +426,14 @@ func _process(delta: float) -> void:
 		facing_direction = lerp_angle(last_set_rotation, target_facing_direction, time_last_rotated/rotation_time)
 	$SpringArm3D.rotation.y = facing_direction
 	current_cam.rotation.y = facing_direction
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("select_primary"):
+		var raymousepos = get_raymousepos()
+		if raymousepos:
+			target_pos = get_raymousepos()
+			$Indicatorsphere.global_position = target_pos
+		
 
 func die():
 	emit_signal("died")
