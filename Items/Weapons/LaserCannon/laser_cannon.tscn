@@ -55,7 +55,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1777653767]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, -0.15)
 mesh = SubResource("ArrayMesh_3b8so")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_r0ftu")

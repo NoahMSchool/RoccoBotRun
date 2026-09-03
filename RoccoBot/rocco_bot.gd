@@ -10,8 +10,8 @@ signal died
 #@onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
 var item_locations = [
-	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftAimIK"),
-	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/RightAimIK"), 
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftAimIK", "left_lock"),
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/RightAimIK", "right_lock"), 
 	]
 
 enum Modifiers {
@@ -388,16 +388,16 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, false)
 			#var rightbone: bone = $Character/RoccoBotRig/Skeleton3D.find_bone("hand.R")
-#
 			#$Character/RoccoBotRig/Skeleton3D.set_bone_pose_rotation(rightbone, lerpf())
 			item_location_ik.influence = move_toward(item_location_ik.influence, 1.0, delta*item_pullout)
-			#anim_blend_tree["parameters/leftarmfilter/blend_amount"] = item_location_ik.influence
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)
 		else:
 			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
+		
+		anim_blend_tree["parameters/"+item_location.anim_filter_name+"/blend_amount"] = item_location_ik.influence
 			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
-	$Character/RightIKPivot.look_at(target_pos)
+	#$Character/RightIKPivot.look_at(target_pos)
 	
 	#var dir_to_target = (target_pos-global_position).normalized()
 	#dir_to_target.y = 0

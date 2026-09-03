@@ -1,12 +1,5 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://beprffrfd7j2h"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fi2p"]
-animation = &"RestPose"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o2ol1"]
-filter_enabled = true
-filters = ["RoccoBotRig/Skeleton3D:hand.L", "RoccoBotRig/Skeleton3D:hand.R", "RoccoBotRig/Skeleton3D:lower_arm.L", "RoccoBotRig/Skeleton3D:lower_arm.R", "RoccoBotRig/Skeleton3D:upper_arm.L", "RoccoBotRig/Skeleton3D:upper_arm.R"]
-
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_lp1wf"]
 filters = ["Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R"]
 
@@ -37,8 +30,22 @@ filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleto
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f3c6e"]
 animation = &"IdleAnim"
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_o2ol1"]
+filter_enabled = true
+filters = ["RoccoBotRig/Skeleton3D:body", "RoccoBotRig/Skeleton3D:hand.L", "RoccoBotRig/Skeleton3D:lower_arm.L", "RoccoBotRig/Skeleton3D:upper_arm.L"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fi2p"]
+animation = &"RestPose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o2ol1"]
+animation = &"RestPose"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blmy2"]
 animation = &"RestPose"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qkkmo"]
+filter_enabled = true
+filters = ["RoccoBotRig/Skeleton3D:body", "RoccoBotRig/Skeleton3D:hand.R", "RoccoBotRig/Skeleton3D:lower_arm.R", "RoccoBotRig/Skeleton3D:upper_arm.R"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2v1tm"]
 filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleton3D:foot.R", "Object/Skeleton3D:hand.L", "Object/Skeleton3D:hand.R", "Object/Skeleton3D:head", "Object/Skeleton3D:lower_arm.L", "Object/Skeleton3D:lower_arm.R", "Object/Skeleton3D:lower_leg.L", "Object/Skeleton3D:lower_leg.R", "Object/Skeleton3D:neck", "Object/Skeleton3D:upper_arm.L", "Object/Skeleton3D:upper_arm.R", "Object/Skeleton3D:upper_leg.L", "Object/Skeleton3D:upper_leg.R", "RoccoBotRig/Skeleton3D:armik.L", "RoccoBotRig/Skeleton3D:armik.R", "RoccoBotRig/Skeleton3D:armikDriver", "RoccoBotRig/Skeleton3D:body", "RoccoBotRig/Skeleton3D:foot.L", "RoccoBotRig/Skeleton3D:foot.R", "RoccoBotRig/Skeleton3D:hand.L", "RoccoBotRig/Skeleton3D:hand.R", "RoccoBotRig/Skeleton3D:head", "RoccoBotRig/Skeleton3D:heel.L", "RoccoBotRig/Skeleton3D:heel.R", "RoccoBotRig/Skeleton3D:lower_arm.L", "RoccoBotRig/Skeleton3D:lower_arm.R", "RoccoBotRig/Skeleton3D:lower_leg.L", "RoccoBotRig/Skeleton3D:lower_leg.R", "RoccoBotRig/Skeleton3D:neck", "RoccoBotRig/Skeleton3D:tail1", "RoccoBotRig/Skeleton3D:tail2", "RoccoBotRig/Skeleton3D:tail3", "RoccoBotRig/Skeleton3D:tail4", "RoccoBotRig/Skeleton3D:tail5", "RoccoBotRig/Skeleton3D:tail6", "RoccoBotRig/Skeleton3D:tailik", "RoccoBotRig/Skeleton3D:upper_arm.L", "RoccoBotRig/Skeleton3D:upper_arm.R", "RoccoBotRig/Skeleton3D:upper_leg.L", "RoccoBotRig/Skeleton3D:upper_leg.R"]
@@ -47,8 +54,8 @@ filters = ["Object/Skeleton3D:body", "Object/Skeleton3D:foot.L", "Object/Skeleto
 animation = &"WalkCycleAnim"
 
 [resource]
-graph_offset = Vector2(-142.45456, 373.13635)
-nodes/output/position = Vector2(1490, 690)
+graph_offset = Vector2(52.06256, 382.5868)
+nodes/output/position = Vector2(1670, 690)
 nodes/walk_anim/node = SubResource("AnimationNodeAnimation_ucq0b")
 nodes/walk_anim/position = Vector2(200, 925)
 nodes/ascend/node = SubResource("AnimationNodeBlend2_lp1wf")
@@ -75,8 +82,12 @@ nodes/walk/node = SubResource("AnimationNodeBlend2_2v1tm")
 nodes/walk/position = Vector2(375, 650)
 nodes/rest_pos/node = SubResource("AnimationNodeAnimation_blmy2")
 nodes/rest_pos/position = Vector2(-90, 710)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_o2ol1")
-nodes/Blend2/position = Vector2(1330, 670)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_1fi2p")
-nodes/Animation/position = Vector2(1141.3, 946.15)
-node_connections = [&"output", 0, &"Blend2", &"ascend", 0, &"descend", &"ascend", 1, &"ascend_pos", &"crouch", 0, &"ascend", &"crouch", 1, &"crouch_pos", &"descend", 0, &"falling", &"descend", 1, &"descend_pos", &"falling", 0, &"walk", &"falling", 1, &"falling_anim", &"idle", 0, &"rest_pos", &"idle", 1, &"idle_anim", &"walk", 0, &"idle", &"walk", 1, &"walk_anim", &"Blend2", 0, &"crouch", &"Blend2", 1, &"Animation"]
+nodes/left_lock/node = SubResource("AnimationNodeBlend2_o2ol1")
+nodes/left_lock/position = Vector2(1330, 670)
+"nodes/rest_pos 2/node" = SubResource("AnimationNodeAnimation_1fi2p")
+"nodes/rest_pos 2/position" = Vector2(1141.3, 946.15)
+nodes/right_lock/node = SubResource("AnimationNodeBlend2_qkkmo")
+nodes/right_lock/position = Vector2(1500, 670)
+"nodes/rest_pos 3/node" = SubResource("AnimationNodeAnimation_o2ol1")
+"nodes/rest_pos 3/position" = Vector2(1320, 950)
+node_connections = [&"output", 0, &"right_lock", &"ascend", 0, &"descend", &"ascend", 1, &"ascend_pos", &"crouch", 0, &"ascend", &"crouch", 1, &"crouch_pos", &"descend", 0, &"falling", &"descend", 1, &"descend_pos", &"falling", 0, &"walk", &"falling", 1, &"falling_anim", &"idle", 0, &"rest_pos", &"idle", 1, &"idle_anim", &"walk", 0, &"idle", &"walk", 1, &"walk_anim", &"left_lock", 0, &"crouch", &"left_lock", 1, &"rest_pos 2", &"right_lock", 0, &"left_lock", &"right_lock", 1, &"rest_pos 3"]
