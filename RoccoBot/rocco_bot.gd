@@ -10,8 +10,8 @@ signal died
 #@onready var left_aim_ik: SkeletonIK3D = $Object/Skeleton3D/LeftAimIK
 
 var item_locations = [
-	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftAimIK", "left_lock", "Character/RoccoBotRig/Skeleton3D/LeftUpperLookAt", "Character/RoccoBotRig/Skeleton3D/LeftLowerLookAt"),
-	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/RightAimIK", "right_lock", "Character/RoccoBotRig/Skeleton3D/RightUpperLookAt", "Character/RoccoBotRig/Skeleton3D/RightLowerLookAt"), 
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/LeftItemAttatch/LeftItemLocation", "left_action", "swap_left_action", "Control/Inventory/EquippedItems/LeftItemSlot", "Control/Inventory/EquippedItems/LeftItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/LeftUpperLookAt", "Character/RoccoBotRig/Skeleton3D/LeftLowerLookAt"),
+	PlayerItemLocation.new("Character/RoccoBotRig/Skeleton3D/RightItemAttatch/RightItemLocation", "right_action", "swap_right_action","Control/Inventory/EquippedItems/RightItemSlot", "Control/Inventory/EquippedItems/RightItemSlot/LeftAmmoIndicator", "Character/RoccoBotRig/Skeleton3D/RightUpperLookAt", "Character/RoccoBotRig/Skeleton3D/RightLowerLookAt"), 
 	]
 
 enum Modifiers {
@@ -36,7 +36,7 @@ var crouch_val : float = 0
 
 #camera rotation
 const rotation_time = 0.25
-const rotation_increment : float = PI/4
+const rotation_increment : float = PI/2
 var target_facing_direction : float = 0
 var facing_direction : float = 0
 var time_last_rotated : float = 0
@@ -187,8 +187,8 @@ func update_effects():
 
 func use_item_at_location(item_location : PlayerItemLocation, is_release):
 	var item = get_equiped_item(item_location)
-	var ik : SkeletonModifier3D = get_node_or_null(item_location.targeting_IK_path)
-	if ik.influence == 1.0:
+	
+	if item_location.item_activation == 1.0:
 		if is_release:
 			item.release_item()
 			#ik.influence = 0.0	
@@ -378,7 +378,6 @@ func _physics_process(delta: float) -> void:
 	#using items
 	
 	for item_location in item_locations:
-		var item_location_ik : SkeletonModifier3D = get_node_or_null(item_location.targeting_IK_path)
 		var upper_look : SkeletonModifier3D = get_node_or_null(item_location.upper_limb_look)
 		var lower_look : SkeletonModifier3D = get_node_or_null(item_location.lower_limb_look)
 		
@@ -390,37 +389,22 @@ func _physics_process(delta: float) -> void:
 			
 		elif Input.is_action_pressed(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, false)
-			
-			item_location_ik.influence = move_toward(item_location_ik.influence, 1.0, delta*item_pullout)
-			if upper_look and lower_look:
-				upper_look.influence = move_toward(upper_look.influence, 1.0, delta*item_pullout)
-				lower_look.influence = move_toward(lower_look.influence, 1.0, delta*item_pullout)
+			item_location.item_activation = move_toward(item_location.item_activation, 1.0, delta*item_pullout)
+			upper_look.influence = item_location.item_activation
+			lower_look.influence = item_location.item_activation
 		elif Input.is_action_just_released(item_location.use_action) and get_node(item_location.node_path).get_child_count()>0:
 			use_item_at_location(item_location, true)
 		else:
-			item_location_ik.influence = move_toward(item_location_ik.influence, 0.0, delta*item_pullout/2)
-			if upper_look and lower_look:
-				upper_look.influence = move_toward(upper_look.influence, 0.0, delta*item_pullout/2)
-				lower_look.influence = move_toward(lower_look.influence, 0.0, delta*item_pullout/2)
+			item_location.item_activation = move_toward(upper_look.influence, 0.0, delta*item_pullout/2)
+			upper_look.influence = item_location.item_activation
+			lower_look.influence = item_location.item_activation
 		
-		anim_blend_tree["parameters/"+item_location.anim_filter_name+"/blend_amount"] = item_location_ik.influence
-			#get_node_or_null(item_location.targeting_IK_path).influence = move_toward(get_node_or_null(item_location.targeting_IK_path).influence, 0.0, 0.1)
-	#$Character/RightIKPivot.look_at(target_pos)
+		#anim_blend_tree["parameters/"+item_location.anim_filter_name+"/blend_amount"] = item_location_ik.influence
+	#var dir_to_target = (($RightTarget.global_position+$LeftTarget.global_position)/2-global_position).normalized()
+	#var facing = ($LeftTarget.global_position-$RightTarget.global_position).cross(Vector3.UP)
+	#look_at(global_position+facing, Vector3.UP)
 	
-	var dir_to_target = (($RightTarget.global_position+$LeftTarget.global_position)/2-global_position).normalized()
-	dir_to_target.y = 0
-	rotation.y = atan2(dir_to_target.x, dir_to_target.z)+PI
 	
-	#var right_upper_bone = skeleton.find_bone("upper_arm.R")
-	#var upper_target = Vector3(0.5,0.5,0)
-	#var bone_pos = skeleton.get_bone_global_pose(right_upper_bone).origin
-	#var arm_dir = Transform3D().looking_at(upper_target-bone_pos, Vector3.UP)
-	#
-	#var parent := skeleton.get_bone_parent(right_upper_bone)
-	#var parent_pose := skeleton.get_bone_global_pose(parent)
-	#var local_basis = parent_pose.basis.inverse() * arm_dir.basis
-	#
-	#skeleton.set_bone_pose_rotation(right_upper_bone, local_basis.get_rotation_quaternion())
 	
 	update_HUD()
 	

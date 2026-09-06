@@ -7,7 +7,7 @@ const BLOOM = PI/72
 @onready var shoot_component = $ShootComponent
 
 @export var target_group = "enemies"
-@export var fire_rate : float
+@export var fire_rate : float = 5
 @export var damage : float = 30
 
 #Charge Component
@@ -15,7 +15,7 @@ const BLOOM = PI/72
 @export var regen_rate : float = 2
 @export var regen_cooldown = 0.5
 #Shoot Component
-@export var bloom_angle : float = 0
+@export var bloom_angle : float = 1.0
 
 
 @onready var shot_time = 1/fire_rate

@@ -129,41 +129,7 @@ surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/0 = ExtResource("2_jq3y0")
 surface_material_override/1 = ExtResource("2_jq3y0")
 
-[node name="RightAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="16" unique_id=596802797]
-process_mode = 4
-active = false
-setting_count = 1
-settings/0/target_node = NodePath("../../../RightArmAimIKTarget")
-settings/0/pole_node = NodePath("../RightIKPoleTarget")
-settings/0/root_bone_name = "upper_arm.R"
-settings/0/root_bone = 14
-settings/0/middle_bone_name = "lower_arm.R"
-settings/0/middle_bone = 15
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "hand.R"
-settings/0/end_bone = 16
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = false
-
-[node name="LeftAimIK" type="TwoBoneIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="17" unique_id=539541097]
-process_mode = 4
-active = false
-setting_count = 1
-settings/0/target_node = NodePath("../../../LeftArmAimIKTarget")
-settings/0/pole_node = NodePath("../LeftIKPoleTarget")
-settings/0/root_bone_name = "upper_arm.L"
-settings/0/root_bone = 4
-settings/0/middle_bone_name = "lower_arm.L"
-settings/0/middle_bone = 5
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "hand.L"
-settings/0/end_bone = 6
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = true
-settings/0/end_bone/direction = 6
-settings/0/end_bone/length = 0.0
-
-[node name="TailIKJak" type="FABRIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="18" unique_id=1472316191]
+[node name="TailIKJak" type="FABRIK3D" parent="Character/RoccoBotRig/Skeleton3D" index="16" unique_id=1472316191]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 setting_count = 1
 settings/0/target_node = NodePath("../../../TailIKTarget")
@@ -186,15 +152,7 @@ settings/0/joints/4/limitation = null
 settings/0/joints/5/rotation_axis = 3
 settings/0/joints/5/limitation = null
 
-[node name="LeftIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="19" unique_id=1150124747]
-process_mode = 4
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.4, 0.5, 0.2)
-
-[node name="RightIKPoleTarget" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D" index="20" unique_id=595791742]
-process_mode = 4
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.4, 0.5, 0.2)
-
-[node name="RightItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="21" unique_id=1767716573]
+[node name="RightItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="17" unique_id=1767716573]
 transform = Transform3D(4.917383e-07, 0.9999999, 8.693031e-08, -7.590356e-08, -1.05399145e-07, 1.0000001, 0.9999998, -5.1409006e-07, 3.7701952e-08, 0.46999994, 0.5400001, -1.9650906e-07)
 bone_name = "hand.R"
 bone_idx = 16
@@ -202,7 +160,7 @@ bone_idx = 16
 [node name="RightItemLocation" type="Node3D" parent="Character/RoccoBotRig/Skeleton3D/RightItemAttatch" unique_id=799303014]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 
-[node name="LeftItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="22" unique_id=1378156194]
+[node name="LeftItemAttatch" type="BoneAttachment3D" parent="Character/RoccoBotRig/Skeleton3D" index="18" unique_id=1378156194]
 transform = Transform3D(-1.5646219e-07, -0.99999976, -8.63798e-08, -3.5519253e-08, -1.1365482e-07, 1, -0.99999976, 1.5646219e-07, -7.4046504e-08, -0.46999985, 0.5400001, 1.0896474e-07)
 bone_name = "hand.L"
 bone_idx = 6
@@ -214,10 +172,10 @@ transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.99
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 mesh = SubResource("CapsuleMesh_witln")
 
-[node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="23" unique_id=106557410]
+[node name="Whiskers" parent="Character/RoccoBotRig/Skeleton3D" index="19" unique_id=106557410]
 surface_material_override/0 = ExtResource("2_jq3y0")
 
-[node name="RightUpperLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="24" unique_id=960952685]
+[node name="RightUpperLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="20" unique_id=960952685]
 influence = 0.0
 target_node = NodePath("../../../RightUpperArmTarget")
 bone_name = "upper_arm.R"
@@ -225,7 +183,7 @@ bone = 14
 forward_axis = 2
 primary_rotation_axis = 0
 
-[node name="RightLowerLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="25" unique_id=1187181680]
+[node name="RightLowerLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="21" unique_id=1187181680]
 influence = 0.0
 target_node = NodePath("../../../../RightTarget")
 bone_name = "lower_arm.R"
@@ -233,7 +191,7 @@ bone = 15
 forward_axis = 2
 primary_rotation_axis = 0
 
-[node name="LeftUpperLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="26" unique_id=32114113]
+[node name="LeftUpperLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="22" unique_id=32114113]
 influence = 0.0
 target_node = NodePath("../../../LeftUpperArmTarget")
 bone_name = "upper_arm.L"
@@ -241,7 +199,7 @@ bone = 4
 forward_axis = 2
 primary_rotation_axis = 0
 
-[node name="LeftLowerLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="27" unique_id=1644442698]
+[node name="LeftLowerLookAt" type="LookAtModifier3D" parent="Character/RoccoBotRig/Skeleton3D" index="23" unique_id=1644442698]
 influence = 0.0
 target_node = NodePath("../../../../LeftTarget")
 bone_name = "lower_arm.L"
@@ -274,14 +232,6 @@ script = ExtResource("9_baf7l")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character/TailIKTarget" unique_id=1619401002]
 visible = false
 mesh = SubResource("SphereMesh_witln")
-
-[node name="LeftArmAimIKTarget" type="Node3D" parent="Character" unique_id=384243104]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.32, 0.525, -0.18)
-
-[node name="RightArmAimIKTarget" type="Node3D" parent="Character" unique_id=264353736]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.32, 0.55, -0.15000002)
 
 [node name="RightUpperArmTarget" type="Node3D" parent="Character" unique_id=204985021]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.5, 0.55, 0)
